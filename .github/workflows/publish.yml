@@ -1,0 +1,6 @@
+name: Publish Quarto site
+
+on:
+  push:
+    branches:
+      - main
