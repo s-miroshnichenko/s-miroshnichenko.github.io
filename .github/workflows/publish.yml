@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # 🔑 нужно, чтобы подтянулись все ветки (в т.ч. gh-pages)
 
       - name: Setup Quarto
         uses: quarto-dev/quarto-actions/setup@v2

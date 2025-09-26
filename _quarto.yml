@@ -5,15 +5,13 @@ website:
   title: "Сергей Мирошниченко"
   navbar:
     left:
-      - href: blog/
-        text: Блог
-        
+      - href: posts.qmd
+        text: "Блог"
+
 website-index: blog/
 
 format:
   html:
     theme:
       - lux
-
-
-
+    css: styles.css

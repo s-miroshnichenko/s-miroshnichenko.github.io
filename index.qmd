@@ -1,7 +1,9 @@
 ---
 title: "Добро пожаловать в мой блог!"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+<img src="img/me2f.jpg" alt="Сергей Мирошниченко" style="width:800px; display:block; margin:0 auto;">
