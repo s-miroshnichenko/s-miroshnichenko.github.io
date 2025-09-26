@@ -11,10 +11,11 @@ website:
 
 website-index: blog/
 
-base-url: "/"
-
 format:
   html:
     theme:
       - lux
     css: styles.css
+
+base-url: "/"
+site-url: "https://ssmiro.ru"
