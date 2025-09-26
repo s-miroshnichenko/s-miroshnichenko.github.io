@@ -1,20 +1,17 @@
 project:
   type: website
   output-dir: docs
-  preview:
-    port: 4200
-    browser: true
 
 website:
   title: "Сергей Мирошниченко"
-  page-navigation: true
-  repo-url: https://github.com/s-miroshnichenko/s-miroshnichenko.github.io/
   navbar:
     left:
       - href: posts.qmd
         text: "Блог"
 
 website-index: blog/
+
+base-url: "/"
 
 format:
   html:
