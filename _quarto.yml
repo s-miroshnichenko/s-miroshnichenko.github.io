@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: "Сергей Мирошниченко"
@@ -15,3 +16,6 @@ format:
     theme:
       - lux
     css: styles.css
+
+base-url: "/"
+site-url: "https://ssmiro.ru"
