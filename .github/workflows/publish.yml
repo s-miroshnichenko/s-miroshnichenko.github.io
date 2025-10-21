@@ -1,15 +1,34 @@
-name: Publish Site
+name: Publish Quarto site
+
 on:
   push:
-    branches: [main]  # or whatever branch has your .qmd source
+    branches:
+      - main  # триггер при пуше в main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
-  publish:
+  build-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: quarto-dev/quarto-actions/setup@v2
-      - uses: quarto-dev/quarto-actions/publish@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Render site
+        run: quarto render
+
+      - name: Publish to GitHub Pages
+        uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
