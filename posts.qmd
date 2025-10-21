@@ -1,8 +1,0 @@
----
-title: "Блог"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-page-class: posts-listing
----
