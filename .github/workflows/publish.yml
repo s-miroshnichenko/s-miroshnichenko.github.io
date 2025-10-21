@@ -1,25 +1,17 @@
-name: Publish Quarto site
+name: Publish Site
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  build-deploy:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0   # 🔑 нужно, чтобы подтянулись все ветки (в т.ч. gh-pages)
-
-      - name: Setup Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Render Quarto project
-        uses: quarto-dev/quarto-actions/render@v2
-
-      - name: Publish to GitHub Pages
-        uses: quarto-dev/quarto-actions/publish@v2
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Render
+        run: quarto render
+      - uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
