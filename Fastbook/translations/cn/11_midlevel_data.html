@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>midlevel_data – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="第十一章使用-fastai-的中级-api-进行数据整理" class="level1">
+<h1>第十一章：使用 fastai 的中级 API 进行数据整理</h1>
+<p>我们已经看到了<code>Tokenizer</code>和<code>Numericalize</code>对文本集合的处理方式，以及它们如何在数据块 API 中使用，该 API 直接使用<code>TextBlock</code>处理这些转换。但是，如果我们只想应用这些转换中的一个，要么是为了查看中间结果，要么是因为我们已经对文本进行了标记化，我们该怎么办？更一般地说，当数据块 API 不足以满足我们特定用例的需求时，我们需要使用 fastai 的<em>中级 API</em>来处理数据。数据块 API 是建立在该层之上的，因此它将允许您执行数据块 API 所做的一切，以及更多更多。</p>
+</section>
+<section id="深入了解-fastai-的分层-api" class="level1">
+<h1>深入了解 fastai 的分层 API</h1>
+<p>fastai 库是建立在<em>分层 API</em>上的。在最顶层是<em>应用程序</em>，允许我们在五行代码中训练模型，正如我们在第一章中看到的。例如，对于为文本分类器创建<code>DataLoaders</code>，我们使用了这一行：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> TextDataLoaders.from_folder(untar_data(URLs.IMDB), valid<span class="op">=</span><span class="st">'test'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>当您的数据排列方式与 IMDb 数据集完全相同时，工厂方法<code>TextDataLoaders.from_folder</code>非常方便，但实际上，情况通常不会如此。数据块 API 提供了更多的灵活性。正如我们在前一章中看到的，我们可以通过以下方式获得相同的结果：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> DataBlock(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(TextBlock.from_folder(path),CategoryBlock),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    get_y <span class="op">=</span> parent_label,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>partial(get_text_files, folders<span class="op">=</span>[<span class="st">'train'</span>, <span class="st">'test'</span>]),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>).dataloaders(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>但有时它并不够灵活。例如，出于调试目的，我们可能需要仅应用与此数据块一起的部分转换。或者我们可能希望为 fastai 不直接支持的应用程序创建一个<code>DataLoaders</code>。在本节中，我们将深入探讨 fastai 内部用于实现数据块 API 的组件。了解这些将使您能够利用这个中间层 API 的强大和灵活性。</p>
+</section>
+<section id="中级-api" class="level1">
+<h1>中级 API</h1>
+<p>中级 API 不仅包含用于创建<code>DataLoaders</code>的功能。它还具有<em>回调</em>系统，允许我们以任何我们喜欢的方式自定义训练循环，以及<em>通用优化器</em>。这两者将在第十六章中介绍。</p>
+<section id="转换" class="level2">
+<h2 class="anchored" data-anchor-id="转换">转换</h2>
+<p>在前一章中研究标记化和数值化时，我们首先获取了一堆文本：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_text_files(path, folders <span class="op">=</span> [<span class="st">'train'</span>, <span class="st">'test'</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>txts <span class="op">=</span> L(o.<span class="bu">open</span>().read() <span class="cf">for</span> o <span class="kw">in</span> files[:<span class="dv">2000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们展示了如何使用<code>Tokenizer</code>对它们进行标记化</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tok <span class="op">=</span> Tokenizer.from_folder(path)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tok.setup(txts)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>toks <span class="op">=</span> txts.<span class="bu">map</span>(tok)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>toks[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#374) ['xxbos','xxmaj','well',',','"','cube','"','(','1997',')'...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>以及如何进行数值化，包括自动为我们的语料库创建词汇表：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> Numericalize()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>num.setup(toks)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>nums <span class="op">=</span> toks.<span class="bu">map</span>(num)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>nums[<span class="dv">0</span>][:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>tensor([   <span class="dv">2</span>,    <span class="dv">8</span>,   <span class="dv">76</span>,   <span class="dv">10</span>,   <span class="dv">23</span>, <span class="dv">3112</span>,   <span class="dv">23</span>,   <span class="dv">34</span>, <span class="dv">3113</span>,   <span class="dv">33</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这些类还有一个<code>decode</code>方法。例如，<code>Numericalize.decode</code>会将字符串标记返回给我们：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>nums_dec <span class="op">=</span> num.decode(nums[<span class="dv">0</span>][:<span class="dv">10</span>])<span class="op">;</span> nums_dec</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#10) ['xxbos','xxmaj','well',',','"','cube','"','(','1997',')']</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>Tokenizer.decode</code>将其转换回一个字符串（但可能不完全与原始字符串相同；这取决于标记器是否是<em>可逆的</em>，在我们撰写本书时，默认的单词标记器不是）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>tok.decode(nums_dec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">'xxbos xxmaj well , " cube " ( 1997 )'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>decode</code>被 fastai 的<code>show_batch</code>和<code>show_results</code>以及其他一些推断方法使用，将预测和小批量转换为人类可理解的表示。</p>
+<p>在前面的示例中，对于<code>tok</code>或<code>num</code>，我们创建了一个名为<code>setup</code>的对象（如果需要为<code>tok</code>训练标记器并为<code>num</code>创建词汇表），将其应用于我们的原始文本（通过将对象作为函数调用），然后最终将结果解码回可理解的表示。大多数数据预处理任务都需要这些步骤，因此 fastai 提供了一个封装它们的类。这就是<code>Transform</code>类。<code>Tokenize</code>和<code>Numericalize</code>都是<code>Transform</code>。</p>
+<p>一般来说，<code>Transform</code>是一个行为类似于函数的对象，它具有一个可选的<code>setup</code>方法，用于初始化内部状态（例如<code>num</code>内部的词汇表），以及一个可选的<code>decode</code>方法，用于反转函数（正如我们在<code>tok</code>中看到的那样，这种反转可能不完美）。</p>
+<p><code>decode</code> 的一个很好的例子可以在我们在 第七章 中看到的 <code>Normalize</code> 转换中找到：为了能够绘制图像，它的 <code>decode</code> 方法会撤消归一化（即，乘以标准差并加回均值）。另一方面，数据增强转换没有 <code>decode</code> 方法，因为我们希望展示图像上的效果，以确保数据增强按我们的意愿进行工作。</p>
+<p><code>Transform</code> 的一个特殊行为是它们总是应用于元组。一般来说，我们的数据总是一个元组 <code>(input, target)</code>（有时有多个输入或多个目标）。当对这样的项目应用转换时，例如 <code>Resize</code>，我们不希望整个元组被调整大小；相反，我们希望分别调整输入（如果适用）和目标（如果适用）。对于进行数据增强的批处理转换也是一样的：当输入是图像且目标是分割掩模时，需要将转换（以相同的方式）应用于输入和目标。</p>
+<p>如果我们将一个文本元组传递给 <code>tok</code>，我们可以看到这种行为：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tok((txts[<span class="dv">0</span>], txts[<span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>((<span class="co">#374) ['xxbos','xxmaj','well',',','"','cube','"','(','1997',')'...],</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a> (<span class="co">#207)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> [<span class="st">'xxbos'</span>,<span class="st">'xxmaj'</span>,<span class="st">'conrad'</span>,<span class="st">'xxmaj'</span>,<span class="st">'hall'</span>,<span class="st">'went'</span>,<span class="st">'out'</span>,<span class="st">'with'</span>,<span class="st">'a'</span>,<span class="st">'bang'</span>...])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="编写您自己的转换" class="level2">
+<h2 class="anchored" data-anchor-id="编写您自己的转换">编写您自己的转换</h2>
+<p>如果您想编写一个自定义的转换来应用于您的数据，最简单的方法是编写一个函数。正如您在这个例子中看到的，<code>Transform</code> 只会应用于匹配的类型，如果提供了类型（否则，它将始终被应用）。在下面的代码中，函数签名中的 <code>:int</code> 表示 <code>f</code> 仅应用于 <code>ints</code>。这就是为什么 <code>tfm(2.0)</code> 返回 <code>2.0</code>，但 <code>tfm(2)</code> 在这里返回 <code>3</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x:<span class="bu">int</span>): <span class="cf">return</span> x<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tfm <span class="op">=</span> Transform(f)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>tfm(<span class="dv">2</span>),tfm(<span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在这里，<code>f</code> 被转换为一个没有 <code>setup</code> 和没有 <code>decode</code> 方法的 <code>Transform</code>。</p>
+<p>Python 有一种特殊的语法，用于将一个函数（如 <code>f</code>）传递给另一个函数（或类似函数的东西，在 Python 中称为 <em>callable</em>），称为 <em>decorator</em>。通过在可调用对象前加上 <code>@</code> 并将其放在函数定义之前来使用装饰器（关于 Python 装饰器有很多很好的在线教程，如果这对您来说是一个新概念，请查看其中一个）。以下代码与前面的代码相同：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Transform</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x:<span class="bu">int</span>): <span class="cf">return</span> x<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">2</span>),f(<span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">3</span>, <span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果您需要 <code>setup</code> 或 <code>decode</code>，您需要对 <code>Transform</code> 进行子类化，以在 <code>encodes</code> 中实现实际的编码行为，然后（可选）在 <code>setups</code> 中实现设置行为和在 <code>decodes</code> 中实现解码行为：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NormalizeMean(Transform):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setups(<span class="va">self</span>, items): <span class="va">self</span>.mean <span class="op">=</span> <span class="bu">sum</span>(items)<span class="op">/</span><span class="bu">len</span>(items)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> encodes(<span class="va">self</span>, x): <span class="cf">return</span> x<span class="op">-</span><span class="va">self</span>.mean</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> decodes(<span class="va">self</span>, x): <span class="cf">return</span> x<span class="op">+</span><span class="va">self</span>.mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在这里，<code>NormalizeMean</code> 将在设置期间初始化某个状态（传递的所有元素的平均值）；然后转换是减去该平均值。为了解码目的，我们通过添加平均值来实现该转换的反向。这里是 <code>NormalizeMean</code> 的一个示例：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tfm <span class="op">=</span> NormalizeMean()</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tfm.setup([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> tfm(start)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> tfm.decode(y)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>tfm.mean,y,z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">3.0</span>, <span class="op">-</span><span class="fl">1.0</span>, <span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>请注意，每个方法的调用和实现是不同的：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>类</th>
+<th>调用</th>
+<th>实现</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>nn.Module</code>（PyTorch）</td>
+<td><code>()</code>（即，作为函数调用）</td>
+<td><code>forward</code></td>
+</tr>
+<tr class="even">
+<td><code>Transform</code></td>
+<td><code>()</code></td>
+<td><code>encodes</code></td>
+</tr>
+<tr class="odd">
+<td><code>Transform</code></td>
+<td><code>decode()</code></td>
+<td><code>decodes</code></td>
+</tr>
+<tr class="even">
+<td><code>Transform</code></td>
+<td><code>setup()</code></td>
+<td><code>setups</code></td>
+</tr>
+</tbody>
+</table>
+<p>因此，例如，您永远不会直接调用 <code>setups</code>，而是会调用 <code>setup</code>。原因是 <code>setup</code> 在为您调用 <code>setups</code> 之前和之后做了一些工作。要了解有关 <code>Transform</code> 及如何使用它们根据输入类型实现不同行为的更多信息，请务必查看 fastai 文档中的教程。</p>
+</section>
+<section id="pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="pipeline">Pipeline</h2>
+<p>要将几个转换组合在一起，fastai 提供了 <code>Pipeline</code> 类。我们通过向 <code>Pipeline</code> 传递一个 <code>Transform</code> 列表来定义一个 <code>Pipeline</code>；然后它将组合其中的转换。当您在对象上调用 <code>Pipeline</code> 时，它将自动按顺序调用其中的转换：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tfms <span class="op">=</span> Pipeline([tok, num])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> tfms(txts[<span class="dv">0</span>])<span class="op">;</span> t[:<span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>tensor([   <span class="dv">2</span>,    <span class="dv">8</span>,   <span class="dv">76</span>,   <span class="dv">10</span>,   <span class="dv">23</span>, <span class="dv">3112</span>,   <span class="dv">23</span>,   <span class="dv">34</span>, <span class="dv">3113</span>,   <span class="dv">33</span>,   <span class="dv">10</span>,    <span class="dv">8</span>,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="dv">4477</span>,   <span class="dv">22</span>,   <span class="dv">88</span>,   <span class="dv">32</span>,   <span class="dv">10</span>,   <span class="dv">27</span>,   <span class="dv">42</span>,   <span class="dv">14</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>您可以对编码结果调用 <code>decode</code>，以获取可以显示和分析的内容：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tfms.decode(t)[:<span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">'xxbos xxmaj well , " cube " ( 1997 ) , xxmaj vincenzo </span><span class="ch">\'</span><span class="co">s first movie , was one</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; of the most interesti'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>Transform</code> 中与 <code>Transform</code> 不同的部分是设置。要在一些数据上正确设置 <code>Transform</code> 的 <code>Pipeline</code>，您需要使用 <code>TfmdLists</code>。</p>
+</section>
+</section>
+<section id="tfmdlists-和-datasets转换的集合" class="level1">
+<h1>TfmdLists 和 Datasets：转换的集合</h1>
+<p>您的数据通常是一组原始项目（如文件名或 DataFrame 中的行），您希望对其应用一系列转换。我们刚刚看到，一系列转换在 fastai 中由<code>Pipeline</code>表示。将这个<code>Pipeline</code>与您的原始项目组合在一起的类称为<code>TfmdLists</code>。</p>
+<section id="tfmdlists" class="level2">
+<h2 class="anchored" data-anchor-id="tfmdlists">TfmdLists</h2>
+<p>以下是在前一节中看到的转换的简短方式：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tls <span class="op">=</span> TfmdLists(files, [Tokenizer.from_folder(path), Numericalize])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在初始化时，<code>TfmdLists</code>将自动调用每个<code>Transform</code>的<code>setup</code>方法，依次提供每个原始项目而不是由所有先前的<code>Transform</code>转换的项目。我们可以通过索引到<code>TfmdLists</code>中的任何原始元素来获得我们的<code>Pipeline</code>的结果：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> tls[<span class="dv">0</span>]<span class="op">;</span> t[:<span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tensor([    <span class="dv">2</span>,     <span class="dv">8</span>,    <span class="dv">91</span>,    <span class="dv">11</span>,    <span class="dv">22</span>,  <span class="dv">5793</span>,    <span class="dv">22</span>,    <span class="dv">37</span>,  <span class="dv">4910</span>,    <span class="dv">34</span>,</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="dv">11</span>,     <span class="dv">8</span>, <span class="dv">13042</span>,    <span class="dv">23</span>,   <span class="dv">107</span>,    <span class="dv">30</span>,    <span class="dv">11</span>,    <span class="dv">25</span>,    <span class="dv">44</span>,    <span class="dv">14</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>而<code>TfmdLists</code>知道如何解码以进行显示：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tls.decode(t)[:<span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">'xxbos xxmaj well , " cube " ( 1997 ) , xxmaj vincenzo </span><span class="ch">\'</span><span class="co">s first movie , was one</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; of the most interesti'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>实际上，它甚至有一个<code>show</code>方法：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tls.show(t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>xxbos xxmaj well , <span class="st">" cube "</span> ( <span class="dv">1997</span> ) , xxmaj vincenzo <span class="st">'s first movie , was one</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; of the most interesting and tricky ideas that xxmaj i 've ever seen when</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> talking about movies . xxmaj they had just one scenery , a bunch of actors</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="kw">and</span> a plot . xxmaj so , what made it so special were <span class="bu">all</span> the effective</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> direction , great dialogs <span class="kw">and</span> a bizarre condition that characters had to deal</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> like rats <span class="kw">in</span> a labyrinth . xxmaj his second movie , <span class="st">" cypher "</span> ( <span class="dv">2002</span> ) , was</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="bu">all</span> about its story , but it was n<span class="st">'t so good as " cube " but here are the</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; characters being tested like rats again .</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a> <span class="co">" nothing "</span> <span class="kw">is</span> something very interesting <span class="kw">and</span> gets xxmaj vincenzo coming back</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> to his <span class="st">' cube days '</span> , locking the characters once again <span class="kw">in</span> a very different</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> space <span class="cf">with</span> no time once more playing <span class="cf">with</span> the characters like playing <span class="cf">with</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> rats <span class="kw">in</span> an experience room . xxmaj but instead of a thriller sci <span class="op">-</span> fi ( even</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> some of the promotional teasers <span class="kw">and</span> trailers erroneous seemed like that ) , <span class="st">"</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; nothing " is a loose and light comedy that for sure can be called a modern</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> satire about our society <span class="kw">and</span> also about the intolerant world we <span class="st">'re living .</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; xxmaj once again xxmaj xxunk amaze us with a great idea into a so small kind</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> of thing . <span class="dv">2</span> actors <span class="kw">and</span> a blinding white scenario , that <span class="st">'s all you got most</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; part of time and you do n't need more than that . xxmaj while " cube " is a</span></span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> claustrophobic experience <span class="kw">and</span> <span class="st">" cypher "</span> confusing , <span class="st">" nothing "</span> <span class="kw">is</span></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> completely the opposite but at the same time also desperate .</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a> xxmaj this movie proves once again that a smart idea means much more than just</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> a millionaire budget . xxmaj of course that the movie fails sometimes , but</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> its prime idea means a lot <span class="kw">and</span> offsets <span class="bu">any</span> flaws . xxmaj there <span class="st">'s nothing</span></span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; more to be said about this movie because everything is a brilliant surprise</span></span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="kw">and</span> a totally different experience that i had <span class="kw">in</span> movies since <span class="st">" cube "</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>TfmdLists</code>以“s”命名，因为它可以使用<code>splits</code>参数处理训练集和验证集。您只需要传递在训练集中的元素的索引和在验证集中的元素的索引：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>cut <span class="op">=</span> <span class="bu">int</span>(<span class="bu">len</span>(files)<span class="op">*</span><span class="fl">0.8</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>splits <span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(cut)), <span class="bu">list</span>(<span class="bu">range</span>(cut,<span class="bu">len</span>(files)))]</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>tls <span class="op">=</span> TfmdLists(files, [Tokenizer.from_folder(path), Numericalize],</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>                splits<span class="op">=</span>splits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后可以通过<code>train</code>和<code>valid</code>属性访问它们：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tls.valid[<span class="dv">0</span>][:<span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>tensor([    <span class="dv">2</span>,     <span class="dv">8</span>,    <span class="dv">20</span>,    <span class="dv">30</span>,    <span class="dv">87</span>,   <span class="dv">510</span>,  <span class="dv">1570</span>,    <span class="dv">12</span>,   <span class="dv">408</span>,   <span class="dv">379</span>,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="dv">4196</span>,    <span class="dv">10</span>,     <span class="dv">8</span>,    <span class="dv">20</span>,    <span class="dv">30</span>,    <span class="dv">16</span>,    <span class="dv">13</span>, <span class="dv">12216</span>,   <span class="dv">202</span>,   <span class="dv">509</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果您手动编写了一个<code>Transform</code>，一次执行所有预处理，将原始项目转换为具有输入和目标的元组，那么<code>TfmdLists</code>是您需要的类。您可以使用<code>dataloaders</code>方法直接将其转换为<code>DataLoaders</code>对象。这是我们稍后在本章中将要做的事情。</p>
+<p>一般来说，您将有两个（或更多）并行的转换流水线：一个用于将原始项目处理为输入，另一个用于将原始项目处理为目标。例如，在这里，我们定义的流水线仅将原始文本处理为输入。如果我们要进行文本分类，还必须将标签处理为目标。</p>
+<p>为此，我们需要做两件事。首先，我们从父文件夹中获取标签名称。有一个名为<code>parent_label</code>的函数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lbls <span class="op">=</span> files.<span class="bu">map</span>(parent_label)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>lbls</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#50000) ['pos','pos','pos','pos','pos','pos','pos','pos','pos','pos'...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们需要一个<code>Transform</code>，在设置期间将抓取的唯一项目构建为词汇表，然后在调用时将字符串标签转换为整数。fastai 为我们提供了这个；它被称为<code>Categorize</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>cat <span class="op">=</span> Categorize()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>cat.setup(lbls)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>cat.vocab, cat(lbls[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>((<span class="co">#2) ['neg','pos'], TensorCategory(1))</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>要在我们的文件列表上自动执行整个设置，我们可以像以前一样创建一个<code>TfmdLists</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tls_y <span class="op">=</span> TfmdLists(files, [parent_label, Categorize()])</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>tls_y[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>TensorCategory(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>但是然后我们得到了两个分开的对象用于我们的输入和目标，这不是我们想要的。这就是<code>Datasets</code>发挥作用的地方。</p>
+</section>
+<section id="datasets" class="level2">
+<h2 class="anchored" data-anchor-id="datasets">Datasets</h2>
+<p><code>Datasets</code>将并行应用两个（或更多）流水线到相同的原始对象，并构建一个包含结果的元组。与<code>TfmdLists</code>一样，它将自动为我们进行设置，当我们索引到<code>Datasets</code>时，它将返回一个包含每个流水线结果的元组：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>x_tfms <span class="op">=</span> [Tokenizer.from_folder(path), Numericalize]</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>y_tfms <span class="op">=</span> [parent_label, Categorize()]</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> Datasets(files, [x_tfms, y_tfms])</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> dsets[<span class="dv">0</span>]</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">20</span>],y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>像<code>TfmdLists</code>一样，我们可以将<code>splits</code>传递给<code>Datasets</code>以在训练和验证集之间拆分我们的数据：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>x_tfms <span class="op">=</span> [Tokenizer.from_folder(path), Numericalize]</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>y_tfms <span class="op">=</span> [parent_label, Categorize()]</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> Datasets(files, [x_tfms, y_tfms], splits<span class="op">=</span>splits)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> dsets.valid[<span class="dv">0</span>]</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">20</span>],y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(tensor([    <span class="dv">2</span>,     <span class="dv">8</span>,    <span class="dv">20</span>,    <span class="dv">30</span>,    <span class="dv">87</span>,   <span class="dv">510</span>,  <span class="dv">1570</span>,    <span class="dv">12</span>,   <span class="dv">408</span>,   <span class="dv">379</span>,</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="dv">4196</span>,    <span class="dv">10</span>,     <span class="dv">8</span>,    <span class="dv">20</span>,    <span class="dv">30</span>,    <span class="dv">16</span>,    <span class="dv">13</span>, <span class="dv">12216</span>,   <span class="dv">202</span>,   <span class="dv">509</span>]),</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a> TensorCategory(<span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>它还可以解码任何处理过的元组或直接显示它：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> dsets.valid[<span class="dv">0</span>]</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>dsets.decode(t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>(<span class="st">'xxbos xxmaj this movie had horrible lighting and terrible camera movements .</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; xxmaj this movie is a jumpy horror flick with no meaning at all . xxmaj the</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> slashes are totally fake looking . xxmaj it looks like some <span class="dv">17</span> year <span class="op">-</span> old</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> idiot wrote this movie <span class="kw">and</span> a <span class="dv">10</span> year old kid shot it . xxmaj <span class="cf">with</span> the worst</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> acting you can ever find . xxmaj people are tired of knives . xxmaj at least</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> move on to guns <span class="kw">or</span> fire . xxmaj it has almost exact lines <span class="im">from</span> <span class="st">" when a xxmaj</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; stranger xxmaj calls " . xxmaj with gruesome killings , only crazy people</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> would enjoy this movie . xxmaj it <span class="kw">is</span> obvious the writer does n\<span class="st">'t have kids</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; or even care for them . i mean at show some mercy . xxmaj just to sum it up ,</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> this movie <span class="kw">is</span> a <span class="st">" b "</span> movie <span class="kw">and</span> it sucked . xxmaj just <span class="cf">for</span> your own sake , do</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> n\<span class="st">'t even think about wasting your time watching this crappy movie .'</span>,</span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a> <span class="st">'neg'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>最后一步是将我们的<code>Datasets</code>对象转换为<code>DataLoaders</code>，可以使用<code>dataloaders</code>方法完成。在这里，我们需要传递一个特殊参数来解决填充问题（正如我们在前一章中看到的）。这需要在我们批处理元素之前发生，所以我们将其传递给<code>before_batch</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dsets.dataloaders(bs<span class="op">=</span><span class="dv">64</span>, before_batch<span class="op">=</span>pad_input)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>dataloaders</code>直接在我们的<code>Datasets</code>的每个子集上调用<code>DataLoader</code>。fastai 的<code>DataLoader</code>扩展了 PyTorch 中同名类，并负责将我们的数据集中的项目整理成批次。它有很多自定义点，但您应该知道的最重要的是：</p>
+<p><code>after_item</code></p>
+<p>在数据集中抓取项目后应用于每个项目。这相当于<code>DataBlock</code>中的<code>item_tfms</code>。</p>
+<p><code>before_batch</code></p>
+<p>在整理之前应用于项目列表上。这是将项目填充到相同大小的理想位置。</p>
+<p><code>after_batch</code></p>
+<p>在构建后对整个批次应用。这相当于<code>DataBlock</code>中的<code>batch_tfms</code>。</p>
+<p>最后，这是为了准备文本分类数据所需的完整代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>tfms <span class="op">=</span> [[Tokenizer.from_folder(path), Numericalize], [parent_label, Categorize]]</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_text_files(path, folders <span class="op">=</span> [<span class="st">'train'</span>, <span class="st">'test'</span>])</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>splits <span class="op">=</span> GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'test'</span>)(files)</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> Datasets(files, tfms, splits<span class="op">=</span>splits)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dsets.dataloaders(dl_type<span class="op">=</span>SortedDL, before_batch<span class="op">=</span>pad_input)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>与之前的代码的两个不同之处是使用<code>GrandparentSplitter</code>来分割我们的训练和验证数据，以及<code>dl_type</code>参数。这是告诉<code>dataloaders</code>使用<code>DataLoader</code>的<code>SortedDL</code>类，而不是通常的类。<code>SortedDL</code>通过将大致相同长度的样本放入批次来构建批次。</p>
+<p>这与我们之前的<code>DataBlock</code>完全相同：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> DataBlock(</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(TextBlock.from_folder(path),CategoryBlock),</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    get_y <span class="op">=</span> parent_label,</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>partial(get_text_files, folders<span class="op">=</span>[<span class="st">'train'</span>, <span class="st">'test'</span>]),</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>).dataloaders(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>但现在你知道如何定制每一个部分了！</p>
+<p>让我们现在通过一个计算机视觉示例练习刚学到的关于使用这个中级 API 进行数据预处理。</p>
+</section>
+</section>
+<section id="应用中级数据-apisiamesepair" class="level1">
+<h1>应用中级数据 API：SiamesePair</h1>
+<p>一个<em>暹罗模型</em>需要两张图片，并且必须确定它们是否属于同一类。在这个例子中，我们将再次使用宠物数据集，并准备数据用于一个模型，该模型将预测两张宠物图片是否属于同一品种。我们将在这里解释如何为这样的模型准备数据，然后我们将在第十五章中训练该模型。</p>
+<p>首先要做的是-让我们获取数据集中的图片：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_image_files(path<span class="op">/</span><span class="st">"images"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果我们根本不关心显示我们的对象，我们可以直接创建一个转换来完全预处理那个文件列表。但是我们想要查看这些图片，因此我们需要创建一个自定义类型。当您在<code>TfmdLists</code>或<code>Datasets</code>对象上调用<code>show</code>方法时，它将解码项目，直到达到包含<code>show</code>方法的类型，并使用它来显示对象。该<code>show</code>方法会传递一个<code>ctx</code>，它可以是图像的<code>matplotlib</code>轴，也可以是文本的 DataFrame 行。</p>
+<p>在这里，我们创建了一个<code>SiameseImage</code>对象，它是<code>Tuple</code>的子类，旨在包含三个东西：两张图片和一个布尔值，如果图片是同一品种则为<code>True</code>。我们还实现了特殊的<code>show</code>方法，使其将两张图片与中间的黑线连接起来。不要太担心<code>if</code>测试中的部分（这是在 Python 图片而不是张量时显示<code>SiameseImage</code>的部分）；重要的部分在最后三行：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SiameseImage(Tuple):</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> show(<span class="va">self</span>, ctx<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>        img1,img2,same_breed <span class="op">=</span> <span class="va">self</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(img1, Tensor):</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> img2.size <span class="op">!=</span> img1.size: img2 <span class="op">=</span> img2.resize(img1.size)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>            t1,t2 <span class="op">=</span> tensor(img1),tensor(img2)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>            t1,t2 <span class="op">=</span> t1.permute(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>),t2.permute(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>: t1,t2 <span class="op">=</span> img1,img2</span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>        line <span class="op">=</span> t1.new_zeros(t1.shape[<span class="dv">0</span>], t1.shape[<span class="dv">1</span>], <span class="dv">10</span>)</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> show_image(torch.cat([t1,line,t2], dim<span class="op">=</span><span class="dv">2</span>),</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>                          title<span class="op">=</span>same_breed, ctx<span class="op">=</span>ctx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们创建一个第一个<code>SiameseImage</code>并检查我们的<code>show</code>方法是否有效：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PILImage.create(files[<span class="dv">0</span>])</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> SiameseImage(img, img, <span class="va">True</span>)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>s.show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_11in01.png" class="img-fluid"></p>
+<p>我们也可以尝试一个不属于同一类的第二张图片：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>img1 <span class="op">=</span> PILImage.create(files[<span class="dv">1</span>])</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> SiameseImage(img, img1, <span class="va">False</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>s1.show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_11in02.png" class="img-fluid"></p>
+<p>我们之前看到的转换的重要之处是它们会分派到元组或其子类。这正是为什么在这种情况下我们选择子类化<code>Tuple</code>的原因-这样，我们可以将适用于图像的任何转换应用于我们的<code>SiameseImage</code>，并且它将应用于元组中的每个图像：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> Resize(<span class="dv">224</span>)(s1)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>s2.show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_11in03.png" class="img-fluid"></p>
+<p>这里<code>Resize</code>转换应用于两个图片中的每一个，但不应用于布尔标志。即使我们有一个自定义类型，我们也可以从库中的所有数据增强转换中受益。</p>
+<p>现在我们准备构建<code>Transform</code>，以便为暹罗模型准备数据。首先，我们需要一个函数来确定所有图片的类别：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> label_func(fname):</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> re.match(<span class="vs">r'</span><span class="dv">^</span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="vs">_</span><span class="dv">\d</span><span class="op">+</span><span class="dv">.</span><span class="vs">jpg</span><span class="dv">$</span><span class="vs">'</span>, fname.name).groups()[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>对于每张图片，我们的转换将以 0.5 的概率从同一类中绘制一张图片，并返回一个带有真标签的<code>SiameseImage</code>，或者从另一类中绘制一张图片并返回一个带有假标签的<code>SiameseImage</code>。这一切都在私有的<code>_draw</code>函数中完成。训练集和验证集之间有一个区别，这就是为什么转换需要用拆分初始化：在训练集上，我们将每次读取一张图片时进行随机选择，而在验证集上，我们将在初始化时进行一次性随机选择。这样，在训练期间我们会得到更多不同的样本，但始终是相同的验证集：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SiameseTransform(Transform):</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, files, label_func, splits):</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.labels <span class="op">=</span> files.<span class="bu">map</span>(label_func).unique()</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lbl2files <span class="op">=</span> {l: L(f <span class="cf">for</span> f <span class="kw">in</span> files <span class="cf">if</span> label_func(f) <span class="op">==</span> l)</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">for</span> l <span class="kw">in</span> <span class="va">self</span>.labels}</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.label_func <span class="op">=</span> label_func</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.valid <span class="op">=</span> {f: <span class="va">self</span>._draw(f) <span class="cf">for</span> f <span class="kw">in</span> files[splits[<span class="dv">1</span>]]}</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> encodes(<span class="va">self</span>, f):</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>        f2,t <span class="op">=</span> <span class="va">self</span>.valid.get(f, <span class="va">self</span>._draw(f))</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>        img1,img2 <span class="op">=</span> PILImage.create(f),PILImage.create(f2)</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> SiameseImage(img1, img2, t)</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _draw(<span class="va">self</span>, f):</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>        same <span class="op">=</span> random.random() <span class="op">&lt;</span> <span class="fl">0.5</span></span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>        cls <span class="op">=</span> <span class="va">self</span>.label_func(f)</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> same:</span>
+<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>            cls <span class="op">=</span> random.choice(L(l <span class="cf">for</span> l <span class="kw">in</span> <span class="va">self</span>.labels <span class="cf">if</span> l <span class="op">!=</span> cls))</span>
+<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.choice(<span class="va">self</span>.lbl2files[cls]),same</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们可以创建我们的主要转换：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>splits <span class="op">=</span> RandomSplitter()(files)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>tfm <span class="op">=</span> SiameseTransform(files, label_func, splits)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>tfm(files[<span class="dv">0</span>]).show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_11in04.png" class="img-fluid"></p>
+<p>在数据收集的中级 API 中，我们有两个对象可以帮助我们在一组项目上应用转换：<code>TfmdLists</code>和<code>Datasets</code>。如果您记得刚才看到的内容，一个应用一系列转换的<code>Pipeline</code>，另一个并行应用多个<code>Pipeline</code>，以构建元组。在这里，我们的主要转换已经构建了元组，因此我们使用<code>TfmdLists</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>tls <span class="op">=</span> TfmdLists(files, tfm, splits<span class="op">=</span>splits)</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>show_at(tls.valid, <span class="dv">0</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_11in05.png" class="img-fluid"></p>
+<p>最后，我们可以通过调用<code>dataloaders</code>方法在<code>DataLoaders</code>中获取我们的数据。这里需要注意的一点是，这个方法不像<code>DataBlock</code>那样接受<code>item_tfms</code>和<code>batch_tfms</code>。fastai 的<code>DataLoader</code>有几个钩子，这些钩子以事件命名；在我们抓取项目后应用的内容称为<code>after_item</code>，在构建批次后应用的内容称为<code>after_batch</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> tls.dataloaders(after_item<span class="op">=</span>[Resize(<span class="dv">224</span>), ToTensor],</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    after_batch<span class="op">=</span>[IntToFloatTensor, Normalize.from_stats(<span class="op">*</span>imagenet_stats)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>请注意，我们需要传递比通常更多的转换，这是因为数据块 API 通常会自动添加它们：</p>
+<ul>
+<li><p><code>ToTensor</code>是将图像转换为张量的函数（再次，它应用于元组的每个部分）。</p></li>
+<li><p><code>IntToFloatTensor</code>将包含 0 到 255 之间整数的图像张量转换为浮点数张量，并除以 255，使值在 0 到 1 之间。</p></li>
+</ul>
+<p>现在我们可以使用这个<code>DataLoaders</code>来训练模型。与<code>cnn_learner</code>提供的通常模型相比，它需要更多的定制，因为它必须接受两个图像而不是一个，但我们将看到如何创建这样的模型并在第十五章中进行训练。</p>
+</section>
+<section id="结论" class="level1">
+<h1>结论</h1>
+<p>fastai 提供了分层 API。当数据处于通常设置之一时，只需一行代码即可获取数据，这使得初学者可以专注于训练模型，而无需花费太多时间组装数据。然后，高级数据块 API 通过允许您混合和匹配构建块来提供更多灵活性。在其下面，中级 API 为您提供更大的灵活性，以在项目上应用转换。在您的实际问题中，这可能是您需要使用的内容，我们希望它使数据处理步骤尽可能简单。</p>
+</section>
+<section id="问卷调查" class="level1">
+<h1>问卷调查</h1>
+<ol type="1">
+<li><p>为什么我们说 fastai 具有“分层”API？这是什么意思？</p></li>
+<li><p><code>Transform</code>为什么有一个<code>decode</code>方法？它是做什么的？</p></li>
+<li><p><code>Transform</code>为什么有一个<code>setup</code>方法？它是做什么的？</p></li>
+<li><p>当在元组上调用<code>Transform</code>时，它是如何工作的？</p></li>
+<li><p>编写自己的<code>Transform</code>时需要实现哪些方法？</p></li>
+<li><p>编写一个完全规范化项目的<code>Normalize</code>转换（减去数据集的平均值并除以标准差），并且可以解码该行为。尽量不要偷看！</p></li>
+<li><p>编写一个<code>Transform</code>，用于对标记化文本进行数字化（它应该从已见数据集自动设置其词汇，并具有<code>decode</code>方法）。如果需要帮助，请查看 fastai 的源代码。</p></li>
+<li><p>什么是<code>Pipeline</code>？</p></li>
+<li><p>什么是<code>TfmdLists</code>？</p></li>
+<li><p>什么是<code>Datasets</code>？它与<code>TfmdLists</code>有什么不同？</p></li>
+<li><p>为什么<code>TfmdLists</code>和<code>Datasets</code>带有“s”这个名字？</p></li>
+<li><p>如何从<code>TfmdLists</code>或<code>Datasets</code>构建<code>DataLoaders</code>？</p></li>
+<li><p>在从<code>TfmdLists</code>或<code>Datasets</code>构建<code>DataLoaders</code>时，如何传递<code>item_tfms</code>和<code>batch_tfms</code>？</p></li>
+<li><p>当您希望自定义项目与<code>show_batch</code>或<code>show_results</code>等方法一起使用时，您需要做什么？</p></li>
+<li><p>为什么我们可以轻松地将 fastai 数据增强转换应用于我们构建的<code>SiamesePair</code>？</p></li>
+</ol>
+<section id="进一步研究" class="level2">
+<h2 class="anchored" data-anchor-id="进一步研究">进一步研究</h2>
+<ol type="1">
+<li><p>使用中级 API 在自己的数据集上准备<code>DataLoaders</code>中的数据。尝试在 Pet 数据集和 Adult 数据集上进行此操作，这两个数据集来自第一章。</p></li>
+<li><p>查看<a href="https://docs.fast.ai">fastai 文档</a>中的 Siamese 教程，了解如何为新类型的项目自定义<code>show_batch</code>和<code>show_results</code>的行为。在您自己的项目中实现它。</p></li>
+</ol>
+</section>
+</section>
+<section id="理解-fastai-的应用总结" class="level1">
+<h1>理解 fastai 的应用：总结</h1>
+<p>恭喜你——你已经完成了本书中涵盖训练模型和使用深度学习的关键实用部分的所有章节！你知道如何使用所有 fastai 内置的应用程序，以及如何使用数据块 API 和损失函数进行定制。你甚至知道如何从头开始创建神经网络并训练它！（希望你现在也知道一些问题要问，以确保你的创作有助于改善社会。）</p>
+<p>你已经掌握的知识足以创建许多类型的神经网络应用的完整工作原型。更重要的是，它将帮助你了解深度学习模型的能力和局限性，以及如何设计一个适应它们的系统。</p>
+<p>在本书的其余部分，我们将逐个拆解这些应用程序，以了解它们构建在哪些基础之上。这对于深度学习从业者来说是重要的知识，因为它使您能够检查和调试您构建的模型，并创建定制的新应用程序，以适应您特定的项目。</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>foundations – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="第十七章基础神经网络" class="level1">
+<h1>第十七章：基础神经网络</h1>
+<p>本章开始了一段旅程，我们将深入研究我们在前几章中使用的模型的内部。我们将涵盖许多我们以前见过的相同内容，但这一次我们将更加密切地关注实现细节，而不那么密切地关注事物为什么是这样的实际问题。</p>
+<p>我们将从头开始构建一切，仅使用对张量的基本索引。我们将从头开始编写一个神经网络，然后手动实现反向传播，以便我们在调用<code>loss.backward</code>时确切地知道 PyTorch 中发生了什么。我们还将看到如何使用自定义<em>autograd</em>函数扩展 PyTorch，允许我们指定自己的前向和后向计算。</p>
+</section>
+<section id="从头开始构建神经网络层" class="level1">
+<h1>从头开始构建神经网络层</h1>
+<p>让我们首先刷新一下我们对基本神经网络中如何使用矩阵乘法的理解。由于我们正在从头开始构建一切，所以最初我们将仅使用纯 Python（除了对 PyTorch 张量的索引），然后在看到如何创建后，将纯 Python 替换为 PyTorch 功能。</p>
+<section id="建模神经元" class="level2">
+<h2 class="anchored" data-anchor-id="建模神经元">建模神经元</h2>
+<p>神经元接收一定数量的输入，并为每个输入设置内部权重。它对这些加权输入求和以产生输出，并添加内部偏置。在数学上，这可以写成</p>
+<p><math alttext="o u t equals sigma-summation Underscript i equals 1 Overscript n Endscripts x Subscript i Baseline w Subscript i Baseline plus b" display="block"><mrow><mi>o</mi> <mi>u</mi> <mi>t</mi> <mo>=</mo> <munderover><mo>∑</mo> <mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow> <mi>n</mi></munderover> <msub><mi>x</mi> <mi>i</mi></msub> <msub><mi>w</mi> <mi>i</mi></msub> <mo>+</mo> <mi>b</mi></mrow></math></p>
+<p>如果我们将输入命名为<math alttext="left-parenthesis x 1 comma ellipsis comma x Subscript n Baseline right-parenthesis"><mrow><mo>(</mo> <msub><mi>x</mi> <mn>1</mn></msub> <mo>,</mo> <mo>⋯</mo> <mo>,</mo> <msub><mi>x</mi> <mi>n</mi></msub> <mo>)</mo></mrow></math>，我们的权重为<math alttext="left-parenthesis w 1 comma ellipsis comma w Subscript n Baseline right-parenthesis"><mrow><mo>(</mo> <msub><mi>w</mi> <mn>1</mn></msub> <mo>,</mo> <mo>⋯</mo> <mo>,</mo> <msub><mi>w</mi> <mi>n</mi></msub> <mo>)</mo></mrow></math>，以及我们的偏置<math alttext="b"><mi>b</mi></math>。在代码中，这被翻译为以下内容：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> <span class="bu">sum</span>([x<span class="op">*</span>w <span class="cf">for</span> x,w <span class="kw">in</span> <span class="bu">zip</span>(inputs,weights)]) <span class="op">+</span> bias</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后将此输出馈送到非线性函数中，称为<em>激活函数</em>，然后发送到另一个神经元。在深度学习中，最常见的是<em>修正线性单元</em>，或<em>ReLU</em>，正如我们所见，这是一种花哨的说法：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(x): <span class="cf">return</span> x <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后通过在连续的层中堆叠许多这些神经元来构建深度学习模型。我们创建一个具有一定数量的神经元（称为<em>隐藏大小</em>）的第一层，并将所有输入链接到每个神经元。这样的一层通常称为<em>全连接层</em>或<em>密集层</em>（用于密集连接），或<em>线性层</em>。</p>
+<p>它要求您计算每个<code>input</code>和具有给定<code>weight</code>的每个神经元的点积：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>([x<span class="op">*</span>w <span class="cf">for</span> x,w <span class="kw">in</span> <span class="bu">zip</span>(<span class="bu">input</span>,weight)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果您对线性代数有一点了解，您可能会记得当您进行<em>矩阵乘法</em>时会发生许多这些点积。更准确地说，如果我们的输入在大小为<code>batch_size</code>乘以<code>n_inputs</code>的矩阵<code>x</code>中，并且如果我们已将神经元的权重分组在大小为<code>n_neurons</code>乘以<code>n_inputs</code>的矩阵<code>w</code>中（每个神经元必须具有与其输入相同数量的权重），以及将所有偏置分组在大小为<code>n_neurons</code>的向量<code>b</code>中，则此全连接层的输出为</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">@</span> w.t() <span class="op">+</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>其中<code>@</code>表示矩阵乘积，<code>w.t()</code>是<code>w</code>的转置矩阵。然后输出<code>y</code>的大小为<code>batch_size</code>乘以<code>n_neurons</code>，在位置<code>(i,j)</code>上我们有这个（对于数学爱好者）：</p>
+<p><math alttext="y Subscript i comma j Baseline equals sigma-summation Underscript k equals 1 Overscript n Endscripts x Subscript i comma k Baseline w Subscript k comma j Baseline plus b Subscript j" display="block"><mrow><msub><mi>y</mi> <mrow><mi>i</mi><mo>,</mo><mi>j</mi></mrow></msub> <mo>=</mo> <munderover><mo>∑</mo> <mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow> <mi>n</mi></munderover> <msub><mi>x</mi> <mrow><mi>i</mi><mo>,</mo><mi>k</mi></mrow></msub> <msub><mi>w</mi> <mrow><mi>k</mi><mo>,</mo><mi>j</mi></mrow></msub> <mo>+</mo> <msub><mi>b</mi> <mi>j</mi></msub></mrow></math></p>
+<p>或者在代码中：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>y[i,j] <span class="op">=</span> <span class="bu">sum</span>([a <span class="op">*</span> b <span class="cf">for</span> a,b <span class="kw">in</span> <span class="bu">zip</span>(x[i,:],w[j,:])]) <span class="op">+</span> b[j]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>转置是必要的，因为在矩阵乘积<code>m @ n</code>的数学定义中，系数<code>(i,j)</code>如下：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">sum</span>([a <span class="op">*</span> b <span class="cf">for</span> a,b <span class="kw">in</span> <span class="bu">zip</span>(m[i,:],n[:,j])])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>所以我们需要的非常基本的操作是矩阵乘法，因为这是神经网络核心中隐藏的内容。</p>
+</section>
+<section id="从头开始的矩阵乘法" class="level2">
+<h2 class="anchored" data-anchor-id="从头开始的矩阵乘法">从头开始的矩阵乘法</h2>
+<p>让我们编写一个函数，计算两个张量的矩阵乘积，然后再允许我们使用 PyTorch 版本。我们只会在 PyTorch 张量中使用索引：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch <span class="im">import</span> tensor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们需要三个嵌套的<code>for</code>循环：一个用于行索引，一个用于列索引，一个用于内部求和。<code>ac</code>和<code>ar</code>分别表示<code>a</code>的列数和行数（对于<code>b</code>也是相同的约定），我们通过检查<code>a</code>的列数是否与<code>b</code>的行数相同来确保计算矩阵乘积是可能的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> matmul(a,b):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    ar,ac <span class="op">=</span> a.shape <span class="co"># n_rows * n_cols</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    br,bc <span class="op">=</span> b.shape</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> ac<span class="op">==</span>br</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> torch.zeros(ar, bc)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(ar):</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(bc):</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(ac): c[i,j] <span class="op">+=</span> a[i,k] <span class="op">*</span> b[k,j]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>为了测试这一点，我们假装（使用随机矩阵）我们正在处理一个包含 5 个 MNIST 图像的小批量，将它们展平为<code>28*28</code>向量，然后使用线性模型将它们转换为 10 个激活值：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> torch.randn(<span class="dv">5</span>,<span class="dv">28</span><span class="op">*</span><span class="dv">28</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> torch.randn(<span class="dv">784</span>,<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们计时我们的函数，使用 Jupyter 的“魔术”命令<code>%time</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>time t1<span class="op">=</span>matmul(m1, m2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>CPU times: user <span class="fl">1.15</span> s, sys: <span class="fl">4.09</span> ms, total: <span class="fl">1.15</span> s</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>Wall time: <span class="fl">1.15</span> s</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>看看这与 PyTorch 内置的<code>@</code>有什么区别？</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>n <span class="dv">20</span> t2<span class="op">=</span>m1<span class="op">@</span>m2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">14</span> µs ± <span class="fl">8.95</span> µs per loop (mean ± std. dev. of <span class="dv">7</span> runs, <span class="dv">20</span> loops each)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如我们所看到的，在 Python 中三个嵌套循环是一个坏主意！Python 是一种慢速语言，这不会高效。我们在这里看到 PyTorch 比 Python 快大约 100,000 倍——而且这还是在我们开始使用 GPU 之前！</p>
+<p>这种差异是从哪里来的？PyTorch 没有在 Python 中编写矩阵乘法，而是使用 C++来加快速度。通常，当我们在张量上进行计算时，我们需要<em>向量化</em>它们，以便利用 PyTorch 的速度，通常使用两种技术：逐元素算术和广播。</p>
+</section>
+<section id="逐元素算术" class="level2">
+<h2 class="anchored" data-anchor-id="逐元素算术">逐元素算术</h2>
+<p>所有基本运算符（<code>+</code>、<code>-</code>、<code>*</code>、<code>/</code>、<code>&gt;</code>、<code>&lt;</code>、<code>==</code>）都可以逐元素应用。这意味着如果我们为两个具有相同形状的张量<code>a</code>和<code>b</code>写<code>a+b</code>，我们将得到一个由<code>a</code>和<code>b</code>元素之和组成的张量：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> tensor([<span class="fl">10.</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">4</span>])</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> tensor([<span class="fl">2.</span>, <span class="dv">8</span>, <span class="dv">7</span>])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">+</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="fl">12.</span>, <span class="fl">14.</span>,  <span class="fl">3.</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>布尔运算符将返回一个布尔数组：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">&lt;</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="va">False</span>,  <span class="va">True</span>,  <span class="va">True</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果我们想知道<code>a</code>的每个元素是否小于<code>b</code>中对应的元素，或者两个张量是否相等，我们需要将这些逐元素操作与<code>torch.all</code>结合起来：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>(a <span class="op">&lt;</span> b).<span class="bu">all</span>(), (a<span class="op">==</span>b).<span class="bu">all</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(tensor(<span class="va">False</span>), tensor(<span class="va">False</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>像<code>all</code>、<code>sum</code>和<code>mean</code>这样的缩减操作返回只有一个元素的张量，称为<em>秩-0 张量</em>。如果要将其转换为普通的 Python 布尔值或数字，需要调用<code>.item</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>(a <span class="op">+</span> b).mean().item()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fl">9.666666984558105</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>逐元素操作适用于任何秩的张量，只要它们具有相同的形状：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> tensor([[<span class="fl">1.</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>], [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>m<span class="op">*</span>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>tensor([[ <span class="fl">1.</span>,  <span class="fl">4.</span>,  <span class="fl">9.</span>],</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">16.</span>, <span class="fl">25.</span>, <span class="fl">36.</span>],</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">49.</span>, <span class="fl">64.</span>, <span class="fl">81.</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>但是，不能对形状不同的张量执行逐元素操作（除非它们是可广播的，如下一节所讨论的）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> tensor([[<span class="fl">1.</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>m<span class="op">*</span>n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a> <span class="pp">RuntimeError</span>: The size of tensor a (<span class="dv">3</span>) must match the size of tensor b (<span class="dv">2</span>) at</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a> dimension <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>通过逐元素算术，我们可以去掉我们的三个嵌套循环中的一个：我们可以在将<code>a</code>的第<code>i</code>行和<code>b</code>的第<code>j</code>列对应的张量相乘之前对它们进行求和，这将加快速度，因为内部循环现在将由 PyTorch 以 C 速度执行。</p>
+<p>要访问一列或一行，我们可以简单地写<code>a[i,：]</code>或<code>b[:,j]</code>。<code>:</code>表示在该维度上取所有内容。我们可以限制这个并只取该维度的一个切片，通过传递一个范围，比如<code>1:5</code>，而不仅仅是<code>:</code>。在这种情况下，我们将取第 1 到第 4 列的元素（第二个数字是不包括在内的）。</p>
+<p>一个简化是我们总是可以省略尾随冒号，因此<code>a[i,:]</code>可以缩写为<code>a[i]</code>。考虑到所有这些，我们可以编写我们矩阵乘法的新版本：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> matmul(a,b):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    ar,ac <span class="op">=</span> a.shape</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    br,bc <span class="op">=</span> b.shape</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> ac<span class="op">==</span>br</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> torch.zeros(ar, bc)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(ar):</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(bc): c[i,j] <span class="op">=</span> (a[i] <span class="op">*</span> b[:,j]).<span class="bu">sum</span>()</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>n <span class="dv">20</span> t3 <span class="op">=</span> matmul(m1,m2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fl">1.7</span> ms ± <span class="fl">88.1</span> µs per loop (mean ± std. dev. of <span class="dv">7</span> runs, <span class="dv">20</span> loops each)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们已经快了约 700 倍，只是通过删除那个内部的<code>for</code>循环！这只是开始——通过广播，我们可以删除另一个循环并获得更重要的加速。</p>
+</section>
+<section id="广播" class="level2">
+<h2 class="anchored" data-anchor-id="广播">广播</h2>
+<p>正如我们在第四章中讨论的那样，<em>广播</em>是由<a href="https://oreil.ly/nlV7Q">Numpy 库</a>引入的一个术语，用于描述在算术操作期间如何处理不同秩的张量。例如，显然无法将 3×3 矩阵与 4×5 矩阵相加，但如果我们想将一个标量（可以表示为 1×1 张量）与矩阵相加呢？或者大小为 3 的向量与 3×4 矩阵？在这两种情况下，我们可以找到一种方法来理解这个操作。</p>
+<p>广播为编码规则提供了特定的规则，用于在尝试进行逐元素操作时确定形状是否兼容，以及如何扩展较小形状的张量以匹配较大形状的张量。如果您想要能够编写快速执行的代码，掌握这些规则是至关重要的。在本节中，我们将扩展我们之前对广播的处理，以了解这些规则。</p>
+<section id="使用标量进行广播" class="level3">
+<h3 class="anchored" data-anchor-id="使用标量进行广播">使用标量进行广播</h3>
+<p>使用标量进行广播是最简单的广播类型。当我们有一个张量<code>a</code>和一个标量时，我们只需想象一个与<code>a</code>形状相同且填充有该标量的张量，并执行操作：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> tensor([<span class="fl">10.</span>, <span class="dv">6</span>, <span class="op">-</span><span class="dv">4</span>])</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">&gt;</span> <span class="dv">0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>tensor([ <span class="va">True</span>,  <span class="va">True</span>, <span class="va">False</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们如何能够进行这种比较？<code>0</code>被<em>广播</em>以具有与<code>a</code>相同的维度。请注意，这是在不在内存中创建一个充满零的张量的情况下完成的（这将是低效的）。</p>
+<p>如果要通过减去均值（标量）来标准化数据集（矩阵）并除以标准差（另一个标量），这是很有用的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> tensor([[<span class="fl">1.</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>], [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>(m <span class="op">-</span> <span class="dv">5</span>) <span class="op">/</span> <span class="fl">2.73</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="op">-</span><span class="fl">1.4652</span>, <span class="op">-</span><span class="fl">1.0989</span>, <span class="op">-</span><span class="fl">0.7326</span>],</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>        [<span class="op">-</span><span class="fl">0.3663</span>,  <span class="fl">0.0000</span>,  <span class="fl">0.3663</span>],</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.7326</span>,  <span class="fl">1.0989</span>,  <span class="fl">1.4652</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果矩阵的每行有不同的均值怎么办？在这种情况下，您需要将一个向量广播到一个矩阵。</p>
+</section>
+<section id="将向量广播到矩阵" class="level3">
+<h3 class="anchored" data-anchor-id="将向量广播到矩阵">将向量广播到矩阵</h3>
+<p>我们可以将一个向量广播到一个矩阵中：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> tensor([<span class="fl">10.</span>,<span class="dv">20</span>,<span class="dv">30</span>])</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> tensor([[<span class="fl">1.</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>], [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>m.shape,c.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>(torch.Size([<span class="dv">3</span>, <span class="dv">3</span>]), torch.Size([<span class="dv">3</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">+</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">11.</span>, <span class="fl">22.</span>, <span class="fl">33.</span>],</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">14.</span>, <span class="fl">25.</span>, <span class="fl">36.</span>],</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">17.</span>, <span class="fl">28.</span>, <span class="fl">39.</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这里，<code>c</code>的元素被扩展为使三行匹配，从而使操作成为可能。同样，PyTorch 实际上并没有在内存中创建三个<code>c</code>的副本。这是由幕后的<code>expand_as</code>方法完成的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>c.expand_as(m)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">10.</span>, <span class="fl">20.</span>, <span class="fl">30.</span>],</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">10.</span>, <span class="fl">20.</span>, <span class="fl">30.</span>],</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">10.</span>, <span class="fl">20.</span>, <span class="fl">30.</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果我们查看相应的张量，我们可以请求其<code>storage</code>属性（显示用于张量的内存实际内容）来检查是否存储了无用的数据：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> c.expand_as(m)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>t.storage()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a> <span class="fl">10.0</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a> <span class="fl">20.0</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a> <span class="fl">30.0</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>[torch.FloatStorage of size <span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>尽管张量在官方上有九个元素，但内存中只存储了三个标量。这是可能的，这要归功于给该维度一个 0 步幅的巧妙技巧。在该维度上（这意味着当 PyTorch 通过添加步幅查找下一行时，它不会移动）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>t.stride(), t.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>((<span class="dv">0</span>, <span class="dv">1</span>), torch.Size([<span class="dv">3</span>, <span class="dv">3</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>由于<code>m</code>的大小为 3×3，有两种广播的方式。在最后一个维度上进行广播的事实是一种约定，这是来自广播规则的规定，与我们对张量排序的方式无关。如果我们这样做，我们会得到相同的结果：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">+</span> m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">11.</span>, <span class="fl">22.</span>, <span class="fl">33.</span>],</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">14.</span>, <span class="fl">25.</span>, <span class="fl">36.</span>],</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">17.</span>, <span class="fl">28.</span>, <span class="fl">39.</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>实际上，只有通过<code>n</code>，我们才能将大小为<code>n</code>的向量广播到大小为<code>m</code>的矩阵中：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> tensor([<span class="fl">10.</span>,<span class="dv">20</span>,<span class="dv">30</span>])</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> tensor([[<span class="fl">1.</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]])</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>c<span class="op">+</span>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">11.</span>, <span class="fl">22.</span>, <span class="fl">33.</span>],</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">14.</span>, <span class="fl">25.</span>, <span class="fl">36.</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这不起作用：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> tensor([<span class="fl">10.</span>,<span class="dv">20</span>])</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> tensor([[<span class="fl">1.</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]])</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>c<span class="op">+</span>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a> <span class="pp">RuntimeError</span>: The size of tensor a (<span class="dv">2</span>) must match the size of tensor b (<span class="dv">3</span>) at</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a> dimension <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果我们想在另一个维度上进行广播，我们必须改变向量的形状，使其成为一个 3×1 矩阵。这可以通过 PyTorch 中的<code>unsqueeze</code>方法来实现：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> tensor([<span class="fl">10.</span>,<span class="dv">20</span>,<span class="dv">30</span>])</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> tensor([[<span class="fl">1.</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>], [<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>]])</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> c.unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>m.shape,c.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>(torch.Size([<span class="dv">3</span>, <span class="dv">3</span>]), torch.Size([<span class="dv">3</span>, <span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这次，<code>c</code>在列侧进行了扩展：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>c<span class="op">+</span>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">11.</span>, <span class="fl">12.</span>, <span class="fl">13.</span>],</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">24.</span>, <span class="fl">25.</span>, <span class="fl">26.</span>],</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">37.</span>, <span class="fl">38.</span>, <span class="fl">39.</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>与以前一样，只有三个标量存储在内存中：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> c.expand_as(m)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>t.storage()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a> <span class="fl">10.0</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a> <span class="fl">20.0</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a> <span class="fl">30.0</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>[torch.FloatStorage of size <span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>扩展后的张量具有正确的形状，因为列维度的步幅为 0：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>t.stride(), t.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>((<span class="dv">1</span>, <span class="dv">0</span>), torch.Size([<span class="dv">3</span>, <span class="dv">3</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>使用广播，如果需要添加维度，则默认情况下会在开头添加。在之前进行广播时，PyTorch 在幕后执行了<code>c.unsqueeze(0)</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> tensor([<span class="fl">10.</span>,<span class="dv">20</span>,<span class="dv">30</span>])</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>c.shape, c.unsqueeze(<span class="dv">0</span>).shape,c.unsqueeze(<span class="dv">1</span>).shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>(torch.Size([<span class="dv">3</span>]), torch.Size([<span class="dv">1</span>, <span class="dv">3</span>]), torch.Size([<span class="dv">3</span>, <span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>unsqueeze</code>命令可以被<code>None</code>索引替换：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>c.shape, c[<span class="va">None</span>,:].shape,c[:,<span class="va">None</span>].shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>(torch.Size([<span class="dv">3</span>]), torch.Size([<span class="dv">1</span>, <span class="dv">3</span>]), torch.Size([<span class="dv">3</span>, <span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>您可以始终省略尾随冒号，<code>...</code>表示所有前面的维度：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>c[<span class="va">None</span>].shape,c[...,<span class="va">None</span>].shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>(torch.Size([<span class="dv">1</span>, <span class="dv">3</span>]), torch.Size([<span class="dv">3</span>, <span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>有了这个，我们可以在我们的矩阵乘法函数中删除另一个<code>for</code>循环。现在，我们不再将<code>a[i]</code>乘以<code>b[:,j]</code>，而是使用广播将<code>a[i]</code>乘以整个矩阵<code>b</code>，然后对结果求和：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> matmul(a,b):</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>    ar,ac <span class="op">=</span> a.shape</span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>    br,bc <span class="op">=</span> b.shape</span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> ac<span class="op">==</span>br</span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    c <span class="op">=</span> torch.zeros(ar, bc)</span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(ar):</span>
+<span id="cb63-7"><a href="#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="co">#       c[i,j] = (a[i,:]          * b[:,j]).sum() # previous</span></span>
+<span id="cb63-8"><a href="#cb63-8" aria-hidden="true" tabindex="-1"></a>        c[i]   <span class="op">=</span> (a[i  ].unsqueeze(<span class="op">-</span><span class="dv">1</span>) <span class="op">*</span> b).<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>n <span class="dv">20</span> t4 <span class="op">=</span> matmul(m1,m2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="dv">357</span> µs ± <span class="fl">7.2</span> µs per loop (mean ± std. dev. of <span class="dv">7</span> runs, <span class="dv">20</span> loops each)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在我们比第一次实现快了 3700 倍！在继续之前，让我们更详细地讨论一下广播规则。</p>
+</section>
+<section id="广播规则" class="level3">
+<h3 class="anchored" data-anchor-id="广播规则">广播规则</h3>
+<p>在操作两个张量时，PyTorch 会逐个元素地比较它们的形状。它从<em>尾部维度</em>开始，逆向工作，在遇到空维度时添加 1。当以下情况之一为真时，两个维度是<em>兼容</em>的：</p>
+<ul>
+<li><p>它们是相等的。</p></li>
+<li><p>其中之一是 1，此时该维度会被广播以使其与其他维度相同。</p></li>
+</ul>
+<p>数组不需要具有相同数量的维度。例如，如果您有一个 256×256×3 的 RGB 值数组，并且想要按不同值缩放图像中的每种颜色，您可以将图像乘以一个具有三个值的一维数组。根据广播规则排列这些数组的尾部轴的大小表明它们是兼容的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>Image  (<span class="dv">3</span><span class="er">d</span> tensor): <span class="dv">256</span> x <span class="dv">256</span> x <span class="dv">3</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>Scale  (<span class="dv">1</span><span class="er">d</span> tensor):  (<span class="dv">1</span>)   (<span class="dv">1</span>)  <span class="dv">3</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>Result (<span class="dv">3</span><span class="er">d</span> tensor): <span class="dv">256</span> x <span class="dv">256</span> x <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然而，一个大小为 256×256 的 2D 张量与我们的图像不兼容：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>Image  (<span class="dv">3</span><span class="er">d</span> tensor): <span class="dv">256</span> x <span class="dv">256</span> x   <span class="dv">3</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>Scale  (<span class="dv">1</span><span class="er">d</span> tensor):  (<span class="dv">1</span>)  <span class="dv">256</span> x <span class="dv">256</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>Error</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在我们早期的例子中，使用了一个 3×3 矩阵和一个大小为 3 的向量，广播是在行上完成的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Matrix (<span class="dv">2</span><span class="er">d</span> tensor):   <span class="dv">3</span> x <span class="dv">3</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>Vector (<span class="dv">1</span><span class="er">d</span> tensor): (<span class="dv">1</span>)   <span class="dv">3</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>Result (<span class="dv">2</span><span class="er">d</span> tensor):   <span class="dv">3</span> x <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>作为练习，尝试确定何时需要添加维度（以及在何处），以便将大小为<code>64 x 3 x 256 x 256</code>的图像批次与三个元素的向量（一个用于均值，一个用于标准差）进行归一化。</p>
+<p>另一种简化张量操作的有用方法是使用爱因斯坦求和约定。</p>
+</section>
+</section>
+<section id="爱因斯坦求和" class="level2">
+<h2 class="anchored" data-anchor-id="爱因斯坦求和">爱因斯坦求和</h2>
+<p>在使用 PyTorch 操作<code>@</code>或<code>torch.matmul</code>之前，我们可以实现矩阵乘法的最后一种方法：<em>爱因斯坦求和</em>（<code>einsum</code>）。这是一种将乘积和求和以一般方式组合的紧凑表示。我们可以写出这样的方程：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>ik,kj <span class="op">-&gt;</span> ij</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>左侧表示操作数的维度，用逗号分隔。这里我们有两个分别具有两个维度（<code>i,k</code>和<code>k,j</code>）的张量。右侧表示结果维度，所以这里我们有一个具有两个维度<code>i,j</code>的张量。</p>
+<p>爱因斯坦求和符号的规则如下：</p>
+<ol type="1">
+<li><p>重复的索引会被隐式求和。</p></li>
+<li><p>每个索引在任何项中最多只能出现两次。</p></li>
+<li><p>每个项必须包含相同的非重复索引。</p></li>
+</ol>
+<p>因此，在我们的例子中，由于<code>k</code>是重复的，我们对该索引求和。最终，该公式表示当我们在（<code>i,j</code>）中放入所有第一个张量中的系数（<code>i,k</code>）与第二个张量中的系数（<code>k,j</code>）相乘的总和时得到的矩阵……这就是矩阵乘积！</p>
+<p>以下是我们如何在 PyTorch 中编写这段代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb70"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> matmul(a,b): <span class="cf">return</span> torch.einsum(<span class="st">'ik,kj-&gt;ij'</span>, a, b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>爱因斯坦求和是一种非常实用的表达涉及索引和乘积和的操作的方式。请注意，您可以在左侧只有一个成员。例如，</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb71"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'ij-&gt;ji'</span>, a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>返回矩阵<code>a</code>的转置。您也可以有三个或更多成员：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb72"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'bi,ij,bj-&gt;b'</span>, a, b, c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这将返回一个大小为<code>b</code>的向量，其中第<code>k</code>个坐标是<code>a[k,i] b[i,j] c[k,j]</code>的总和。当您有更多维度时，这种表示特别方便，因为有批次。例如，如果您有两批次的矩阵并且想要计算每批次的矩阵乘积，您可以这样做：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb73"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>torch.einsum(<span class="st">'bik,bkj-&gt;bij'</span>, a, b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们回到使用<code>einsum</code>实现的新<code>matmul</code>，看看它的速度：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb74"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="op">-</span>n <span class="dv">20</span> t5 <span class="op">=</span> matmul(m1,m2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb75"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fl">68.7</span> µs ± <span class="fl">4.06</span> µs per loop (mean ± std. dev. of <span class="dv">7</span> runs, <span class="dv">20</span> loops each)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如您所看到的，它不仅实用，而且<em>非常</em>快。<code>einsum</code>通常是在 PyTorch 中执行自定义操作的最快方式，而无需深入研究 C++和 CUDA。（但通常不如精心优化的 CUDA 代码快，正如您从“从头开始的矩阵乘法”的结果中看到的。）</p>
+<p>现在我们知道如何从头开始实现矩阵乘法，我们准备构建我们的神经网络——具体来说，是它的前向和后向传递——只使用矩阵乘法。</p>
+</section>
+</section>
+<section id="前向和后向传递" class="level1">
+<h1>前向和后向传递</h1>
+<p>正如我们在第四章中看到的，为了训练一个模型，我们需要计算给定损失对其参数的所有梯度，这被称为<em>反向传播</em>。在<em>前向传播</em>中，我们根据矩阵乘积计算给定输入上模型的输出。当我们定义我们的第一个神经网络时，我们还将深入研究适当初始化权重的问题，这对于使训练正确开始至关重要。</p>
+<section id="定义和初始化一个层" class="level2">
+<h2 class="anchored" data-anchor-id="定义和初始化一个层">定义和初始化一个层</h2>
+<p>首先我们将以两层神经网络为例。正如我们所看到的，一层可以表示为<code>y = x @ w + b</code>，其中<code>x</code>是我们的输入，<code>y</code>是我们的输出，<code>w</code>是该层的权重（如果我们不像之前那样转置，则大小为输入数量乘以神经元数量），<code>b</code>是偏置向量：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb76"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lin(x, w, b): <span class="cf">return</span> x <span class="op">@</span> w <span class="op">+</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们可以将第二层叠加在第一层上，但由于数学上两个线性操作的组合是另一个线性操作，只有在中间放入一些非线性的东西才有意义，称为激活函数。正如本章开头提到的，在深度学习应用中，最常用的激活函数是 ReLU，它返回<code>x</code>和<code>0</code>的最大值。</p>
+<p>在本章中，我们实际上不会训练我们的模型，因此我们将为我们的输入和目标使用随机张量。假设我们的输入是大小为 100 的 200 个向量，我们将它们分组成一个批次，我们的目标是 200 个随机浮点数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb77"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.randn(<span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>对于我们的两层模型，我们将需要两个权重矩阵和两个偏置向量。假设我们的隐藏大小为 50，输出大小为 1（对于我们的输入之一，相应的输出在这个玩具示例中是一个浮点数）。我们随机初始化权重，偏置为零：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb78"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> torch.randn(<span class="dv">100</span>,<span class="dv">50</span>)</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> torch.zeros(<span class="dv">50</span>)</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> torch.randn(<span class="dv">50</span>,<span class="dv">1</span>)</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> torch.zeros(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们的第一层的结果就是这样的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb79"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> lin(x, w1, b1)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>l1.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb80"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>torch.Size([<span class="dv">200</span>, <span class="dv">50</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>请注意，这个公式适用于我们的输入批次，并返回一个隐藏状态批次：<code>l1</code>是一个大小为 200（我们的批次大小）乘以 50（我们的隐藏大小）的矩阵。</p>
+<p>然而，我们的模型初始化方式存在问题。要理解这一点，我们需要查看<code>l1</code>的均值和标准差（std）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb81"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>l1.mean(), l1.std()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb82"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>(tensor(<span class="fl">0.0019</span>), tensor(<span class="fl">10.1058</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>均值接近零，这是可以理解的，因为我们的输入和权重矩阵的均值都接近零。但标准差，表示我们的激活离均值有多远，从 1 变为 10。这是一个真正的大问题，因为这只是一个层。现代神经网络可以有数百层，因此如果每一层将我们的激活的规模乘以 10，到了最后一层，我们将无法用计算机表示数字。</p>
+<p>实际上，如果我们在<code>x</code>和大小为 100×100 的随机矩阵之间进行 50 次乘法运算，我们将得到这个结果：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb83"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>): x <span class="op">=</span> x <span class="op">@</span> torch.randn(<span class="dv">100</span>,<span class="dv">100</span>)</span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>:<span class="dv">5</span>,<span class="dv">0</span>:<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb84"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>tensor([[nan, nan, nan, nan, nan],</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>        [nan, nan, nan, nan, nan],</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>        [nan, nan, nan, nan, nan],</span>
+<span id="cb84-4"><a href="#cb84-4" aria-hidden="true" tabindex="-1"></a>        [nan, nan, nan, nan, nan],</span>
+<span id="cb84-5"><a href="#cb84-5" aria-hidden="true" tabindex="-1"></a>        [nan, nan, nan, nan, nan]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>结果是到处都是<code>nan</code>。也许我们的矩阵的规模太大了，我们需要更小的权重？但如果我们使用太小的权重，我们将遇到相反的问题-我们的激活的规模将从 1 变为 0.1，在 100 层之后，我们将到处都是零：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb85"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>): x <span class="op">=</span> x <span class="op">@</span> (torch.randn(<span class="dv">100</span>,<span class="dv">100</span>) <span class="op">*</span> <span class="fl">0.01</span>)</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>:<span class="dv">5</span>,<span class="dv">0</span>:<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb86"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>],</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>, <span class="fl">0.</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>因此，我们必须精确地缩放我们的权重矩阵，以使我们的激活的标准差保持在 1。我们可以通过数学计算出要使用的确切值，正如 Xavier Glorot 和 Yoshua Bengio 在<a href="https://oreil.ly/9tiTC">“理解训练深度前馈神经网络的困难”</a>中所示。给定层的正确比例是<math alttext="1 slash StartRoot n Subscript i n Baseline EndRoot"><mrow><mn>1</mn> <mo>/</mo> <msqrt><msub><mi>n</mi> <mrow><mi>i</mi><mi>n</mi></mrow></msub></msqrt></mrow></math>，其中<math alttext="n Subscript i n"><msub><mi>n</mi> <mrow><mi>i</mi><mi>n</mi></mrow></msub></math>代表输入的数量。</p>
+<p>在我们的情况下，如果有 100 个输入，我们应该将我们的权重矩阵缩放为 0.1：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb87"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>): x <span class="op">=</span> x <span class="op">@</span> (torch.randn(<span class="dv">100</span>,<span class="dv">100</span>) <span class="op">*</span> <span class="fl">0.1</span>)</span>
+<span id="cb87-3"><a href="#cb87-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>:<span class="dv">5</span>,<span class="dv">0</span>:<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb88"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>tensor([[ <span class="fl">0.7554</span>,  <span class="fl">0.6167</span>, <span class="op">-</span><span class="fl">0.1757</span>, <span class="op">-</span><span class="fl">1.5662</span>,  <span class="fl">0.5644</span>],</span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>        [<span class="op">-</span><span class="fl">0.1987</span>,  <span class="fl">0.6292</span>,  <span class="fl">0.3283</span>, <span class="op">-</span><span class="fl">1.1538</span>,  <span class="fl">0.5416</span>],</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.6106</span>,  <span class="fl">0.2556</span>, <span class="op">-</span><span class="fl">0.0618</span>, <span class="op">-</span><span class="fl">0.9463</span>,  <span class="fl">0.4445</span>],</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.4484</span>,  <span class="fl">0.7144</span>,  <span class="fl">0.1164</span>, <span class="op">-</span><span class="fl">0.8626</span>,  <span class="fl">0.4413</span>],</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.3463</span>,  <span class="fl">0.5930</span>,  <span class="fl">0.3375</span>, <span class="op">-</span><span class="fl">0.9486</span>,  <span class="fl">0.5643</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>终于，一些既不是零也不是<code>nan</code>的数字！请注意，即使经过了那 50 个虚假层，我们的激活的规模仍然是稳定的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb89"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>x.std()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb90"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>tensor(<span class="fl">0.7042</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果你稍微调整一下 scale 的值，你会注意到即使从 0.1 稍微偏离，你会得到非常小或非常大的数字，因此正确初始化权重非常重要。</p>
+<p>让我们回到我们的神经网络。由于我们稍微改变了我们的输入，我们需要重新定义它们：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb91"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.randn(<span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>对于我们的权重，我们将使用正确的 scale，这被称为<em>Xavier 初始化</em>（或<em>Glorot 初始化</em>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb92"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> sqrt</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> torch.randn(<span class="dv">100</span>,<span class="dv">50</span>) <span class="op">/</span> sqrt(<span class="dv">100</span>)</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> torch.zeros(<span class="dv">50</span>)</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> torch.randn(<span class="dv">50</span>,<span class="dv">1</span>) <span class="op">/</span> sqrt(<span class="dv">50</span>)</span>
+<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> torch.zeros(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在如果我们计算第一层的结果，我们可以检查均值和标准差是否受控制：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb93"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> lin(x, w1, b1)</span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>l1.mean(),l1.std()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb94"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>(tensor(<span class="op">-</span><span class="fl">0.0050</span>), tensor(<span class="fl">1.0000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>非常好。现在我们需要经过一个 ReLU，所以让我们定义一个。ReLU 去除负数并用零替换它们，这另一种说法是它将我们的张量夹在零处：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb95"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu(x): <span class="cf">return</span> x.clamp_min(<span class="fl">0.</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们通过这个激活：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb96"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> relu(l1)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>l2.mean(),l2.std()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb97"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>(tensor(<span class="fl">0.3961</span>), tensor(<span class="fl">0.5783</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在我们回到原点：我们的激活均值变为 0.4（这是可以理解的，因为我们去除了负数），标准差下降到 0.58。所以像以前一样，经过几层后我们可能最终会得到零：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb98"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>): x <span class="op">=</span> relu(x <span class="op">@</span> (torch.randn(<span class="dv">100</span>,<span class="dv">100</span>) <span class="op">*</span> <span class="fl">0.1</span>))</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>:<span class="dv">5</span>,<span class="dv">0</span>:<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb99"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">0.0000e+00</span>, <span class="fl">1.9689e-08</span>, <span class="fl">4.2820e-08</span>, <span class="fl">0.0000e+00</span>, <span class="fl">0.0000e+00</span>],</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.0000e+00</span>, <span class="fl">1.6701e-08</span>, <span class="fl">4.3501e-08</span>, <span class="fl">0.0000e+00</span>, <span class="fl">0.0000e+00</span>],</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.0000e+00</span>, <span class="fl">1.0976e-08</span>, <span class="fl">3.0411e-08</span>, <span class="fl">0.0000e+00</span>, <span class="fl">0.0000e+00</span>],</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.0000e+00</span>, <span class="fl">1.8457e-08</span>, <span class="fl">4.9469e-08</span>, <span class="fl">0.0000e+00</span>, <span class="fl">0.0000e+00</span>],</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.0000e+00</span>, <span class="fl">1.9949e-08</span>, <span class="fl">4.1643e-08</span>, <span class="fl">0.0000e+00</span>, <span class="fl">0.0000e+00</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这意味着我们的初始化不正确。为什么？在 Glorot 和 Bengio 撰写他们的文章时，神经网络中最流行的激活函数是双曲正切（tanh，他们使用的那个），而该初始化并没有考虑到我们的 ReLU。幸运的是，有人已经为我们计算出了正确的 scale 供我们使用。在<a href="https://oreil.ly/-_quA">“深入研究整流器：超越人类水平的性能”</a>（我们之前见过的文章，介绍了 ResNet），Kaiming He 等人表明我们应该使用以下 scale 代替：<math alttext="StartRoot 2 slash n Subscript i n Baseline EndRoot"><msqrt><mrow><mn>2</mn> <mo>/</mo> <msub><mi>n</mi> <mrow><mi>i</mi><mi>n</mi></mrow></msub></mrow></msqrt></math>，其中<math alttext="n Subscript i n"><msub><mi>n</mi> <mrow><mi>i</mi><mi>n</mi></mrow></msub></math>是我们模型的输入数量。让我们看看这给我们带来了什么：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb100"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>): x <span class="op">=</span> relu(x <span class="op">@</span> (torch.randn(<span class="dv">100</span>,<span class="dv">100</span>) <span class="op">*</span> sqrt(<span class="dv">2</span><span class="op">/</span><span class="dv">100</span>)))</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>:<span class="dv">5</span>,<span class="dv">0</span>:<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb101"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">0.2871</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0026</span>],</span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.4546</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0015</span>],</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.6178</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0180</span>, <span class="fl">0.0079</span>],</span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.3333</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0545</span>, <span class="fl">0.0000</span>],</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.1940</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0000</span>, <span class="fl">0.0096</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>好了：这次我们的数字不全为零。所以让我们回到我们神经网络的定义，并使用这个初始化（被称为<em>Kaiming 初始化</em>或<em>He 初始化</em>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb102"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.randn(<span class="dv">200</span>, <span class="dv">100</span>)</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.randn(<span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb103"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> torch.randn(<span class="dv">100</span>,<span class="dv">50</span>) <span class="op">*</span> sqrt(<span class="dv">2</span> <span class="op">/</span> <span class="dv">100</span>)</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="op">=</span> torch.zeros(<span class="dv">50</span>)</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> torch.randn(<span class="dv">50</span>,<span class="dv">1</span>) <span class="op">*</span> sqrt(<span class="dv">2</span> <span class="op">/</span> <span class="dv">50</span>)</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>b2 <span class="op">=</span> torch.zeros(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们看看通过第一个线性层和 ReLU 后激活的规模：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb104"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> lin(x, w1, b1)</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> relu(l1)</span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>l2.mean(), l2.std()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb105"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>(tensor(<span class="fl">0.5661</span>), tensor(<span class="fl">0.8339</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>好多了！现在我们的权重已经正确初始化，我们可以定义我们的整个模型：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb106"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> model(x):</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>    l1 <span class="op">=</span> lin(x, w1, b1)</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a>    l2 <span class="op">=</span> relu(l1)</span>
+<span id="cb106-4"><a href="#cb106-4" aria-hidden="true" tabindex="-1"></a>    l3 <span class="op">=</span> lin(l2, w2, b2)</span>
+<span id="cb106-5"><a href="#cb106-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> l3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这是前向传播。现在剩下的就是将我们的输出与我们拥有的标签（在这个例子中是随机数）进行比较，使用损失函数。在这种情况下，我们将使用均方误差。（这是一个玩具问题，这是下一步计算梯度所使用的最简单的损失函数。）</p>
+<p>唯一的微妙之处在于我们的输出和目标形状并不完全相同——经过模型后，我们得到这样的输出：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb107"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> model(x)</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>out.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb108"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>torch.Size([<span class="dv">200</span>, <span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>为了去掉这个多余的 1 维，我们使用<code>squeeze</code>函数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb109"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mse(output, targ): <span class="cf">return</span> (output.squeeze(<span class="op">-</span><span class="dv">1</span>) <span class="op">-</span> targ).<span class="bu">pow</span>(<span class="dv">2</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在我们准备计算我们的损失：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb110"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> mse(out, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>前向传播到此结束，现在让我们看一下梯度。</p>
+</section>
+<section id="梯度和反向传播" class="level2">
+<h2 class="anchored" data-anchor-id="梯度和反向传播">梯度和反向传播</h2>
+<p>我们已经看到 PyTorch 通过一个神奇的调用<code>loss.backward</code>计算出我们需要的所有梯度，但让我们探究一下背后发生了什么。</p>
+<p>现在我们需要计算损失相对于模型中所有权重的梯度，即<code>w1</code>、<code>b1</code>、<code>w2</code>和<code>b2</code>中的所有浮点数。为此，我们需要一点数学，具体来说是<em>链式法则</em>。这是指导我们如何计算复合函数导数的微积分规则：</p>
+<p><math alttext="left-parenthesis g ring f right-parenthesis prime left-parenthesis x right-parenthesis equals g prime left-parenthesis f left-parenthesis x right-parenthesis right-parenthesis f prime left-parenthesis x right-parenthesis" display="block"><mrow><msup><mrow><mo>(</mo><mi>g</mi><mo>∘</mo><mi>f</mi><mo>)</mo></mrow> <mo>‘</mo></msup> <mrow><mo>(</mo> <mi>x</mi> <mo>)</mo></mrow> <mo>=</mo> <msup><mi>g</mi> <mo>’</mo></msup> <mrow><mo>(</mo> <mi>f</mi> <mrow><mo>(</mo> <mi>x</mi> <mo>)</mo></mrow> <mo>)</mo></mrow> <msup><mi>f</mi> <mo>’</mo></msup> <mrow><mo>(</mo> <mi>x</mi> <mo>)</mo></mrow></mrow></math></p>
+</section>
+</section>
+<section id="jeremy-说" class="level1">
+<h1>Jeremy 说</h1>
+<p>我发现这种符号很难理解，所以我喜欢这样想：如果 <code>y = g(u)</code> 和 <code>u=f(x)</code>，那么 <code>dy/dx = dy/du * du/dx</code>。这两种符号意思相同，所以使用任何一种都可以。</p>
+<p>我们的损失是不同函数的大组合：均方误差（实际上是均值和平方的组合），第二个线性层，一个 ReLU，和第一个线性层。例如，如果我们想要损失相对于 <code>b2</code> 的梯度，而我们的损失由以下定义：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb111"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> mse(out,y) <span class="op">=</span> mse(lin(l2, w2, b2), y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>链式法则告诉我们我们有这个：</p>
+<p><math alttext="StartFraction d l o s s Over d b 2 EndFraction equals StartFraction d l o s s Over d o u t EndFraction times StartFraction d o u t Over d b 2 EndFraction equals StartFraction d Over d o u t EndFraction m s e left-parenthesis o u t comma y right-parenthesis times StartFraction d Over d b 2 EndFraction l i n left-parenthesis l 2 comma w 2 comma b 2 right-parenthesis" display="block"><mrow><mfrac><mrow><mtext>d</mtext><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi></mrow> <mrow><mtext>d</mtext><msub><mi>b</mi> <mn>2</mn></msub></mrow></mfrac> <mo>=</mo> <mfrac><mrow><mtext>d</mtext><mi>l</mi><mi>o</mi><mi>s</mi><mi>s</mi></mrow> <mrow><mtext>d</mtext><mi>o</mi><mi>u</mi><mi>t</mi></mrow></mfrac> <mo>×</mo> <mfrac><mrow><mtext>d</mtext><mi>o</mi><mi>u</mi><mi>t</mi></mrow> <mrow><mtext>d</mtext><msub><mi>b</mi> <mn>2</mn></msub></mrow></mfrac> <mo>=</mo> <mfrac><mtext>d</mtext> <mrow><mtext>d</mtext><mi>o</mi><mi>u</mi><mi>t</mi></mrow></mfrac> <mi>m</mi> <mi>s</mi> <mi>e</mi> <mrow><mo>(</mo> <mi>o</mi> <mi>u</mi> <mi>t</mi> <mo>,</mo> <mi>y</mi> <mo>)</mo></mrow> <mo>×</mo> <mfrac><mtext>d</mtext> <mrow><mtext>d</mtext><msub><mi>b</mi> <mn>2</mn></msub></mrow></mfrac> <mi>l</mi> <mi>i</mi> <mi>n</mi> <mrow><mo>(</mo> <msub><mi>l</mi> <mn>2</mn></msub> <mo>,</mo> <msub><mi>w</mi> <mn>2</mn></msub> <mo>,</mo> <msub><mi>b</mi> <mn>2</mn></msub> <mo>)</mo></mrow></mrow></math></p>
+<p>要计算损失相对于 <math alttext="b 2"><msub><mi>b</mi> <mn>2</mn></msub></math> 的梯度，我们首先需要损失相对于我们的输出 <math alttext="o u t"><mrow><mi>o</mi> <mi>u</mi> <mi>t</mi></mrow></math> 的梯度。如果我们想要损失相对于 <math alttext="w 2"><msub><mi>w</mi> <mn>2</mn></msub></math> 的梯度也是一样的。然后，要得到损失相对于 <math alttext="b 1"><msub><mi>b</mi> <mn>1</mn></msub></math> 或 <math alttext="w 1"><msub><mi>w</mi> <mn>1</mn></msub></math> 的梯度，我们将需要损失相对于 <math alttext="l 1"><msub><mi>l</mi> <mn>1</mn></msub></math> 的梯度，这又需要损失相对于 <math alttext="l 2"><msub><mi>l</mi> <mn>2</mn></msub></math> 的梯度，这将需要损失相对于 <math alttext="o u t"><mrow><mi>o</mi> <mi>u</mi> <mi>t</mi></mrow></math> 的梯度。</p>
+<p>因此，为了计算更新所需的所有梯度，我们需要从模型的输出开始，逐层向后工作，一层接一层地——这就是为什么这一步被称为<em>反向传播</em>。我们可以通过让我们实现的每个函数（<code>relu</code>、<code>mse</code>、<code>lin</code>）提供其反向步骤来自动化它：也就是说，如何从损失相对于输出的梯度推导出损失相对于输入的梯度。</p>
+<p>在这里，我们将这些梯度填充到每个张量的属性中，有点像 PyTorch 在<code>.grad</code>中所做的那样。</p>
+<p>首先是我们模型输出（损失函数的输入）相对于损失的梯度。我们撤消了<code>mse</code>中的<code>squeeze</code>，然后我们使用给出<math alttext="x squared"><msup><mi>x</mi> <mn>2</mn></msup></math>的导数的公式：<math alttext="2 x"><mrow><mn>2</mn> <mi>x</mi></mrow></math>。均值的导数只是 1/<em>n</em>，其中<em>n</em>是我们输入中的元素数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb112"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mse_grad(inp, targ):</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grad of loss with respect to output of previous layer</span></span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>    inp.g <span class="op">=</span> <span class="fl">2.</span> <span class="op">*</span> (inp.squeeze() <span class="op">-</span> targ).unsqueeze(<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> inp.shape[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>对于 ReLU 和我们的线性层的梯度，我们使用相对于输出的损失的梯度（在<code>out.g</code>中）并应用链式法则来计算相对于输出的损失的梯度（在<code>inp.g</code>中）。链式法则告诉我们<code>inp.g = relu'(inp) * out.g</code>。<code>relu</code>的导数要么是 0（当输入为负数时），要么是 1（当输入为正数时），因此这给出了以下结果：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb113"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> relu_grad(inp, out):</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grad of relu with respect to input activations</span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>    inp.g <span class="op">=</span> (inp<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">float</span>() <span class="op">*</span> out.g</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>计算损失相对于线性层中的输入、权重和偏差的梯度的方案是相同的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb114"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> lin_grad(inp, out, w, b):</span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># grad of matmul with respect to input</span></span>
+<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>    inp.g <span class="op">=</span> out.g <span class="op">@</span> w.t()</span>
+<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a>    w.g <span class="op">=</span> inp.t() <span class="op">@</span> out.g</span>
+<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a>    b.g <span class="op">=</span> out.g.<span class="bu">sum</span>(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们不会深入讨论定义它们的数学公式，因为对我们的目的来说它们不重要，但如果你对这个主题感兴趣，可以查看可汗学院出色的微积分课程。</p>
+<p>一旦我们定义了这些函数，我们就可以使用它们来编写后向传递。由于每个梯度都会自动填充到正确的张量中，我们不需要将这些<code>_grad</code>函数的结果存储在任何地方——我们只需要按照前向传递的相反顺序执行它们，以确保在每个函数中<code>out.g</code>存在：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb115"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> forward_and_backward(inp, targ):</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># forward pass:</span></span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>    l1 <span class="op">=</span> inp <span class="op">@</span> w1 <span class="op">+</span> b1</span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>    l2 <span class="op">=</span> relu(l1)</span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>    out <span class="op">=</span> l2 <span class="op">@</span> w2 <span class="op">+</span> b2</span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># we don't actually need the loss in backward!</span></span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> mse(out, targ)</span>
+<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># backward pass:</span></span>
+<span id="cb115-10"><a href="#cb115-10" aria-hidden="true" tabindex="-1"></a>    mse_grad(out, targ)</span>
+<span id="cb115-11"><a href="#cb115-11" aria-hidden="true" tabindex="-1"></a>    lin_grad(l2, out, w2, b2)</span>
+<span id="cb115-12"><a href="#cb115-12" aria-hidden="true" tabindex="-1"></a>    relu_grad(l1, l2)</span>
+<span id="cb115-13"><a href="#cb115-13" aria-hidden="true" tabindex="-1"></a>    lin_grad(inp, l1, w1, b1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在我们可以在<code>w1.g</code>、<code>b1.g</code>、<code>w2.g</code>和<code>b2.g</code>中访问我们模型参数的梯度。我们已经成功定义了我们的模型——现在让我们让它更像一个 PyTorch 模块。</p>
+<section id="重构模型" class="level2">
+<h2 class="anchored" data-anchor-id="重构模型">重构模型</h2>
+<p>我们使用的三个函数有两个相关的函数：一个前向传递和一个后向传递。我们可以创建一个类将它们包装在一起，而不是分开编写它们。该类还可以存储后向传递的输入和输出。这样，我们只需要调用<code>backward</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb116"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Relu():</span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inp):</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp <span class="op">=</span> inp</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out <span class="op">=</span> inp.clamp_min(<span class="fl">0.</span>)</span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.out</span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>): <span class="va">self</span>.inp.g <span class="op">=</span> (<span class="va">self</span>.inp<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">float</span>() <span class="op">*</span> <span class="va">self</span>.out.g</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>__call__</code>是 Python 中的一个魔术名称，它将使我们的类可调用。当我们键入<code>y = Relu()(x)</code>时，将执行这个操作。我们也可以对我们的线性层和 MSE 损失做同样的操作：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb117"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lin():</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, w, b): <span class="va">self</span>.w,<span class="va">self</span>.b <span class="op">=</span> w,b</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inp):</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp <span class="op">=</span> inp</span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out <span class="op">=</span> inp<span class="op">@</span>self.w <span class="op">+</span> <span class="va">self</span>.b</span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.out</span>
+<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-9"><a href="#cb117-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>):</span>
+<span id="cb117-10"><a href="#cb117-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp.g <span class="op">=</span> <span class="va">self</span>.out.g <span class="op">@</span> <span class="va">self</span>.w.t()</span>
+<span id="cb117-11"><a href="#cb117-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.w.g <span class="op">=</span> <span class="va">self</span>.inp.t() <span class="op">@</span> <span class="va">self</span>.out.g</span>
+<span id="cb117-12"><a href="#cb117-12" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b.g <span class="op">=</span> <span class="va">self</span>.out.g.<span class="bu">sum</span>(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb118"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Mse():</span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, inp, targ):</span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp <span class="op">=</span> inp</span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.targ <span class="op">=</span> targ</span>
+<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out <span class="op">=</span> (inp.squeeze() <span class="op">-</span> targ).<span class="bu">pow</span>(<span class="dv">2</span>).mean()</span>
+<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.out</span>
+<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-8"><a href="#cb118-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>):</span>
+<span id="cb118-9"><a href="#cb118-9" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> (<span class="va">self</span>.inp.squeeze()<span class="op">-</span><span class="va">self</span>.targ).unsqueeze(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb118-10"><a href="#cb118-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.inp.g <span class="op">=</span> <span class="fl">2.</span><span class="op">*</span>x<span class="op">/</span><span class="va">self</span>.targ.shape[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们可以把一切都放在一个模型中，我们用我们的张量<code>w1</code>、<code>b1</code>、<code>w2</code>和<code>b2</code>来初始化：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb119"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Model():</span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, w1, b1, w2, b2):</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers <span class="op">=</span> [Lin(w1,b1), Relu(), Lin(w2,b2)]</span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss <span class="op">=</span> Mse()</span>
+<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-6"><a href="#cb119-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, x, targ):</span>
+<span id="cb119-7"><a href="#cb119-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> l <span class="kw">in</span> <span class="va">self</span>.layers: x <span class="op">=</span> l(x)</span>
+<span id="cb119-8"><a href="#cb119-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.loss(x, targ)</span>
+<span id="cb119-9"><a href="#cb119-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-10"><a href="#cb119-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>):</span>
+<span id="cb119-11"><a href="#cb119-11" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss.backward()</span>
+<span id="cb119-12"><a href="#cb119-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> l <span class="kw">in</span> <span class="bu">reversed</span>(<span class="va">self</span>.layers): l.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这种重构和将事物注册为模型的层的好处是，前向和后向传递现在非常容易编写。如果我们想要实例化我们的模型，我们只需要写这个：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb120"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(w1, b1, w2, b2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后前向传递可以这样执行：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb121"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> model(x, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后使用这个进行后向传递：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb122"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>model.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="转向-pytorch" class="level2">
+<h2 class="anchored" data-anchor-id="转向-pytorch">转向 PyTorch</h2>
+<p>我们编写的<code>Lin</code>、<code>Mse</code>和<code>Relu</code>类有很多共同之处，所以我们可以让它们都继承自同一个基类：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb123"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LayerFunction():</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__call__</span>(<span class="va">self</span>, <span class="op">*</span>args):</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.args <span class="op">=</span> args</span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.out <span class="op">=</span> <span class="va">self</span>.forward(<span class="op">*</span>args)</span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.out</span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-7"><a href="#cb123-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>):  <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">'not implemented'</span>)</span>
+<span id="cb123-8"><a href="#cb123-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> bwd(<span class="va">self</span>):      <span class="cf">raise</span> <span class="pp">Exception</span>(<span class="st">'not implemented'</span>)</span>
+<span id="cb123-9"><a href="#cb123-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(<span class="va">self</span>): <span class="va">self</span>.bwd(<span class="va">self</span>.out, <span class="op">*</span><span class="va">self</span>.args)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们只需要在每个子类中实现<code>forward</code>和<code>bwd</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb124"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Relu(LayerFunction):</span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, inp): <span class="cf">return</span> inp.clamp_min(<span class="fl">0.</span>)</span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> bwd(<span class="va">self</span>, out, inp): inp.g <span class="op">=</span> (inp<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">float</span>() <span class="op">*</span> out.g</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb125"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Lin(LayerFunction):</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, w, b): <span class="va">self</span>.w,<span class="va">self</span>.b <span class="op">=</span> w,b</span>
+<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, inp): <span class="cf">return</span> inp<span class="op">@</span>self.w <span class="op">+</span> <span class="va">self</span>.b</span>
+<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb125-6"><a href="#cb125-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> bwd(<span class="va">self</span>, out, inp):</span>
+<span id="cb125-7"><a href="#cb125-7" aria-hidden="true" tabindex="-1"></a>        inp.g <span class="op">=</span> out.g <span class="op">@</span> <span class="va">self</span>.w.t()</span>
+<span id="cb125-8"><a href="#cb125-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.w.g <span class="op">=</span> <span class="va">self</span>.inp.t() <span class="op">@</span> <span class="va">self</span>.out.g</span>
+<span id="cb125-9"><a href="#cb125-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.b.g <span class="op">=</span> out.g.<span class="bu">sum</span>(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb126"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Mse(LayerFunction):</span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward (<span class="va">self</span>, inp, targ): <span class="cf">return</span> (inp.squeeze() <span class="op">-</span> targ).<span class="bu">pow</span>(<span class="dv">2</span>).mean()</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> bwd(<span class="va">self</span>, out, inp, targ):</span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a>        inp.g <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>(inp.squeeze()<span class="op">-</span>targ).unsqueeze(<span class="op">-</span><span class="dv">1</span>) <span class="op">/</span> targ.shape[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们模型的其余部分可以与以前相同。这越来越接近 PyTorch 的做法。我们需要区分的每个基本函数都被写成一个<code>torch.autograd.Function</code>对象，它有一个<code>forward</code>和一个<code>backward</code>方法。PyTorch 将跟踪我们进行的任何计算，以便能够正确运行反向传播，除非我们将张量的<code>requires_grad</code>属性设置为<code>False</code>。</p>
+<p>编写其中一个（几乎）和编写我们原始类一样容易。不同之处在于我们选择保存什么并将其放入上下文变量中（以确保我们不保存不需要的任何内容），并在<code>backward</code>传递中返回梯度。很少需要编写自己的<code>Function</code>，但如果您需要某些奇特的东西或想要干扰常规函数的梯度，这里是如何编写的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb127"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.autograd <span class="im">import</span> Function</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> MyRelu(Function):</span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(ctx, i):</span>
+<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> i.clamp_min(<span class="fl">0.</span>)</span>
+<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a>        ctx.save_for_backward(i)</span>
+<span id="cb127-8"><a href="#cb127-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> result</span>
+<span id="cb127-9"><a href="#cb127-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-10"><a href="#cb127-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">@staticmethod</span></span>
+<span id="cb127-11"><a href="#cb127-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> backward(ctx, grad_output):</span>
+<span id="cb127-12"><a href="#cb127-12" aria-hidden="true" tabindex="-1"></a>        i, <span class="op">=</span> ctx.saved_tensors</span>
+<span id="cb127-13"><a href="#cb127-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> grad_output <span class="op">*</span> (i<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">float</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>用于构建利用这些<code>Function</code>的更复杂模型的结构是<code>torch.nn.Module</code>。这是所有模型的基本结构，到目前为止您看到的所有神经网络都是从该类中继承的。它主要有助于注册所有可训练的参数，正如我们已经看到的可以在训练循环中使用的那样。</p>
+<p>要实现一个<code>nn.Module</code>，你只需要做以下几步：</p>
+<ol type="1">
+<li><p>确保在初始化时首先调用超类<code>__init__</code>。</p></li>
+<li><p>将模型的任何参数定义为具有<code>nn.Parameter</code>属性。</p></li>
+<li><p>定义一个<code>forward</code>函数，返回模型的输出。</p></li>
+</ol>
+<p>这里是一个从头开始的线性层的例子：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb128"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> LinearLayer(nn.Module):</span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_in, n_out):</span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb128-6"><a href="#cb128-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.weight <span class="op">=</span> nn.Parameter(torch.randn(n_out, n_in) <span class="op">*</span> sqrt(<span class="dv">2</span><span class="op">/</span>n_in))</span>
+<span id="cb128-7"><a href="#cb128-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.bias <span class="op">=</span> nn.Parameter(torch.zeros(n_out))</span>
+<span id="cb128-8"><a href="#cb128-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-9"><a href="#cb128-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x): <span class="cf">return</span> x <span class="op">@</span> <span class="va">self</span>.weight.t() <span class="op">+</span> <span class="va">self</span>.bias</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如您所看到的，这个类会自动跟踪已定义的参数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb129"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>lin <span class="op">=</span> LinearLayer(<span class="dv">10</span>,<span class="dv">2</span>)</span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>p1,p2 <span class="op">=</span> lin.parameters()</span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a>p1.shape,p2.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb130"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>(torch.Size([<span class="dv">2</span>, <span class="dv">10</span>]), torch.Size([<span class="dv">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正是由于<code>nn.Module</code>的这个特性，我们可以只说<code>opt.step</code>，并让优化器循环遍历参数并更新每个参数。</p>
+<p>请注意，在 PyTorch 中，权重存储为一个<code>n_out x n_in</code>矩阵，这就是为什么在前向传递中我们有转置的原因。</p>
+<p>通过使用 PyTorch 中的线性层（也使用 Kaiming 初始化），我们在本章中一直在构建的模型可以这样编写：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb131"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Model(nn.Module):</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_in, nh, n_out):</span>
+<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers <span class="op">=</span> nn.Sequential(</span>
+<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a>            nn.Linear(n_in,nh), nn.ReLU(), nn.Linear(nh,n_out))</span>
+<span id="cb131-6"><a href="#cb131-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss <span class="op">=</span> mse</span>
+<span id="cb131-7"><a href="#cb131-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-8"><a href="#cb131-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, targ): <span class="cf">return</span> <span class="va">self</span>.loss(<span class="va">self</span>.layers(x).squeeze(), targ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>fastai 提供了自己的<code>Module</code>变体，与<code>nn.Module</code>相同，但不需要您调用<code>super().__init__()</code>（它会自动为您执行）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb132"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Model(Module):</span>
+<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_in, nh, n_out):</span>
+<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.layers <span class="op">=</span> nn.Sequential(</span>
+<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a>            nn.Linear(n_in,nh), nn.ReLU(), nn.Linear(nh,n_out))</span>
+<span id="cb132-5"><a href="#cb132-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.loss <span class="op">=</span> mse</span>
+<span id="cb132-6"><a href="#cb132-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-7"><a href="#cb132-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x, targ): <span class="cf">return</span> <span class="va">self</span>.loss(<span class="va">self</span>.layers(x).squeeze(), targ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在第十九章中，我们将从这样一个模型开始，看看如何从头开始构建一个训练循环，并将其重构为我们在之前章节中使用的内容。</p>
+</section>
+</section>
+<section id="结论" class="level1">
+<h1>结论</h1>
+<p>在本章中，我们探讨了深度学习的基础，从矩阵乘法开始，然后实现了神经网络的前向和反向传递。然后我们重构了我们的代码，展示了 PyTorch 在底层的工作原理。</p>
+<p>以下是一些需要记住的事项：</p>
+<ul>
+<li><p>神经网络基本上是一堆矩阵乘法，中间夹杂着非线性。</p></li>
+<li><p>Python 很慢，所以为了编写快速代码，我们必须对其进行向量化，并利用诸如逐元素算术和广播等技术。</p></li>
+<li><p>如果从末尾开始向后匹配的维度相同（如果它们相同，或者其中一个是 1），则两个张量是可广播的。为了使张量可广播，我们可能需要使用<code>unsqueeze</code>或<code>None</code>索引添加大小为 1 的维度。</p></li>
+<li><p>正确初始化神经网络对于开始训练至关重要。当我们有 ReLU 非线性时，应使用 Kaiming 初始化。</p></li>
+<li><p>反向传递是应用链式法则多次计算，从我们模型的输出开始，逐层向后计算梯度。</p></li>
+<li><p>在子类化<code>nn.Module</code>时（如果不使用 fastai 的<code>Module</code>），我们必须在我们的<code>__init__</code>方法中调用超类<code>__init__</code>方法，并且我们必须定义一个接受输入并返回所需结果的<code>forward</code>函数。</p></li>
+</ul>
+</section>
+<section id="问卷" class="level1">
+<h1>问卷</h1>
+<ol type="1">
+<li><p>编写 Python 代码来实现一个单个神经元。</p></li>
+<li><p>编写实现 ReLU 的 Python 代码。</p></li>
+<li><p>用矩阵乘法的术语编写一个密集层的 Python 代码。</p></li>
+<li><p>用纯 Python 编写一个密集层的 Python 代码（即使用列表推导和内置到 Python 中的功能）。</p></li>
+<li><p>一个层的“隐藏大小”是什么？</p></li>
+<li><p>在 PyTorch 中，<code>t</code>方法是做什么的？</p></li>
+<li><p>为什么在纯 Python 中编写矩阵乘法非常慢？</p></li>
+<li><p>在<code>matmul</code>中，为什么<code>ac==br</code>？</p></li>
+<li><p>在 Jupyter Notebook 中，如何测量执行单个单元格所需的时间？</p></li>
+<li><p>什么是逐元素算术？</p></li>
+<li><p>编写 PyTorch 代码来测试 <code>a</code> 的每个元素是否大于 <code>b</code> 的对应元素。</p></li>
+<li><p>什么是秩为 0 的张量？如何将其转换为普通的 Python 数据类型？</p></li>
+<li><p>这返回什么，为什么？</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb133"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="dv">1</span>,<span class="dv">2</span>]) <span class="op">+</span> tensor([<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>这返回什么，为什么？</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb134"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="dv">1</span>,<span class="dv">2</span>]) <span class="op">+</span> tensor([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>逐元素算术如何帮助我们加速 <code>matmul</code>？</p></li>
+<li><p>广播规则是什么？</p></li>
+<li><p><code>expand_as</code> 是什么？展示一个如何使用它来匹配广播结果的示例。</p></li>
+<li><p><code>unsqueeze</code> 如何帮助我们解决某些广播问题？</p></li>
+<li><p>我们如何使用索引来执行与 <code>unsqueeze</code> 相同的操作？</p></li>
+<li><p>我们如何显示张量使用的内存的实际内容？</p></li>
+<li><p>将大小为 3 的向量添加到大小为 3×3 的矩阵时，向量的元素是添加到矩阵的每一行还是每一列？（确保通过在笔记本中运行此代码来检查您的答案。）</p></li>
+<li><p>广播和 <code>expand_as</code> 会导致内存使用增加吗？为什么或为什么不？</p></li>
+<li><p>使用爱因斯坦求和实现 <code>matmul</code>。</p></li>
+<li><p>在 <code>einsum</code> 的左侧重复索引字母代表什么？</p></li>
+<li><p>爱因斯坦求和符号的三条规则是什么？为什么？</p></li>
+<li><p>神经网络的前向传播和反向传播是什么？</p></li>
+<li><p>为什么我们需要在前向传播中存储一些计算出的中间层的激活？</p></li>
+<li><p>具有标准差远离 1 的激活的缺点是什么？</p></li>
+<li><p>权重初始化如何帮助避免这个问题？</p></li>
+<li><p>初始化权重的公式是什么，以便在普通线性层和 ReLU 后跟线性层中获得标准差为 1？</p></li>
+<li><p>为什么有时我们必须在损失函数中使用 <code>squeeze</code> 方法？</p></li>
+<li><p><code>squeeze</code> 方法的参数是做什么的？为什么可能很重要包含这个参数，尽管 PyTorch 不需要它？</p></li>
+<li><p>链式法则是什么？展示本章中提出的两种形式中的任意一种方程。</p></li>
+<li><p>展示如何使用链式法则计算 <code>mse(lin(l2, w2, b2), y)</code> 的梯度。</p></li>
+<li><p>ReLU 的梯度是什么？用数学或代码展示它。（您不应该需要记住这个—尝试使用您对函数形状的知识来弄清楚它。）</p></li>
+<li><p>在反向传播中，我们需要以什么顺序调用 <code>*_grad</code> 函数？为什么？</p></li>
+<li><p><code>__call__</code> 是什么？</p></li>
+<li><p>编写 <code>torch.autograd.Function</code> 时我们必须实现哪些方法？</p></li>
+<li><p>从头开始编写 <code>nn.Linear</code> 并测试其是否有效。</p></li>
+<li><p><code>nn.Module</code> 和 fastai 的 <code>Module</code> 之间有什么区别？</p></li>
+</ol>
+<section id="进一步研究" class="level2">
+<h2 class="anchored" data-anchor-id="进一步研究">进一步研究</h2>
+<ol type="1">
+<li><p>将 ReLU 实现为 <code>torch.autograd.Function</code> 并用它训练模型。</p></li>
+<li><p>如果您对数学感兴趣，请确定数学符号中线性层的梯度。将其映射到本章中的实现。</p></li>
+<li><p>了解 PyTorch 中的 <code>unfold</code> 方法，并结合矩阵乘法实现自己的二维卷积函数。然后训练一个使用它的 CNN。</p></li>
+<li><p>使用 NumPy 而不是 PyTorch 在本章中实现所有内容。</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>resnet – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="第十四章resnets" class="level1">
+<h1>第十四章：ResNets</h1>
+<p>在本章中，我们将在上一章介绍的 CNN 基础上构建，并向您解释 ResNet（残差网络）架构。它是由 Kaiming He 等人于 2015 年在文章<a href="https://oreil.ly/b68K8">“Deep Residual Learning for Image Recognition”</a>中引入的，到目前为止是最常用的模型架构。最近在图像模型中的发展几乎总是使用残差连接的相同技巧，大多数时候，它们只是原始 ResNet 的调整。</p>
+<p>我们将首先展示最初设计的基本 ResNet，然后解释使其性能更好的现代调整。但首先，我们需要一个比 MNIST 数据集更难一点的问题，因为我们已经在常规 CNN 上接近 100%的准确率了。</p>
+</section>
+<section id="回到-imagenette" class="level1">
+<h1>回到 Imagenette</h1>
+<p>当我们已经在上一章的 MNIST 中看到的准确率已经很高时，要评估我们对模型的任何改进将会很困难，因此我们将通过回到 Imagenette 来解决一个更困难的图像分类问题。我们将继续使用小图像以保持事情相对快速。</p>
+<p>让我们获取数据——我们将使用已经调整大小为 160 像素的版本以使事情更快，然后将随机裁剪到 128 像素：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_data(url, presize, resize):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> untar_data(url)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> DataBlock(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        blocks<span class="op">=</span>(ImageBlock, CategoryBlock), get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        splitter<span class="op">=</span>GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'val'</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        get_y<span class="op">=</span>parent_label, item_tfms<span class="op">=</span>Resize(presize),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        batch_tfms<span class="op">=</span>[<span class="op">*</span>aug_transforms(min_scale<span class="op">=</span><span class="fl">0.5</span>, size<span class="op">=</span>resize),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                    Normalize.from_stats(<span class="op">*</span>imagenet_stats)],</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    ).dataloaders(path, bs<span class="op">=</span><span class="dv">128</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> get_data(URLs.IMAGENETTE_160, <span class="dv">160</span>, <span class="dv">128</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_14in01.png" class="img-fluid"></p>
+<p>当我们查看 MNIST 时，我们处理的是 28×28 像素的图像。对于 Imagenette，我们将使用 128×128 像素的图像进行训练。稍后，我们希望能够使用更大的图像，至少与 224×224 像素的 ImageNet 标准一样大。您还记得我们如何从 MNIST 卷积神经网络中获得每个图像的单个激活向量吗？</p>
+<p>我们采用的方法是确保有足够的步幅为 2 的卷积，以使最终层具有 1 的网格大小。然后我们展平我们最终得到的单位轴，为每个图像获得一个向量（因此，对于一个小批量的激活矩阵）。我们可以对 Imagenette 做同样的事情，但这会导致两个问题：</p>
+<ul>
+<li><p>我们需要很多步幅为 2 的层，才能使我们的网格在最后变成 1×1 的大小——可能比我们本来会选择的要多。</p></li>
+<li><p>该模型将无法处理除最初训练的大小之外的任何大小的图像。</p></li>
+</ul>
+<p>处理第一个问题的一种方法是以一种处理 1×1 以外的网格大小的方式展平最终的卷积层。我们可以简单地将矩阵展平为向量，就像我们以前做过的那样，通过将每一行放在前一行之后。事实上，这是卷积神经网络直到 2013 年几乎总是采用的方法。最著名的例子是 2013 年 ImageNet 的获奖者 VGG，有时今天仍在使用。但这种架构还有另一个问题：它不仅不能处理与训练集中使用的相同大小的图像之外的图像，而且需要大量内存，因为展平卷积层导致许多激活被馈送到最终层。因此，最终层的权重矩阵是巨大的。</p>
+<p>这个问题通过创建<em>完全卷积网络</em>来解决。完全卷积网络的技巧是对卷积网格中的激活进行平均。换句话说，我们可以简单地使用这个函数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> avg_pool(x): <span class="cf">return</span> x.mean((<span class="dv">2</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如您所看到的，它正在计算 x 轴和 y 轴上的平均值。这个函数将始终将一组激活转换为每个图像的单个激活。PyTorch 提供了一个稍微更灵活的模块，称为<code>nn.AdaptiveAvgPool2d</code>，它将一组激活平均到您需要的任何大小的目标（尽管我们几乎总是使用大小为 1）。</p>
+<p>因此，一个完全卷积网络具有多个卷积层，其中一些将是步幅为 2 的，在最后是一个自适应平均池化层，一个展平层来移除单位轴，最后是一个线性层。这是我们的第一个完全卷积网络：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> block(ni, nf): <span class="cf">return</span> ConvLayer(ni, nf, stride<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_model():</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nn.Sequential(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        block(<span class="dv">3</span>, <span class="dv">16</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        block(<span class="dv">16</span>, <span class="dv">32</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        block(<span class="dv">32</span>, <span class="dv">64</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        block(<span class="dv">64</span>, <span class="dv">128</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        block(<span class="dv">128</span>, <span class="dv">256</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        nn.AdaptiveAvgPool2d(<span class="dv">1</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        Flatten(),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        nn.Linear(<span class="dv">256</span>, dls.c))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们将在网络中用其他变体替换<code>block</code>的实现，这就是为什么我们不再称其为<code>conv</code>。我们还通过利用 fastai 的<code>ConvLayer</code>节省了一些时间，它已经提供了前一章中<code>conv</code>的功能（还有更多！）。</p>
+</section>
+<section id="停下来思考" class="level1">
+<h1>停下来思考</h1>
+<p>考虑这个问题：这种方法对于像 MNIST 这样的光学字符识别（OCR）问题是否有意义？绝大多数从事 OCR 和类似问题的从业者倾向于使用全卷积网络，因为这是现在几乎每个人都学习的。但这真的毫无意义！例如，你不能通过将数字切成小块、混在一起，然后决定每个块平均看起来像 3 还是 8 来判断一个数字是 3 还是 8。但这正是自适应平均池化有效地做的事情！全卷积网络只对没有单一正确方向或大小的对象（例如大多数自然照片）是一个很好的选择。</p>
+<p>一旦我们完成卷积层，我们将得到大小为<code>bs x ch x h x w</code>的激活（批量大小、一定数量的通道、高度和宽度）。我们想将其转换为大小为<code>bs x ch</code>的张量，因此我们取最后两个维度的平均值，并像在我们之前的模型中那样展平尾随的 1×1 维度。</p>
+<p>这与常规池化不同，因为这些层通常会取给定大小窗口的平均值（对于平均池化）或最大值（对于最大池化）。例如，大小为 2 的最大池化层在旧的 CNN 中非常流行，通过在每个维度上取每个 2×2 窗口的最大值（步幅为 2），将图像的尺寸减半。</p>
+<p>与以前一样，我们可以使用我们自定义的模型定义一个<code>Learner</code>，然后在之前获取的数据上对其进行训练：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_learner(m):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Learner(dls, m, loss_func<span class="op">=</span>nn.CrossEntropyLoss(), metrics<span class="op">=</span>accuracy</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                  ).to_fp16()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(get_model())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>learn.lr_find()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.47863011360168456</span>, <span class="fl">3.981071710586548</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_14in02.png" class="img-fluid"></p>
+<p>对于 CNN 来说，3e-3 通常是一个很好的学习率，这在这里也是如此，所以让我们试一试：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">5</span>, <span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.901582</td>
+<td>2.155090</td>
+<td>0.325350</td>
+<td>00:07</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1.559855</td>
+<td>1.586795</td>
+<td>0.507771</td>
+<td>00:07</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.296350</td>
+<td>1.295499</td>
+<td>0.571720</td>
+<td>00:07</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1.144139</td>
+<td>1.139257</td>
+<td>0.639236</td>
+<td>00:07</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1.049770</td>
+<td>1.092619</td>
+<td>0.659108</td>
+<td>00:07</td>
+</tr>
+</tbody>
+</table>
+<p>考虑到我们必须从头开始选择 10 个类别中的正确一个，而且我们只训练了 5 个时期，这是一个相当不错的开始！我们可以通过使用更深的模型做得更好，但只是堆叠新层并不会真正改善我们的结果（你可以尝试自己看看！）。为了解决这个问题，ResNets 引入了<em>跳跃连接</em>的概念。我们将在下一节中探讨 ResNets 的这些方面。</p>
+</section>
+<section id="构建现代-cnnresnet" class="level1">
+<h1>构建现代 CNN：ResNet</h1>
+<p>我们现在已经拥有构建我们自从本书开始就一直在计算机视觉任务中使用的模型所需的所有要素：ResNets。我们将介绍它们背后的主要思想，并展示它如何在 Imagenette 上提高了准确性，然后构建一个带有所有最新调整的版本。</p>
+<section id="跳跃连接" class="level2">
+<h2 class="anchored" data-anchor-id="跳跃连接">跳跃连接</h2>
+<p>2015 年，ResNet 论文的作者们注意到了一件他们觉得奇怪的事情。即使使用了批量归一化，他们发现使用更多层的网络表现不如使用更少层的网络，并且模型之间没有其他差异。最有趣的是，这种差异不仅在验证集中观察到，而且在训练集中也观察到；因此这不仅仅是一个泛化问题，而是一个训练问题。正如论文所解释的：</p>
+<blockquote class="blockquote">
+<p>出乎意料的是，这种退化并不是由过拟合引起的，向适当深度的模型添加更多层会导致更高的训练错误，正如我们的实验[先前报告]和彻底验证的那样。</p>
+</blockquote>
+<p>这种现象在图 14-1 中的图表中有所说明，左侧是训练错误，右侧是测试错误。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1401.png" class="img-fluid figure-img"></p>
+<figcaption>不同深度网络的训练</figcaption>
+</figure>
+</div>
+<section id="图-14-1不同深度网络的训练由-kaiming-he-等人提供" class="level6">
+<h6 class="anchored" data-anchor-id="图-14-1不同深度网络的训练由-kaiming-he-等人提供">图 14-1。不同深度网络的训练（由 Kaiming He 等人提供）。</h6>
+<p>正如作者在这里提到的，他们并不是第一个注意到这个奇怪事实的人。但他们是第一个迈出非常重要的一步：</p>
+<blockquote class="blockquote">
+<p>让我们考虑一个更浅的架构及其更深的对应物，后者在其上添加更多层。存在一种通过构建解决更深模型的方法：添加的层是恒等映射，其他层是从学习的更浅模型中复制的。</p>
+</blockquote>
+<p>由于这是一篇学术论文，这个过程以一种不太易懂的方式描述，但概念实际上非常简单：从一个训练良好的 20 层神经网络开始，然后添加另外 36 层什么都不做的层（例如，它们可以是具有单个权重等于 1 和偏置等于 0 的线性层）。结果将是一个 56 层的网络，它与 20 层网络完全相同，证明总是存在深度网络应该<em>至少和</em>任何浅层网络一样好。但由于某种原因，随机梯度下降似乎无法找到它们。</p>
+</section>
+</section>
+</section>
+<section id="行话恒等映射" class="level1">
+<h1>行话：恒等映射</h1>
+<p>将输入返回而不做任何改变。这个过程由一个<em>恒等函数</em>执行。</p>
+<p>实际上，还有另一种更有趣的方法来创建这些额外的 36 层。如果我们用<code>x + conv(x)</code>替换每次出现的<code>conv(x)</code>，其中<code>conv</code>是上一章中添加第二个卷积，然后是 ReLU，然后是批量归一化层的函数。此外，回想一下批量归一化是<code>gamma*y + beta</code>。如果我们为这些最终批量归一化层中的每一个初始化<code>gamma</code>为零会怎样？那么我们这些额外的 36 层的<code>conv(x)</code>将始终等于零，这意味着<code>x+conv(x)</code>将始终等于<code>x</code>。</p>
+<p>这给我们带来了什么好处？关键是，这 36 个额外的层，就目前而言，是一个<em>恒等映射</em>，但它们有<em>参数</em>，这意味着它们是<em>可训练的</em>。因此，我们可以从最好的 20 层模型开始，添加这 36 个最初什么都不做的额外层，然后<em>微调整个 56 层模型</em>。这些额外的 36 层可以学习使它们最有用的参数！</p>
+<p>ResNet 论文提出了这样的一个变体，即“跳过”每第二个卷积，因此我们实际上得到了<code>x+conv2(conv1(x))</code>。这在图 14-2（来自论文）中的图表中显示。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1402.png" class="img-fluid figure-img"></p>
+<figcaption>一个简单的 ResNet 块</figcaption>
+</figure>
+</div>
+<section id="图-14-2一个简单的-resnet-块由-kaiming-he-等人提供" class="level6">
+<h6 class="anchored" data-anchor-id="图-14-2一个简单的-resnet-块由-kaiming-he-等人提供">图 14-2。一个简单的 ResNet 块（由 Kaiming He 等人提供）。</h6>
+<p>右侧的箭头只是<code>x+conv2(conv1(x))</code>中的<code>x</code>部分，被称为<em>恒等分支</em>或<em>跳跃连接</em>。左侧路径是<code>conv2(conv1(x))</code>部分。您可以将恒等路径视为提供从输入到输出的直接路径。</p>
+<p>在 ResNet 中，我们不是先训练少量层，然后在末尾添加新层并进行微调。相反，我们在整个 CNN 中使用像图 14-2 中的 ResNet 块这样的块，以通常的方式从头开始初始化并以通常的方式使用 SGD 进行训练。我们依靠跳跃连接使网络更容易使用 SGD 进行训练。</p>
+<p>还有另一种（在很大程度上等效的）思考这些 ResNet 块的方式。这就是论文描述的方式：</p>
+<blockquote class="blockquote">
+<p>我们不是希望每几个堆叠的层直接适应所需的底层映射，而是明确让这些层适应一个残差映射。形式上，将所需的底层映射表示为<em>H</em>(<em>x</em>)，我们让堆叠的非线性层适应另一个映射<em>F</em>(<em>x</em>) := H(<em>x</em>)<em>−x</em>。原始映射被重新构造为<em>F</em>(<em>x</em>)+<em>x</em>。我们假设优化残差映射比优化原始未引用的映射更容易。在极端情况下，如果恒等映射是最佳的，将残差推向零将比通过一堆非线性层适应恒等映射更容易。</p>
+</blockquote>
+<p>再次，这是相当晦涩的文字，让我们尝试用简单的英语重新表述一下！如果给定层的结果是<code>x</code>，我们使用一个返回<code>y = x + block(x)</code>的 ResNet 块，我们不是要求该块预测<code>y</code>；我们要求它预测<code>y</code>和<code>x</code>之间的差异。因此，这些块的任务不是预测特定的特征，而是最小化<code>x</code>和期望的<code>y</code>之间的误差。因此，ResNet 擅长学习不做任何事情和通过两个卷积层块（具有可训练权重）之间的区别。这就是这些模型得名的原因：它们在预测残差（提醒：“残差”是预测减去目标）。</p>
+<p>这两种关于 ResNet 的思考方式共享的一个关键概念是学习的便利性。这是一个重要的主题。回想一下普遍逼近定理，它指出一个足够大的网络可以学习任何东西。这仍然是真的，但事实证明，在原始数据和训练方案下，网络在原则上可以学习的东西与它实际上容易学习的东西之间存在非常重要的区别。过去十年中神经网络的许多进步都像 ResNet 块一样：意识到如何使一些一直可能的东西变得可行。</p>
+</section>
+</section>
+<section id="真实身份路径" class="level1">
+<h1>真实身份路径</h1>
+<p>原始论文实际上并没有在每个块的最后一个 batchnorm 层中使用零作为<code>gamma</code>的初始值的技巧；这是几年后才出现的。因此，ResNet 的原始版本并没有真正以真实的身份路径开始训练 ResNet 块，但是尽管如此，具有“穿越”跳过连接的能力确实使其训练效果更好。添加 batchnorm <code>gamma</code>初始化技巧使模型能够以更高的学习速率训练。</p>
+<p>这是一个简单 ResNet 块的定义（fastai 将最后一个 batchnorm 层的<code>gamma</code>权重初始化为零，因为<code>norm_type=NormType.BatchZero</code>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ResBlock(Module):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ni, nf):</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.convs <span class="op">=</span> nn.Sequential(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            ConvLayer(ni,nf),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            ConvLayer(nf,nf, norm_type<span class="op">=</span>NormType.BatchZero))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x): <span class="cf">return</span> x <span class="op">+</span> <span class="va">self</span>.convs(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然而，这有两个问题：它无法处理除 1 以外的步幅，并且要求<code>ni==nf</code>。停下来仔细思考为什么会这样。</p>
+<p>问题在于，如果在其中一个卷积层上使用步幅为 2，输出激活的网格大小将是输入的每个轴的一半。因此，我们无法将其添加回<code>forward</code>中的<code>x</code>，因为<code>x</code>和输出激活具有不同的维度。如果<code>ni!=nf</code>，则会出现相同的基本问题：输入和输出连接的形状不允许我们将它们相加。</p>
+<p>为了解决这个问题，我们需要一种方法来改变<code>x</code>的形状，使其与<code>self.convs</code>的结果匹配。可以通过使用步幅为 2 的平均池化层来减半网格大小：也就是说，该层从输入中获取 2×2 的块，并用它们的平均值替换它们。</p>
+<p>可以通过使用卷积来改变通道数。然而，我们希望这个跳过连接尽可能接近一个恒等映射，这意味着使这个卷积尽可能简单。最简单的卷积是一个卷积核大小为 1 的卷积。这意味着卷积核大小为<code>ni</code> × <code>nf</code> × <code>1</code> × <code>1</code>，因此它只是对每个输入像素的通道进行点积运算，根本不跨像素进行组合。这种<em>1x1 卷积</em>在现代 CNN 中被广泛使用，因此花一点时间思考它是如何工作的。</p>
+</section>
+<section id="术语1x1-卷积" class="level1">
+<h1>术语：1x1 卷积</h1>
+<p>卷积核大小为 1 的卷积。</p>
+<p>以下是使用这些技巧处理跳过连接中形状变化的 ResBlock：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _conv_block(ni,nf,stride):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nn.Sequential(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        ConvLayer(ni, nf, stride<span class="op">=</span>stride),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        ConvLayer(nf, nf, act_cls<span class="op">=</span><span class="va">None</span>, norm_type<span class="op">=</span>NormType.BatchZero))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ResBlock(Module):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, ni, nf, stride<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.convs <span class="op">=</span> _conv_block(ni,nf,stride)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.idconv <span class="op">=</span> noop <span class="cf">if</span> ni<span class="op">==</span>nf <span class="cf">else</span> ConvLayer(ni, nf, <span class="dv">1</span>, act_cls<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.pool <span class="op">=</span> noop <span class="cf">if</span> stride<span class="op">==</span><span class="dv">1</span> <span class="cf">else</span> nn.AvgPool2d(<span class="dv">2</span>, ceil_mode<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> F.relu(<span class="va">self</span>.convs(x) <span class="op">+</span> <span class="va">self</span>.idconv(<span class="va">self</span>.pool(x)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>请注意，我们在这里使用<code>noop</code>函数，它只是返回其未更改的输入（<em>noop</em>是一个计算机科学术语，代表“无操作”）。在这种情况下，如果<code>nf==nf</code>，<code>idconv</code>什么也不做，如果<code>stride==1</code>，<code>pool</code>也不做任何操作，这正是我们在跳过连接中想要的。</p>
+<p>此外，您会看到我们已经从<code>convs</code>的最后一个卷积层和<code>idconv</code>中删除了 ReLU（<code>act_cls=None</code>），并将其移到<em>在</em>我们添加跳跃连接之后。这样做的想法是整个 ResNet 块就像一个层，您希望激活在层之后。</p>
+<p>让我们用<code>ResBlock</code>替换我们的<code>block</code>并尝试一下：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> block(ni,nf): <span class="cf">return</span> ResBlock(ni, nf, stride<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(get_model())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">5</span>, <span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.973174</td>
+<td>1.845491</td>
+<td>0.373248</td>
+<td>00:08</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1.678627</td>
+<td>1.778713</td>
+<td>0.439236</td>
+<td>00:08</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.386163</td>
+<td>1.596503</td>
+<td>0.507261</td>
+<td>00:08</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1.177839</td>
+<td>1.102993</td>
+<td>0.644841</td>
+<td>00:09</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1.052435</td>
+<td>1.038013</td>
+<td>0.667771</td>
+<td>00:09</td>
+</tr>
+</tbody>
+</table>
+<p>这并没有好多少。但这一切的目的是让我们能够训练<em>更深</em>的模型，而我们实际上还没有充分利用这一点。要创建一个比如说深两倍的模型，我们只需要用两个<code>ResBlock</code>替换我们的<code>block</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> block(ni, nf):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nn.Sequential(ResBlock(ni, nf, stride<span class="op">=</span><span class="dv">2</span>), ResBlock(nf, nf))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(get_model())</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">5</span>, <span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.964076</td>
+<td>1.864578</td>
+<td>0.355159</td>
+<td>00:12</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1.636880</td>
+<td>1.596789</td>
+<td>0.502675</td>
+<td>00:12</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.335378</td>
+<td>1.304472</td>
+<td>0.588535</td>
+<td>00:12</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1.089160</td>
+<td>1.065063</td>
+<td>0.663185</td>
+<td>00:12</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0.942904</td>
+<td>0.963589</td>
+<td>0.692739</td>
+<td>00:12</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们取得了良好的进展！</p>
+<p>ResNet 论文的作者后来赢得了 2015 年 ImageNet 挑战赛。当时，这是计算机视觉领域迄今为止最重要的年度事件。我们已经看到另一个 ImageNet 的获奖者：2013 年的获奖者 Zeiler 和 Fergus。值得注意的是，在这两种情况下，突破的起点都是实验观察：Zeiler 和 Fergus 案例中关于层实际学习内容的观察，以及 ResNet 作者案例中关于可以训练哪种网络的观察。设计和分析周到的实验，甚至只是看到一个意想不到的结果，然后，最重要的是，开始弄清楚到底发生了什么，具有极大的坚韧性，这是许多科学发现的核心。深度学习不像纯数学。这是一个非常实验性的领域，因此成为一个强大的实践者，而不仅仅是一个理论家，是非常重要的。</p>
+<p>自 ResNet 推出以来，它已经被广泛研究和应用于许多领域。其中最有趣的论文之一，发表于 2018 年，是由 Hao Li 等人撰写的<a href="https://oreil.ly/C9cFi">“可视化神经网络损失景观”</a>。它表明使用跳跃连接有助于平滑损失函数，这使得训练更容易，因为它避免了陷入非常陡峭的区域。图 14-3 展示了该论文中的一幅惊人图片，说明了 SGD 需要导航以优化普通 CNN（左侧）与 ResNet（右侧）之间的不同之处。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1403.png" class="img-fluid figure-img"></p>
+<figcaption>ResNet 对损失景观的影响</figcaption>
+</figure>
+</div>
+<section id="图-14-3.-resnet-对损失景观的影响由-hao-li-等人提供" class="level6">
+<h6 class="anchored" data-anchor-id="图-14-3.-resnet-对损失景观的影响由-hao-li-等人提供">图 14-3. ResNet 对损失景观的影响（由 Hao Li 等人提供）</h6>
+<p>我们的第一个模型已经很好了，但进一步的研究发现了更多可以应用的技巧，使其变得更好。我们接下来将看看这些技巧。</p>
+</section>
+<section id="一个最先进的-resnet" class="level2">
+<h2 class="anchored" data-anchor-id="一个最先进的-resnet">一个最先进的 ResNet</h2>
+<p>在<a href="https://oreil.ly/n-qhd">“用卷积神经网络进行图像分类的技巧”</a>中，Tong He 等人研究了 ResNet 架构的变体，这几乎没有额外的参数或计算成本。通过使用调整后的 ResNet-50 架构和 Mixup，他们在 ImageNet 上实现了 94.6%的 Top-5 准确率，而普通的 ResNet-50 没有 Mixup 只有 92.2%。这个结果比普通 ResNet 模型取得的结果更好，后者深度是它的两倍（速度也是两倍，更容易过拟合）。</p>
+</section>
+</section>
+<section id="术语top-5-准确率" class="level1">
+<h1>术语：Top-5 准确率</h1>
+<p>一个度量，测试我们模型的前 5 个预测中我们想要的标签有多少次。在 ImageNet 竞赛中使用它，因为许多图像包含多个对象，或者包含可以轻松混淆甚至可能被错误标记为相似标签的对象。在这些情况下，查看前 1 的准确率可能不合适。然而，最近 CNN 的表现越来越好，以至于前 5 的准确率几乎达到 100%，因此一些研究人员现在也在 ImageNet 中使用前 1 的准确率。</p>
+<p>当我们扩展到完整的 ResNet 时，我们将使用这个调整过的版本，因为它要好得多。它与我们之前的实现略有不同，它不是直接从 ResNet 块开始，而是从几个卷积层开始，然后是一个最大池化层。这就是网络的第一层，称为<em>干</em>的样子：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _resnet_stem(<span class="op">*</span>sizes):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        ConvLayer(sizes[i], sizes[i<span class="op">+</span><span class="dv">1</span>], <span class="dv">3</span>, stride <span class="op">=</span> <span class="dv">2</span> <span class="cf">if</span> i<span class="op">==</span><span class="dv">0</span> <span class="cf">else</span> <span class="dv">1</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(sizes)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    ] <span class="op">+</span> [nn.MaxPool2d(kernel_size<span class="op">=</span><span class="dv">3</span>, stride<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="dv">1</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>_resnet_stem(<span class="dv">3</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">64</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>[ConvLayer(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">0</span>): Conv2d(<span class="dv">3</span>, <span class="dv">32</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), stride<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>), padding<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">1</span>): BatchNorm2d(<span class="dv">32</span>, eps<span class="op">=</span><span class="fl">1e-05</span>, momentum<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">2</span>): ReLU()</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a> ), ConvLayer(</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">0</span>): Conv2d(<span class="dv">32</span>, <span class="dv">32</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), stride<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>), padding<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">1</span>): BatchNorm2d(<span class="dv">32</span>, eps<span class="op">=</span><span class="fl">1e-05</span>, momentum<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">2</span>): ReLU()</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a> ), ConvLayer(</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">0</span>): Conv2d(<span class="dv">32</span>, <span class="dv">64</span>, kernel_size<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>), stride<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>), padding<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">1</span>): BatchNorm2d(<span class="dv">64</span>, eps<span class="op">=</span><span class="fl">1e-05</span>, momentum<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">2</span>): ReLU()</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a> ), MaxPool2d(kernel_size<span class="op">=</span><span class="dv">3</span>, stride<span class="op">=</span><span class="dv">2</span>, padding<span class="op">=</span><span class="dv">1</span>, ceil_mode<span class="op">=</span><span class="va">False</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="术语干" class="level1">
+<h1>术语：干</h1>
+<p>CNN 的前几层。通常，干的结构与 CNN 的主体不同。</p>
+<p>我们之所以有一系列普通卷积层的起始，而不是 ResNet 块，是基于对所有深度卷积神经网络的一个重要洞察：绝大部分的计算发生在早期层。因此，我们应该尽可能保持早期层的速度和简单。</p>
+<p>要了解为什么绝大部分的计算发生在早期层，考虑一下在 128 像素输入图像上的第一个卷积。如果是步幅为 1 的卷积，它将应用核到 128×128 个像素中的每一个。这是很多工作！然而，在后续层中，网格大小可能只有 4×4 甚至 2×2，因此要做的核应用要少得多。</p>
+<p>另一方面，第一层卷积只有 3 个输入特征和 32 个输出特征。由于它是一个 3×3 的核，这是权重中的 864 个参数。但最后一个卷积将有 256 个输入特征和 512 个输出特征，导致 1,179,648 个权重！因此，第一层包含了绝大部分的计算量，而最后几层包含了绝大部分的参数。</p>
+<p>一个 ResNet 块比一个普通卷积块需要更多的计算，因为（在步幅为 2 的情况下）一个 ResNet 块有三个卷积和一个池化层。这就是为什么我们希望从普通卷积开始我们的 ResNet。</p>
+<p>现在我们准备展示一个现代 ResNet 的实现，带有“技巧袋”。它使用了四组 ResNet 块，分别为 64、128、256 和 512 个滤波器。每组都以步幅为 2 的块开始，除了第一组，因为它紧接着一个<code>MaxPooling</code>层：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ResNet(nn.Sequential):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, n_out, layers, expansion<span class="op">=</span><span class="dv">1</span>):</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        stem <span class="op">=</span> _resnet_stem(<span class="dv">3</span>,<span class="dv">32</span>,<span class="dv">32</span>,<span class="dv">64</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.block_szs <span class="op">=</span> [<span class="dv">64</span>, <span class="dv">64</span>, <span class="dv">128</span>, <span class="dv">256</span>, <span class="dv">512</span>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">5</span>): <span class="va">self</span>.block_szs[i] <span class="op">*=</span> expansion</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        blocks <span class="op">=</span> [<span class="va">self</span>._make_layer(<span class="op">*</span>o) <span class="cf">for</span> o <span class="kw">in</span> <span class="bu">enumerate</span>(layers)]</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>(<span class="op">*</span>stem, <span class="op">*</span>blocks,</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>                         nn.AdaptiveAvgPool2d(<span class="dv">1</span>), Flatten(),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>                         nn.Linear(<span class="va">self</span>.block_szs[<span class="op">-</span><span class="dv">1</span>], n_out))</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _make_layer(<span class="va">self</span>, idx, n_layers):</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        stride <span class="op">=</span> <span class="dv">1</span> <span class="cf">if</span> idx<span class="op">==</span><span class="dv">0</span> <span class="cf">else</span> <span class="dv">2</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        ch_in,ch_out <span class="op">=</span> <span class="va">self</span>.block_szs[idx:idx<span class="op">+</span><span class="dv">2</span>]</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> nn.Sequential(<span class="op">*</span>[</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>            ResBlock(ch_in <span class="cf">if</span> i<span class="op">==</span><span class="dv">0</span> <span class="cf">else</span> ch_out, ch_out, stride <span class="cf">if</span> i<span class="op">==</span><span class="dv">0</span> <span class="cf">else</span> <span class="dv">1</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n_layers)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        ])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>_make_layer</code>函数只是用来创建一系列<code>n_layers</code>块。第一个是从<code>ch_in</code>到<code>ch_out</code>，步幅为指定的<code>stride</code>，其余所有块都是步幅为 1 的块，从<code>ch_out</code>到<code>ch_out</code>张量。一旦块被定义，我们的模型就是纯顺序的，这就是为什么我们将其定义为<code>nn.Sequential</code>的子类。（暂时忽略<code>expansion</code>参数；我们将在下一节讨论它。暂时设为<code>1</code>，所以它不起作用。）</p>
+<p>模型的各个版本（ResNet-18、-34、-50 等）只是改变了每个组中块的数量。这是 ResNet-18 的定义：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>rn <span class="op">=</span> ResNet(dls.c, [<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们训练一下，看看它与之前的模型相比如何：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(rn)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">5</span>, <span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.673882</td>
+<td>1.828394</td>
+<td>0.413758</td>
+<td>00:13</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1.331675</td>
+<td>1.572685</td>
+<td>0.518217</td>
+<td>00:13</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.087224</td>
+<td>1.086102</td>
+<td>0.650701</td>
+<td>00:13</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.900428</td>
+<td>0.968219</td>
+<td>0.684331</td>
+<td>00:12</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0.760280</td>
+<td>0.782558</td>
+<td>0.757197</td>
+<td>00:12</td>
+</tr>
+</tbody>
+</table>
+<p>尽管我们有更多的通道（因此我们的模型更准确），但由于我们优化了干，我们的训练速度与以前一样快。</p>
+<p>为了使我们的模型更深，而不占用太多计算或内存，我们可以使用 ResNet 论文引入的另一种层：瓶颈层。</p>
+<section id="瓶颈层" class="level2">
+<h2 class="anchored" data-anchor-id="瓶颈层">瓶颈层</h2>
+<p>瓶颈层不是使用 3 个内核大小为 3 的卷积堆叠，而是使用三个卷积：两个 1×1（在开头和结尾）和一个 3×3，如右侧在图 14-4 中所示。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1404.png" class="img-fluid figure-img"></p>
+<figcaption>常规和瓶颈 ResNet 块的比较</figcaption>
+</figure>
+</div>
+<section id="图-14-4.-常规和瓶颈-resnet-块的比较由-kaiming-he-等人提供" class="level6">
+<h6 class="anchored" data-anchor-id="图-14-4.-常规和瓶颈-resnet-块的比较由-kaiming-he-等人提供">图 14-4. 常规和瓶颈 ResNet 块的比较（由 Kaiming He 等人提供）</h6>
+<p>为什么这很有用？1×1 卷积速度更快，因此即使这似乎是一个更复杂的设计，这个块的执行速度比我们看到的第一个 ResNet 块更快。这样一来，我们可以使用更多的滤波器：正如我们在插图中看到的，输入和输出的滤波器数量是四倍更高的（256 而不是 64）。1×1 卷积减少然后恢复通道数（因此称为<em>瓶颈</em>）。总体影响是我们可以在相同的时间内使用更多的滤波器。</p>
+<p>让我们尝试用这种瓶颈设计替换我们的<code>ResBlock</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> _conv_block(ni,nf,stride):</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nn.Sequential(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        ConvLayer(ni, nf<span class="op">//</span><span class="dv">4</span>, <span class="dv">1</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        ConvLayer(nf<span class="op">//</span><span class="dv">4</span>, nf<span class="op">//</span><span class="dv">4</span>, stride<span class="op">=</span>stride),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        ConvLayer(nf<span class="op">//</span><span class="dv">4</span>, nf, <span class="dv">1</span>, act_cls<span class="op">=</span><span class="va">None</span>, norm_type<span class="op">=</span>NormType.BatchZero))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们将使用这个来创建一个具有组大小<code>(3,4,6,3)</code>的 ResNet-50。现在我们需要将<code>4</code>传递给<code>ResNet</code>的<code>expansion</code>参数，因为我们需要从四倍少的通道开始，最终将以四倍多的通道结束。</p>
+<p>像这样更深的网络通常在仅训练 5 个时期时不会显示出改进，所以这次我们将将其增加到 20 个时期，以充分利用我们更大的模型。为了获得更好的结果，让我们也使用更大的图像：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> get_data(URLs.IMAGENETTE_320, presize<span class="op">=</span><span class="dv">320</span>, resize<span class="op">=</span><span class="dv">224</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们不必为更大的 224 像素图像做任何调整；由于我们的全卷积网络，它可以正常工作。这也是为什么我们能够在本书的早期进行<em>渐进调整</em>的原因——我们使用的模型是全卷积的，所以我们甚至能够微调使用不同尺寸训练的模型。现在我们可以训练我们的模型并查看效果：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rn <span class="op">=</span> ResNet(dls.c, [<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">3</span>], <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(rn)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">20</span>, <span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.613448</td>
+<td>1.473355</td>
+<td>0.514140</td>
+<td>00:31</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1.359604</td>
+<td>2.050794</td>
+<td>0.397452</td>
+<td>00:31</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.253112</td>
+<td>4.511735</td>
+<td>0.387006</td>
+<td>00:31</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>1.133450</td>
+<td>2.575221</td>
+<td>0.396178</td>
+<td>00:31</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>1.054752</td>
+<td>1.264525</td>
+<td>0.613758</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0.927930</td>
+<td>2.670484</td>
+<td>0.422675</td>
+<td>00:32</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>0.838268</td>
+<td>1.724588</td>
+<td>0.528662</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>0.748289</td>
+<td>1.180668</td>
+<td>0.666497</td>
+<td>00:31</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>0.688637</td>
+<td>1.245039</td>
+<td>0.650446</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>0.645530</td>
+<td>1.053691</td>
+<td>0.674904</td>
+<td>00:31</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>0.593401</td>
+<td>1.180786</td>
+<td>0.676433</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>0.536634</td>
+<td>0.879937</td>
+<td>0.713885</td>
+<td>00:32</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>0.479208</td>
+<td>0.798356</td>
+<td>0.741656</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>13</td>
+<td>0.440071</td>
+<td>0.600644</td>
+<td>0.806879</td>
+<td>00:32</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>0.402952</td>
+<td>0.450296</td>
+<td>0.858599</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>0.359117</td>
+<td>0.486126</td>
+<td>0.846369</td>
+<td>00:32</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>0.313642</td>
+<td>0.442215</td>
+<td>0.861911</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>0.294050</td>
+<td>0.485967</td>
+<td>0.853503</td>
+<td>00:32</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>0.270583</td>
+<td>0.408566</td>
+<td>0.875924</td>
+<td>00:32</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td>0.266003</td>
+<td>0.411752</td>
+<td>0.872611</td>
+<td>00:33</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们得到了一个很好的结果！尝试添加 Mixup，然后在吃午餐时将其训练一百个时期。你将拥有一个从头开始训练的非常准确的图像分类器。</p>
+<p>这里展示的瓶颈设计通常仅用于 ResNet-50、-101 和-152 模型。ResNet-18 和-34 模型通常使用前一节中看到的非瓶颈设计。然而，我们注意到瓶颈层通常即使对于较浅的网络也效果更好。这只是表明，论文中的细节往往会持续多年，即使它们并不是最佳设计！质疑假设和“每个人都知道的东西”总是一个好主意，因为这仍然是一个新领域，很多细节并不总是做得很好。</p>
+</section>
+</section>
+</section>
+<section id="结论" class="level1">
+<h1>结论</h1>
+<p>自第一章以来，我们一直在使用的计算机视觉模型是如何构建的，使用跳跃连接来训练更深的模型。尽管已经进行了大量研究以寻找更好的架构，但它们都使用这个技巧的某个版本来建立从输入到网络末端的直接路径。在使用迁移学习时，ResNet 是预训练模型。在下一章中，我们将看一下我们使用的模型是如何从中构建的最终细节。</p>
+</section>
+<section id="问卷调查" class="level1">
+<h1>问卷调查</h1>
+<ol type="1">
+<li><p>在以前的章节中，我们如何将用于 MNIST 的 CNN 转换为单个激活向量？为什么这对 Imagenette 不适用？</p></li>
+<li><p>我们在 Imagenette 上做了什么？</p></li>
+<li><p>什么是自适应池化？</p></li>
+<li><p>什么是平均池化？</p></li>
+<li><p>为什么在自适应平均池化层之后需要<code>Flatten</code>？</p></li>
+<li><p>什么是跳跃连接？</p></li>
+<li><p>为什么跳跃连接使我们能够训练更深的模型？</p></li>
+<li><p>图 14-1 展示了什么？这是如何导致跳跃连接的想法的？</p></li>
+<li><p>什么是恒等映射？</p></li>
+<li><p>ResNet 块的基本方程是什么（忽略批量归一化和 ReLU 层）？</p></li>
+<li><p>ResNet 与残差有什么关系？</p></li>
+<li><p>当存在步幅为 2 的卷积时，我们如何处理跳跃连接？当滤波器数量发生变化时呢？</p></li>
+<li><p>我们如何用向量点积表示 1×1 卷积？</p></li>
+<li><p>使用<code>F.conv2d</code>或<code>nn.Conv2d</code>创建一个 1×1 卷积并将其应用于图像。图像的形状会发生什么变化？</p></li>
+<li><p><code>noop</code>函数返回什么？</p></li>
+<li><p>解释图 14-3 中显示的内容。</p></li>
+<li><p>何时使用前 5 准确度比前 1 准确度更好？</p></li>
+<li><p>CNN 的“起始”是什么？</p></li>
+<li><p>为什么在 CNN 的起始部分使用普通卷积而不是 ResNet 块？</p></li>
+<li><p>瓶颈块与普通 ResNet 块有何不同？</p></li>
+<li><p>为什么瓶颈块更快？</p></li>
+<li><p>完全卷积网络（以及具有自适应池化的网络）如何实现渐进式调整大小？</p></li>
+</ol>
+<section id="进一步研究" class="level2">
+<h2 class="anchored" data-anchor-id="进一步研究">进一步研究</h2>
+<ol type="1">
+<li><p>尝试为 MNIST 创建一个带有自适应平均池化的完全卷积网络（请注意，您将需要更少的步幅为 2 的层）。与没有这种池化层的网络相比如何？</p></li>
+<li><p>在第十七章中，我们介绍了<em>爱因斯坦求和符号</em>。快进去看看它是如何工作的，然后使用<code>torch.einsum</code>编写一个 1×1 卷积操作的实现。将其与使用<code>torch.conv2d</code>进行相同操作进行比较。</p></li>
+<li><p>使用纯 PyTorch 或纯 Python 编写一个前 5 准确度函数。</p></li>
+<li><p>在 Imagenette 上训练一个模型更多的 epochs，使用和不使用标签平滑。查看 Imagenette 排行榜，看看你能达到最佳结果有多接近。阅读描述领先方法的链接页面。</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

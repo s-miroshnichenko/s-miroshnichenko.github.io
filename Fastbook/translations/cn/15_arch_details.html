@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>arch_details – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="第十五章应用架构深入探讨" class="level1">
+<h1>第十五章：应用架构深入探讨</h1>
+<p>我们现在处于一个令人兴奋的位置，我们可以完全理解我们为计算机视觉、自然语言处理和表格分析使用的最先进模型的架构。在本章中，我们将填补有关 fastai 应用模型如何工作的所有缺失细节，并向您展示如何构建它们。</p>
+<p>我们还将回到我们在第十一章中看到的用于 Siamese 网络的自定义数据预处理流程，并向您展示如何使用 fastai 库中的组件为新任务构建自定义预训练模型。</p>
+<p>我们将从计算机视觉开始。</p>
+</section>
+<section id="计算机视觉" class="level1">
+<h1>计算机视觉</h1>
+<p>对于计算机视觉应用，我们使用<code>cnn_learner</code>和<code>unet_learner</code>函数来构建我们的模型，具体取决于任务。在本节中，我们将探讨如何构建我们在本书的第 I 部分和 II 部分中使用的<code>Learner</code>对象。</p>
+<section id="cnn_learner" class="level2">
+<h2 class="anchored" data-anchor-id="cnn_learner">cnn_learner</h2>
+<p>让我们看看当我们使用<code>cnn_learner</code>函数时会发生什么。我们首先向这个函数传递一个用于网络<em>主体</em>的架构。大多数情况下，我们使用 ResNet，您已经知道如何创建，所以我们不需要深入研究。预训练权重将根据需要下载并加载到 ResNet 中。</p>
+<p>然后，对于迁移学习，网络需要被<em>切割</em>。这指的是切掉最后一层，该层仅负责 ImageNet 特定的分类。实际上，我们不仅切掉这一层，还切掉自自适应平均池化层以及之后的所有内容。这样做的原因很快就会变得清楚。由于不同的架构可能使用不同类型的池化层，甚至完全不同类型的<em>头部</em>，我们不仅仅搜索自适应池化层来决定在哪里切割预训练模型。相反，我们有一个信息字典，用于确定每个模型的主体在哪里结束，头部从哪里开始。我们称之为<code>model_meta</code>—这是<code>resnet50</code>的信息：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>model_meta[resnet50]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>{<span class="st">'cut'</span>: <span class="op">-</span><span class="dv">2</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> <span class="st">'split'</span>: <span class="op">&lt;</span>function fastai.vision.learner._resnet_split(m)<span class="op">&gt;</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="st">'stats'</span>: ([<span class="fl">0.485</span>, <span class="fl">0.456</span>, <span class="fl">0.406</span>], [<span class="fl">0.229</span>, <span class="fl">0.224</span>, <span class="fl">0.225</span>])}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="行话主体和头部" class="level1">
+<h1>行话：主体和头部</h1>
+<p>神经网络的头部是专门针对特定任务的部分。对于 CNN，通常是自适应平均池化层之后的部分。主体是其他所有部分，包括干部（我们在第十四章中学到的）。</p>
+<p>如果我们取出在<code>-2</code>之前的所有层，我们就得到了 fastai 将保留用于迁移学习的模型部分。现在，我们放上我们的新头部。这是使用<code>create_head</code>函数创建的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>create_head(<span class="dv">20</span>,<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Sequential(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">0</span>): AdaptiveConcatPool2d(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    (ap): AdaptiveAvgPool2d(output_size<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    (mp): AdaptiveMaxPool2d(output_size<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">1</span>): Flatten()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">2</span>): BatchNorm1d(<span class="dv">20</span>, eps<span class="op">=</span><span class="fl">1e-05</span>, momentum<span class="op">=</span><span class="fl">0.1</span>, affine<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">3</span>): Dropout(p<span class="op">=</span><span class="fl">0.25</span>, inplace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">4</span>): Linear(in_features<span class="op">=</span><span class="dv">20</span>, out_features<span class="op">=</span><span class="dv">512</span>, bias<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">5</span>): ReLU(inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">6</span>): BatchNorm1d(<span class="dv">512</span>, eps<span class="op">=</span><span class="fl">1e-05</span>, momentum<span class="op">=</span><span class="fl">0.1</span>, affine<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">7</span>): Dropout(p<span class="op">=</span><span class="fl">0.5</span>, inplace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  (<span class="dv">8</span>): Linear(in_features<span class="op">=</span><span class="dv">512</span>, out_features<span class="op">=</span><span class="dv">2</span>, bias<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>使用这个函数，您可以选择在末尾添加多少个额外的线性层，每个线性层之后使用多少 dropout，以及使用什么类型的池化。默认情况下，fastai 将同时应用平均池化和最大池化，并将两者连接在一起（这是<code>AdaptiveConcatPool2d</code>层）。这不是一个特别常见的方法，但它在 fastai 和其他研究实验室近年来独立开发，并倾向于比仅使用平均池化提供小幅改进。</p>
+<p>fastai 与大多数库有所不同，因为默认情况下它在 CNN 头部中添加两个线性层，而不是一个。原因是，正如我们所看到的，即使将预训练模型转移到非常不同的领域，迁移学习仍然可能是有用的。然而，在这些情况下，仅使用单个线性层可能不足够；我们发现使用两个线性层可以使迁移学习更快速、更容易地应用在更多情况下。</p>
+</section>
+<section id="最后一个-batchnorm" class="level1">
+<h1>最后一个 Batchnorm</h1>
+<p><code>create_head</code>的一个值得关注的参数是<code>bn_final</code>。将其设置为<code>True</code>将导致一个 batchnorm 层被添加为您的最终层。这有助于帮助您的模型适当地缩放输出激活。迄今为止，我们还没有看到这种方法在任何地方发表，但我们发现在实践中无论我们在哪里使用它，它都效果很好。</p>
+<p>现在让我们看看<code>unet_learner</code>在我们在第一章展示的分割问题中做了什么。</p>
+<section id="unet_learner" class="level2">
+<h2 class="anchored" data-anchor-id="unet_learner">unet_learner</h2>
+<p>深度学习中最有趣的架构之一是我们在第一章中用于分割的架构。分割是一项具有挑战性的任务，因为所需的输出实际上是一幅图像，或者一个像素网格，包含了每个像素的预测标签。其他任务也有类似的基本设计，比如增加图像的分辨率（<em>超分辨率</em>）、给黑白图像添加颜色（<em>着色</em>）、或将照片转换为合成画作（<em>风格转移</em>）——这些任务在本书的<a href="https://book.fast.ai">在线章节</a>中有介绍，所以在阅读完本章后一定要查看。在每种情况下，我们都是从一幅图像开始，将其转换为另一幅具有相同尺寸或纵横比的图像，但像素以某种方式被改变。我们将这些称为<em>生成式视觉模型</em>。</p>
+<p>我们的做法是从与前一节中看到的开发 CNN 头部的确切方法开始。例如，我们从一个 ResNet 开始，然后截断自适应池化层和之后的所有层。然后我们用我们的自定义头部替换这些层，执行生成任务。</p>
+<p>在上一句中有很多含糊之处！我们到底如何创建一个生成图像的 CNN 头部？如果我们从一个 224 像素的输入图像开始，那么在 ResNet 主体的末尾，我们将得到一个 7×7 的卷积激活网格。我们如何将其转换为一个 224 像素的分割掩模？</p>
+<p>当然，我们使用神经网络来做这个！所以我们需要一种能够在 CNN 中增加网格大小的层。一个简单的方法是用一个 2×2 的方块替换 7×7 网格中的每个像素。这四个像素中的每一个将具有相同的值——这被称为<em>最近邻插值</em>。PyTorch 为我们提供了一个可以做到这一点的层，因此一个选项是创建一个包含步长为 1 的卷积层（以及通常的批归一化和 ReLU 层）和 2×2 最近邻插值层的头部。实际上，你现在可以尝试一下！看看你是否可以创建一个设计如此的自定义头部，并在 CamVid 分割任务上尝试一下。你应该会发现你得到了一些合理的结果，尽管它们不会像我们在第一章中的结果那样好。</p>
+<p>另一种方法是用<em>转置卷积</em>替换最近邻和卷积的组合，也被称为<em>步长一半卷积</em>。这与常规卷积相同，但首先在输入的所有像素之间插入零填充。这在图片上最容易看到——图 15-1 显示了一张来自我们在第十三章讨论过的优秀的<a href="https://oreil.ly/hu06c">卷积算术论文</a>中的图表，展示了一个应用于 3×3 图像的 3×3 转置卷积。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1501.png" class="img-fluid figure-img"></p>
+<figcaption>一个转置卷积</figcaption>
+</figure>
+</div>
+<section id="图-15-1.-一个转置卷积由-vincent-dumoulin-和-francesco-visin-提供" class="level6">
+<h6 class="anchored" data-anchor-id="图-15-1.-一个转置卷积由-vincent-dumoulin-和-francesco-visin-提供">图 15-1. 一个转置卷积（由 Vincent Dumoulin 和 Francesco Visin 提供）</h6>
+<p>正如你所看到的，结果是增加输入的大小。你现在可以通过使用 fastai 的<code>ConvLayer</code>类来尝试一下；在你的自定义头部中传递参数<code>transpose=True</code>来创建一个转置卷积，而不是一个常规卷积。</p>
+<p>然而，这两种方法都不是很好。问题在于我们的 7×7 网格根本没有足够的信息来创建一个 224×224 像素的输出。要求每个网格单元的激活具有足够的信息来完全重建输出中的每个像素是非常困难的。</p>
+<p>解决方案是使用<em>跳跃连接</em>，就像 ResNet 中那样，但是从 ResNet 主体中的激活一直跳到架构对面的转置卷积的激活。这种方法在 2015 年 Olaf Ronneberger 等人的论文<a href="https://oreil.ly/6ely4">“U-Net:用于生物医学图像分割的卷积网络”</a>中有所阐述。尽管该论文侧重于医学应用，但 U-Net 已经彻底改变了各种生成视觉模型。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1502.png" class="img-fluid figure-img"></p>
+<figcaption>U-Net 架构</figcaption>
+</figure>
+</div>
+</section>
+<section id="图-15-2u-net-架构由-olaf-ronnebergerphilipp-fischer-和-thomas-brox-提供" class="level6">
+<h6 class="anchored" data-anchor-id="图-15-2u-net-架构由-olaf-ronnebergerphilipp-fischer-和-thomas-brox-提供">图 15-2。U-Net 架构（由 Olaf Ronneberger、Philipp Fischer 和 Thomas Brox 提供）</h6>
+<p>这幅图片展示了左侧的 CNN 主体（在这种情况下，它是一个常规的 CNN，而不是 ResNet，它们使用 2×2 最大池化而不是步幅为 2 的卷积，因为这篇论文是在 ResNets 出现之前写的），右侧是转置卷积（“上采样”）层。额外的跳跃连接显示为从左到右的灰色箭头（有时被称为<em>交叉连接</em>）。你可以看到为什么它被称为<em>U-Net</em>！</p>
+<p>有了这种架构，传递给转置卷积的输入不仅是前一层中较低分辨率的网格，还有 ResNet 头部中较高分辨率的网格。这使得 U-Net 可以根据需要使用原始图像的所有信息。U-Net 的一个挑战是确切的架构取决于图像大小。fastai 有一个独特的<code>DynamicUnet</code>类，根据提供的数据自动生成合适大小的架构。</p>
+<p>现在让我们专注于一个示例，其中我们利用 fastai 库编写一个自定义模型。</p>
+</section>
+</section>
+<section id="孪生网络" class="level2">
+<h2 class="anchored" data-anchor-id="孪生网络">孪生网络</h2>
+<p>让我们回到我们在第十一章中为孪生网络设置的输入管道。你可能还记得，它由一对图像组成，标签为<code>True</code>或<code>False</code>，取决于它们是否属于同一类。</p>
+<p>利用我们刚刚看到的内容，让我们为这个任务构建一个自定义模型并对其进行训练。如何做？我们将使用一个预训练的架构并将我们的两个图像传递给它。然后我们可以连接结果并将它们发送到一个自定义头部，该头部将返回两个预测。在模块方面，看起来像这样：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SiameseModel(Module):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, encoder, head):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.encoder,<span class="va">self</span>.head <span class="op">=</span> encoder,head</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x1, x2):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        ftrs <span class="op">=</span> torch.cat([<span class="va">self</span>.encoder(x1), <span class="va">self</span>.encoder(x2)], dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.head(ftrs)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>要创建我们的编码器，我们只需要取一个预训练模型并切割它，就像我们之前解释的那样。函数<code>create_body</code>为我们执行此操作；我们只需传递我们想要切割的位置。正如我们之前看到的，根据预训练模型的元数据字典，ResNet 的切割值为<code>-2</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>encoder <span class="op">=</span> create_body(resnet34, cut<span class="op">=-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们可以创建我们的头部。查看编码器告诉我们最后一层有 512 个特征，所以这个头部将需要接收<code>512*4</code>。为什么是 4？首先我们必须乘以 2，因为我们有两个图像。然后我们需要第二次乘以 2，因为我们的连接池技巧。因此我们创建头部如下：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>head <span class="op">=</span> create_head(<span class="dv">512</span><span class="op">*</span><span class="dv">4</span>, <span class="dv">2</span>, ps<span class="op">=</span><span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>有了我们的编码器和头部，我们现在可以构建我们的模型：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> SiameseModel(encoder, head)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在使用<code>Learner</code>之前，我们还需要定义两件事。首先，我们必须定义要使用的损失函数。它是常规的交叉熵，但由于我们的目标是布尔值，我们需要将它们转换为整数，否则 PyTorch 会抛出错误：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loss_func(out, targ):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> nn.CrossEntropyLoss()(out, targ.<span class="bu">long</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>更重要的是，为了充分利用迁移学习，我们必须定义一个自定义的<em>splitter</em>。<em>splitter</em>是一个告诉 fastai 库如何将模型分成参数组的函数。这些在幕后用于在进行迁移学习时仅训练模型的头部。</p>
+<p>这里我们想要两个参数组：一个用于编码器，一个用于头部。因此我们可以定义以下<em>splitter</em>（<code>params</code>只是一个返回给定模块的所有参数的函数）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> siamese_splitter(model):</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> [params(model.encoder), params(model.head)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后，我们可以通过传递数据、模型、损失函数、分割器和任何我们想要的指标来定义我们的<code>Learner</code>。由于我们没有使用 fastai 的传输学习便利函数（如<code>cnn_learner</code>），我们必须手动调用<code>learn.freeze</code>。这将确保只有最后一个参数组（在本例中是头部）被训练：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> Learner(dls, model, loss_func<span class="op">=</span>loss_func,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                splitter<span class="op">=</span>siamese_splitter, metrics<span class="op">=</span>accuracy)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>learn.freeze()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后我们可以直接使用通常的方法训练我们的模型：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">4</span>, <span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.367015</td>
+<td>0.281242</td>
+<td>0.885656</td>
+<td>00:26</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.307688</td>
+<td>0.214721</td>
+<td>0.915426</td>
+<td>00:26</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.275221</td>
+<td>0.170615</td>
+<td>0.936401</td>
+<td>00:26</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.223771</td>
+<td>0.159633</td>
+<td>0.943843</td>
+<td>00:26</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们解冻并使用有区别的学习率微调整个模型一点（即，对于主体使用较低的学习率，对于头部使用较高的学习率）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>learn.unfreeze()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">4</span>, <span class="bu">slice</span>(<span class="fl">1e-6</span>,<span class="fl">1e-4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.212744</td>
+<td>0.159033</td>
+<td>0.944520</td>
+<td>00:35</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.201893</td>
+<td>0.159615</td>
+<td>0.942490</td>
+<td>00:35</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.204606</td>
+<td>0.152338</td>
+<td>0.945196</td>
+<td>00:36</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.213203</td>
+<td>0.148346</td>
+<td>0.947903</td>
+<td>00:36</td>
+</tr>
+</tbody>
+</table>
+<p>94.8％是非常好的，当我们记得以相同方式训练的分类器（没有数据增强）的错误率为 7％时。</p>
+<p>现在我们已经看到如何创建完整的最先进的计算机视觉模型，让我们继续进行自然语言处理。</p>
+</section>
+</section>
+<section id="自然语言处理" class="level1">
+<h1>自然语言处理</h1>
+<p>将 AWD-LSTM 语言模型转换为迁移学习分类器，就像我们在第十章中所做的那样，遵循与本章第一节中的<code>cnn_learner</code>相似的过程。在这种情况下，我们不需要一个“元”字典，因为我们没有这么多种类的体系结构需要在主体中支持。我们只需要选择语言模型中的堆叠 RNN 作为编码器，这是一个单独的 PyTorch 模块。这个编码器将为输入的每个单词提供一个激活，因为语言模型需要为每个下一个单词输出一个预测。</p>
+<p>要从中创建一个分类器，我们使用了<a href="https://oreil.ly/3hdSj">ULMFiT 论文</a>中描述的一种方法，称为“用于文本分类的 BPTT（BPT3C）”：</p>
+<blockquote class="blockquote">
+<p>我们将文档分成固定长度为<em>b</em>的批次。在每个批次的开始，模型使用前一个批次的最终状态进行初始化；我们跟踪用于平均值和最大池化的隐藏状态；梯度被反向传播到隐藏状态对最终预测有贡献的批次。在实践中，我们使用可变长度的反向传播序列。</p>
+</blockquote>
+<p>换句话说，分类器包含一个<code>for</code>循环，循环遍历每个序列的批次。状态在批次之间保持不变，并且存储每个批次的激活。最后，我们使用相同的平均值和最大连接池技巧，这与我们用于计算机视觉模型的方法相同，但这一次，我们不是在 CNN 网格单元上进行池化，而是在 RNN 序列上进行池化。</p>
+<p>对于这个<code>for</code>循环，我们需要将我们的数据分批处理，但每个文本需要单独处理，因为它们各自有自己的标签。然而，这些文本很可能不会都是相同的长度，这意味着我们无法将它们都放在同一个数组中，就像我们在语言模型中所做的那样。</p>
+<p>这就是填充将会有所帮助的地方：当获取一堆文本时，我们确定最长的文本，然后用一个特殊的标记<code>xxpad</code>填充较短的文本。为了避免在同一批次中有一个包含 2,000 个标记的文本和一个包含 10 个标记的文本的极端情况（因此有很多填充和浪费的计算），我们通过确保相似大小的文本被放在一起来改变随机性。文本在训练集中仍然会以某种随机顺序排列（对于验证集，我们可以简单地按长度顺序排序），但不完全是这样。</p>
+<p>这是由 fastai 库在创建我们的<code>DataLoaders</code>时在幕后自动完成的。</p>
+</section>
+<section id="表格" class="level1">
+<h1>表格</h1>
+<p>最后，让我们看看<code>fastai.tabular</code>模型。（我们不需要单独查看协同过滤，因为我们已经看到这些模型只是表格模型或使用点积方法，我们之前从头开始实现。）</p>
+<p>这是<code>TabularModel</code>的<code>forward</code>方法：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">self</span>.n_emb <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [e(x_cat[:,i]) <span class="cf">for</span> i,e <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.embeds)]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> torch.cat(x, <span class="dv">1</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="va">self</span>.emb_drop(x)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">self</span>.n_cont <span class="op">!=</span> <span class="dv">0</span>:</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    x_cont <span class="op">=</span> <span class="va">self</span>.bn_cont(x_cont)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> torch.cat([x, x_cont], <span class="dv">1</span>) <span class="cf">if</span> <span class="va">self</span>.n_emb <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> x_cont</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="va">self</span>.layers(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们不会在这里显示<code>__init__</code>，因为这并不那么有趣，但会依次查看<code>forward</code>中的每行代码。第一行只是测试是否有任何嵌入需要处理-如果只有连续变量，我们可以跳过这一部分：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">self</span>.n_emb <span class="op">!=</span> <span class="dv">0</span>:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>self.embeds</code>包含嵌入矩阵，因此这会获取每个激活</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [e(x_cat[:,i]) <span class="cf">for</span> i,e <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="va">self</span>.embeds)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>并将它们连接成一个单一张量：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> torch.cat(x, <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后应用了辍学。您可以将<code>emb_drop</code>传递给<code>__init__</code>以更改此值：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="va">self</span>.emb_drop(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在我们测试是否有任何连续变量需要处理：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">self</span>.n_cont <span class="op">!=</span> <span class="dv">0</span>:</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>它们通过一个批量归一化层</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>    x_cont <span class="op">=</span> <span class="va">self</span>.bn_cont(x_cont)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>并与嵌入激活连接在一起，如果有的话：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> torch.cat([x, x_cont], <span class="dv">1</span>) <span class="cf">if</span> <span class="va">self</span>.n_emb <span class="op">!=</span> <span class="dv">0</span> <span class="cf">else</span> x_cont</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>最后，这些通过线性层传递（每个线性层包括批量归一化，如果<code>use_bn</code>为<code>True</code>，并且辍学，如果<code>ps</code>设置为某个值或值列表）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> <span class="va">self</span>.layers(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>恭喜！现在您已经了解了 fastai 库中使用的每个架构的所有细节！</p>
+</section>
+<section id="结论" class="level1">
+<h1>结论</h1>
+<p>正如您所看到的，深度学习架构的细节现在不应该让您感到恐惧。您可以查看 fastai 和 PyTorch 的代码，看看发生了什么。更重要的是，尝试理解<em>为什么</em>会发生这种情况。查看代码中引用的论文，并尝试看看代码如何与描述的算法相匹配。</p>
+<p>现在我们已经调查了模型的所有部分以及传递给它的数据，我们可以考虑这对于实际深度学习意味着什么。如果您拥有无限的数据，无限的内存和无限的时间，那么建议很简单：在所有数据上训练一个巨大的模型很长时间。但深度学习不简单的原因是您的数据、内存和时间通常是有限的。如果内存或时间不足，解决方案是训练一个较小的模型。如果您无法训练足够长时间以过拟合，那么您没有充分利用模型的容量。</p>
+<p>因此，第一步是达到过拟合的点。然后问题是如何减少过拟合。图 15-3 显示了我们建议从那里优先考虑的步骤。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1503.png" class="img-fluid figure-img"></p>
+<figcaption>减少过拟合的步骤</figcaption>
+</figure>
+</div>
+<section id="图-15-3减少过拟合的步骤" class="level6">
+<h6 class="anchored" data-anchor-id="图-15-3减少过拟合的步骤">图 15-3。减少过拟合的步骤</h6>
+<p>许多从业者在面对过拟合模型时，从这个图表的完全错误的一端开始。他们的起点是使用更小的模型或更多的正则化。除非训练模型占用太多时间或内存，否则使用更小的模型应该是您采取的最后一步。减小模型的大小会降低模型学习数据中微妙关系的能力。</p>
+<p>相反，您的第一步应该是寻求<em>创建更多数据</em>。这可能涉及向您已经拥有的数据添加更多标签，找到模型可以被要求解决的其他任务（或者，换个角度思考，识别您可以建模的不同类型的标签），或者通过使用更多或不同的数据增强技术创建额外的合成数据。由于 Mixup 和类似方法的发展，现在几乎所有类型的数据都可以获得有效的数据增强。</p>
+<p>一旦您获得了您认为可以合理获得的尽可能多的数据，并且通过利用您可以找到的所有标签并进行所有有意义的增强来尽可能有效地使用它，如果您仍然过拟合，您应该考虑使用更具一般化能力的架构。例如，添加批量归一化可能会提高泛化能力。</p>
+<p>如果在尽力使用数据和调整架构后仍然过拟合，您可以考虑正则化。一般来说，在最后一层或两层添加 dropout 可以很好地正则化您的模型。然而，正如我们从 AWD-LSTM 开发故事中学到的那样，在整个模型中添加不同类型的 dropout 通常会更有帮助。一般来说，具有更多正则化的较大模型更灵活，因此比具有较少正则化的较小模型更准确。</p>
+<p>只有在考虑了所有这些选项之后，我们才建议您尝试使用较小版本的架构。</p>
+</section>
+</section>
+<section id="问卷" class="level1">
+<h1>问卷</h1>
+<ol type="1">
+<li><p>神经网络的头是什么？</p></li>
+<li><p>神经网络的主体是什么？</p></li>
+<li><p>什么是“剪切”神经网络？为什么我们需要在迁移学习中这样做？</p></li>
+<li><p><code>model_meta</code>是什么？尝试打印它以查看里面的内容。</p></li>
+<li><p>阅读<code>create_head</code>的源代码，并确保你理解每一行的作用。</p></li>
+<li><p>查看<code>create_head</code>的输出，并确保你理解每一层的存在原因，以及<code>create_head</code>源代码是如何创建它的。</p></li>
+<li><p>找出如何改变<code>create_cnn</code>创建的 dropout、层大小和层数，并查看是否可以找到能够提高宠物识别准确性的值。</p></li>
+<li><p><code>AdaptiveConcatPool2d</code>是什么作用？</p></li>
+<li><p>什么是最近邻插值？如何用它来上采样卷积激活？</p></li>
+<li><p>什么是转置卷积？还有另一个名称是什么？</p></li>
+<li><p>创建一个带有<code>transpose=True</code>的卷积层，并将其应用于图像。检查输出形状。</p></li>
+<li><p>绘制 U-Net 架构。</p></li>
+<li><p>什么是用于文本分类的 BPTT（BPT3C）？</p></li>
+<li><p>在 BPT3C 中如何处理不同长度的序列？</p></li>
+<li><p>尝试在笔记本中逐行运行<code>TabularModel.forward</code>的每一行，每个单元格一行，并查看每个步骤的输入和输出形状。</p></li>
+<li><p><code>TabularModel</code>中的<code>self.layers</code>是如何定义的？</p></li>
+<li><p>预防过拟合的五个步骤是什么？</p></li>
+<li><p>为什么在尝试其他方法预防过拟合之前不减少架构复杂性？</p></li>
+</ol>
+<section id="进一步研究" class="level2">
+<h2 class="anchored" data-anchor-id="进一步研究">进一步研究</h2>
+<ol type="1">
+<li><p>编写自己的自定义头，并尝试使用它训练宠物识别器。看看是否可以获得比 fastai 默认更好的结果。</p></li>
+<li><p>尝试在 CNN 头部之间切换<code>AdaptiveConcatPool2d</code>和<code>AdaptiveAvgPool2d</code>，看看会有什么不同。</p></li>
+<li><p>编写自己的自定义分割器，为每个 ResNet 块创建一个单独的参数组，以及一个单独的参数组用于干扰。尝试使用它进行训练，看看是否可以改善宠物识别器。</p></li>
+<li><p>阅读关于生成图像模型的在线章节，并创建自己的着色器、超分辨率模型或风格转移模型。</p></li>
+<li><p>使用最近邻插值创建一个自定义头，并用它在 CamVid 上进行分割。</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

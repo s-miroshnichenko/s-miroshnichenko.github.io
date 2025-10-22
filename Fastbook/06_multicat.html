@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Other Computer Vision Problems – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@*/dist/embed-amd.js" crossorigin="anonymous"></script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Other Computer Vision Problems</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hide</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> [ <span class="op">-</span>e <span class="op">/</span>content ] <span class="op">&amp;&amp;</span> pip install <span class="op">-</span>Uqq fastbook</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fastbook</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fastbook.setup_book()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hide</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastbook <span class="im">import</span> <span class="op">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>[[chapter_multicat]]</p>
+<p>In the previous chapter you learned some important practical techniques for training models in practice. Considerations like selecting learning rates and the number of epochs are very important to getting good results.</p>
+<p>In this chapter we are going to look at two other types of computer vision problems: multi-label classification and regression. The first one is when you want to predict more than one label per image (or sometimes none at all), and the second is when your labels are one or several numbers—a quantity instead of a category.</p>
+<p>In the process will study more deeply the output activations, targets, and loss functions in deep learning models.</p>
+<section id="multi-label-classification" class="level2">
+<h2 class="anchored" data-anchor-id="multi-label-classification">Multi-Label Classification</h2>
+<p>Multi-label classification refers to the problem of identifying the categories of objects in images that may not contain exactly one type of object. There may be more than one kind of object, or there may be no objects at all in the classes that you are looking for.</p>
+<p>For instance, this would have been a great approach for our bear classifier. One problem with the bear classifier that we rolled out in &lt;<chapter_production>&gt; was that if a user uploaded something that wasn’t any kind of bear, the model would still say it was either a grizzly, black, or teddy bear—it had no ability to predict “not a bear at all.” In fact, after we have completed this chapter, it would be a great exercise for you to go back to your image classifier application, and try to retrain it using the multi-label technique, then test it by passing in an image that is not of any of your recognized classes.</chapter_production></p>
+<p>In practice, we have not seen many examples of people training multi-label classifiers for this purpose—but we very often see both users and developers complaining about this problem. It appears that this simple solution is not at all widely understood or appreciated! Because in practice it is probably more common to have some images with zero matches or more than one match, we should probably expect in practice that multi-label classifiers are more widely applicable than single-label classifiers.</p>
+<p>First, let’s see what a multi-label dataset looks like, then we’ll explain how to get it ready for our model. You’ll see that the architecture of the model does not change from the last chapter; only the loss function does. Let’s start with the data.</p>
+<section id="the-data" class="level3">
+<h3 class="anchored" data-anchor-id="the-data">The Data</h3>
+<p>For our example we are going to use the PASCAL dataset, which can have more than one kind of classified object per image.</p>
+<p>We begin by downloading and extracting the dataset as per usual:</p>
+<div id="cell-10" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.PASCAL_2007)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This dataset is different from the ones we have seen before, in that it is not structured by filename or folder but instead comes with a CSV (comma-separated values) file telling us what labels to use for each image. We can inspect the CSV file by reading it into a Pandas DataFrame:</p>
+<div id="cell-12" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(path<span class="op">/</span><span class="st">'train.csv'</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">fname</th>
+<th data-quarto-table-cell-role="th">labels</th>
+<th data-quarto-table-cell-role="th">is_valid</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>000005.jpg</td>
+<td>chair</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>000007.jpg</td>
+<td>car</td>
+<td>True</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>000009.jpg</td>
+<td>horse person</td>
+<td>True</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>000012.jpg</td>
+<td>car</td>
+<td>False</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>000016.jpg</td>
+<td>bicycle</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>As you can see, the list of categories in each image is shown as a space-delimited string.</p>
+</section>
+<section id="sidebar-pandas-and-dataframes" class="level3">
+<h3 class="anchored" data-anchor-id="sidebar-pandas-and-dataframes">Sidebar: Pandas and DataFrames</h3>
+<p>No, it’s not actually a panda! <em>Pandas</em> is a Python library that is used to manipulate and analyze tabular and time series data. The main class is <code>DataFrame</code>, which represents a table of rows and columns. You can get a DataFrame from a CSV file, a database table, Python dictionaries, and many other sources. In Jupyter, a DataFrame is output as a formatted table, as shown here.</p>
+<p>You can access rows and columns of a DataFrame with the <code>iloc</code> property, as if it were a matrix:</p>
+<div id="cell-16" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.iloc[:,<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>0       000005.jpg
+1       000007.jpg
+2       000009.jpg
+3       000012.jpg
+4       000016.jpg
+           ...    
+5006    009954.jpg
+5007    009955.jpg
+5008    009958.jpg
+5009    009959.jpg
+5010    009961.jpg
+Name: fname, Length: 5011, dtype: object</code></pre>
+</div>
+</div>
+<div id="cell-17" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">0</span>,:]</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Trailing :s are always optional (in numpy, pytorch, pandas, etc.),</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   so this is equivalent:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>fname       000005.jpg
+labels           chair
+is_valid          True
+Name: 0, dtype: object</code></pre>
+</div>
+</div>
+<p>You can also grab a column by name by indexing into a DataFrame directly:</p>
+<div id="cell-19" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'fname'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>0       000005.jpg
+1       000007.jpg
+2       000009.jpg
+3       000012.jpg
+4       000016.jpg
+           ...    
+5006    009954.jpg
+5007    009955.jpg
+5008    009958.jpg
+5009    009959.jpg
+5010    009961.jpg
+Name: fname, Length: 5011, dtype: object</code></pre>
+</div>
+</div>
+<p>You can create new columns and do calculations using columns:</p>
+<div id="cell-21" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tmp_df <span class="op">=</span> pd.DataFrame({<span class="st">'a'</span>:[<span class="dv">1</span>,<span class="dv">2</span>], <span class="st">'b'</span>:[<span class="dv">3</span>,<span class="dv">4</span>]})</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>tmp_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="cell-22" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tmp_df[<span class="st">'c'</span>] <span class="op">=</span> tmp_df[<span class="st">'a'</span>]<span class="op">+</span>tmp_df[<span class="st">'b'</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tmp_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">a</th>
+<th data-quarto-table-cell-role="th">b</th>
+<th data-quarto-table-cell-role="th">c</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Pandas is a fast and flexible library, and an important part of every data scientist’s Python toolbox. Unfortunately, its API can be rather confusing and surprising, so it takes a while to get familiar with it. If you haven’t used Pandas before, we’d suggest going through a tutorial; we are particularly fond of the book <a href="http://shop.oreilly.com/product/0636920023784.do"><em>Python for Data Analysis</em></a> by Wes McKinney, the creator of Pandas (O’Reilly). It also covers other important libraries like <code>matplotlib</code> and <code>numpy</code>. We will try to briefly describe Pandas functionality we use as we come across it, but will not go into the level of detail of McKinney’s book.</p>
+</section>
+<section id="end-sidebar" class="level3">
+<h3 class="anchored" data-anchor-id="end-sidebar">End sidebar</h3>
+<p>Now that we have seen what the data looks like, let’s make it ready for model training.</p>
+</section>
+<section id="constructing-a-datablock" class="level3">
+<h3 class="anchored" data-anchor-id="constructing-a-datablock">Constructing a DataBlock</h3>
+<p>How do we convert from a <code>DataFrame</code> object to a <code>DataLoaders</code> object? We generally suggest using the data block API for creating a <code>DataLoaders</code> object, where possible, since it provides a good mix of flexibility and simplicity. Here we will show you the steps that we take to use the data blocks API to construct a <code>DataLoaders</code> object in practice, using this dataset as an example.</p>
+<p>As we have seen, PyTorch and fastai have two main classes for representing and accessing a training set or validation set:</p>
+<ul>
+<li><code>Dataset</code>:: A collection that returns a tuple of your independent and dependent variable for a single item</li>
+<li><code>DataLoader</code>:: An iterator that provides a stream of mini-batches, where each mini-batch is a tuple of a batch of independent variables and a batch of dependent variables</li>
+</ul>
+<p>On top of these, fastai provides two classes for bringing your training and validation sets together:</p>
+<ul>
+<li><code>Datasets</code>:: An object that contains a training <code>Dataset</code> and a validation <code>Dataset</code></li>
+<li><code>DataLoaders</code>:: An object that contains a training <code>DataLoader</code> and a validation <code>DataLoader</code></li>
+</ul>
+<p>Since a <code>DataLoader</code> builds on top of a <code>Dataset</code> and adds additional functionality to it (collating multiple items into a mini-batch), it’s often easiest to start by creating and testing <code>Datasets</code>, and then look at <code>DataLoaders</code> after that’s working.</p>
+<p>When we create a <code>DataBlock</code>, we build up gradually, step by step, and use the notebook to check our data along the way. This is a great way to make sure that you maintain momentum as you are coding, and that you keep an eye out for any problems. It’s easy to debug, because you know that if a problem arises, it is in the line of code you just typed!</p>
+<p>Let’s start with the simplest case, which is a data block created with no parameters:</p>
+<div id="cell-30" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can create a <code>Datasets</code> object from this. The only thing needed is a source—in this case, our DataFrame:</p>
+<div id="cell-32" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> dblock.datasets(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This contains a <code>train</code> and a <code>valid</code> dataset, which we can index into:</p>
+<div id="cell-34" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(dsets.train),<span class="bu">len</span>(dsets.valid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(4009, 1002)</code></pre>
+</div>
+</div>
+<div id="cell-35" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> dsets.train[<span class="dv">0</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x,y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(fname       008663.jpg
+ labels      car person
+ is_valid         False
+ Name: 4346, dtype: object,
+ fname       008663.jpg
+ labels      car person
+ is_valid         False
+ Name: 4346, dtype: object)</code></pre>
+</div>
+</div>
+<p>As you can see, this simply returns a row of the DataFrame, twice. This is because by default, the data block assumes we have two things: input and target. We are going to need to grab the appropriate fields from the DataFrame, which we can do by passing <code>get_x</code> and <code>get_y</code> functions:</p>
+<div id="cell-37" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x[<span class="st">'fname'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>'008663.jpg'</code></pre>
+</div>
+</div>
+<div id="cell-38" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(get_x <span class="op">=</span> <span class="kw">lambda</span> r: r[<span class="st">'fname'</span>], get_y <span class="op">=</span> <span class="kw">lambda</span> r: r[<span class="st">'labels'</span>])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> dblock.datasets(df)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>dsets.train[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>('005620.jpg', 'aeroplane')</code></pre>
+</div>
+</div>
+<p>As you can see, rather than defining a function in the usual way, we are using Python’s <code>lambda</code> keyword. This is just a shortcut for defining and then referring to a function. The following more verbose approach is identical:</p>
+<div id="cell-40" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_x(r): <span class="cf">return</span> r[<span class="st">'fname'</span>]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_y(r): <span class="cf">return</span> r[<span class="st">'labels'</span>]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(get_x <span class="op">=</span> get_x, get_y <span class="op">=</span> get_y)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> dblock.datasets(df)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>dsets.train[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>('002549.jpg', 'tvmonitor')</code></pre>
+</div>
+</div>
+<p>Lambda functions are great for quickly iterating, but they are not compatible with serialization, so we advise you to use the more verbose approach if you want to export your <code>Learner</code> after training (lambdas are fine if you are just experimenting).</p>
+<p>We can see that the independent variable will need to be converted into a complete path, so that we can open it as an image, and the dependent variable will need to be split on the space character (which is the default for Python’s <code>split</code> function) so that it becomes a list:</p>
+<div id="cell-43" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_x(r): <span class="cf">return</span> path<span class="op">/</span><span class="st">'train'</span><span class="op">/</span>r[<span class="st">'fname'</span>]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_y(r): <span class="cf">return</span> r[<span class="st">'labels'</span>].split(<span class="st">' '</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(get_x <span class="op">=</span> get_x, get_y <span class="op">=</span> get_y)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> dblock.datasets(df)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>dsets.train[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(Path('/home/jhoward/.fastai/data/pascal_2007/train/002844.jpg'), ['train'])</code></pre>
+</div>
+</div>
+<p>To actually open the image and do the conversion to tensors, we will need to use a set of transforms; block types will provide us with those. We can use the same block types that we have used previously, with one exception: the <code>ImageBlock</code> will work fine again, because we have a path that points to a valid image, but the <code>CategoryBlock</code> is not going to work. The problem is that block returns a single integer, but we need to be able to have multiple labels for each item. To solve this, we use a <code>MultiCategoryBlock</code>. This type of block expects to receive a list of strings, as we have in this case, so let’s test it out:</p>
+<div id="cell-45" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(blocks<span class="op">=</span>(ImageBlock, MultiCategoryBlock),</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                   get_x <span class="op">=</span> get_x, get_y <span class="op">=</span> get_y)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> dblock.datasets(df)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>dsets.train[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(PILImage mode=RGB size=500x375,
+ TensorMultiCategory([0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0.]))</code></pre>
+</div>
+</div>
+<p>As you can see, our list of categories is not encoded in the same way that it was for the regular <code>CategoryBlock</code>. In that case, we had a single integer representing which category was present, based on its location in our vocab. In this case, however, we instead have a list of zeros, with a one in any position where that category is present. For example, if there is a one in the second and fourth positions, then that means that vocab items two and four are present in this image. This is known as <em>one-hot encoding</em>. The reason we can’t easily just use a list of category indices is that each list would be a different length, and PyTorch requires tensors, where everything has to be the same length.</p>
+<blockquote class="blockquote">
+<p>jargon: One-hot encoding: Using a vector of zeros, with a one in each location that is represented in the data, to encode a list of integers.</p>
+</blockquote>
+<p>Let’s check what the categories represent for this example (we are using the convenient <code>torch.where</code> function, which tells us all of the indices where our condition is true or false):</p>
+<div id="cell-49" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>idxs <span class="op">=</span> torch.where(dsets.train[<span class="dv">0</span>][<span class="dv">1</span>]<span class="op">==</span><span class="fl">1.</span>)[<span class="dv">0</span>]</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>dsets.train.vocab[idxs]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(#1) ['dog']</code></pre>
+</div>
+</div>
+<p>With NumPy arrays, PyTorch tensors, and fastai’s <code>L</code> class, we can index directly using a list or vector, which makes a lot of code (such as this example) much clearer and more concise.</p>
+<p>We have ignored the column <code>is_valid</code> up until now, which means that <code>DataBlock</code> has been using a random split by default. To explicitly choose the elements of our validation set, we need to write a function and pass it to <code>splitter</code> (or use one of fastai’s predefined functions or classes). It will take the items (here our whole DataFrame) and must return two (or more) lists of integers:</p>
+<div id="cell-51" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> splitter(df):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    train <span class="op">=</span> df.index[<span class="op">~</span>df[<span class="st">'is_valid'</span>]].tolist()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    valid <span class="op">=</span> df.index[df[<span class="st">'is_valid'</span>]].tolist()</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> train,valid</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(blocks<span class="op">=</span>(ImageBlock, MultiCategoryBlock),</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>                   splitter<span class="op">=</span>splitter,</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>                   get_x<span class="op">=</span>get_x, </span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>                   get_y<span class="op">=</span>get_y)</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> dblock.datasets(df)</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>dsets.train[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(PILImage mode=RGB size=500x333,
+ TensorMultiCategory([0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]))</code></pre>
+</div>
+</div>
+<p>As we have discussed, a <code>DataLoader</code> collates the items from a <code>Dataset</code> into a mini-batch. This is a tuple of tensors, where each tensor simply stacks the items from that location in the <code>Dataset</code> item.</p>
+<p>Now that we have confirmed that the individual items look okay, there’s one more step we need to ensure we can create our <code>DataLoaders</code>, which is to ensure that every item is of the same size. To do this, we can use <code>RandomResizedCrop</code>:</p>
+<div id="cell-53" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>dblock <span class="op">=</span> DataBlock(blocks<span class="op">=</span>(ImageBlock, MultiCategoryBlock),</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                   splitter<span class="op">=</span>splitter,</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                   get_x<span class="op">=</span>get_x, </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                   get_y<span class="op">=</span>get_y,</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                   item_tfms <span class="op">=</span> RandomResizedCrop(<span class="dv">128</span>, min_scale<span class="op">=</span><span class="fl">0.35</span>))</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dblock.dataloaders(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And now we can display a sample of our data:</p>
+<div id="cell-55" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_multicat_files/figure-html/cell-23-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Remember that if anything goes wrong when you create your <code>DataLoaders</code> from your <code>DataBlock</code>, or if you want to view exactly what happens with your <code>DataBlock</code>, you can use the <code>summary</code> method we presented in the last chapter.</p>
+<p>Our data is now ready for training a model. As we will see, nothing is going to change when we create our <code>Learner</code>, but behind the scenes, the fastai library will pick a new loss function for us: binary cross-entropy.</p>
+</section>
+<section id="binary-cross-entropy" class="level3">
+<h3 class="anchored" data-anchor-id="binary-cross-entropy">Binary Cross-Entropy</h3>
+<p>Now we’ll create our <code>Learner</code>. We saw in &lt;<chapter_mnist_basics>&gt; that a <code>Learner</code> object contains four main things: the model, a <code>DataLoaders</code> object, an <code>Optimizer</code>, and the loss function to use. We already have our <code>DataLoaders</code>, we can leverage fastai’s <code>resnet</code> models (which we’ll learn how to create from scratch later), and we know how to create an <code>SGD</code> optimizer. So let’s focus on ensuring we have a suitable loss function. To do this, let’s use <code>vision_learner</code> to create a <code>Learner</code>, so we can look at its activations:</chapter_mnist_basics></p>
+<div id="cell-60" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(dls, resnet18)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We also saw that the model in a <code>Learner</code> is generally an object of a class inheriting from <code>nn.Module</code>, and that we can call it using parentheses and it will return the activations of a model. You should pass it your independent variable, as a mini-batch. We can try it out by grabbing a mini batch from our <code>DataLoader</code> and then passing it to the model:</p>
+<div id="cell-62" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> to_cpu(dls.train.one_batch())</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>activs <span class="op">=</span> learn.model(x)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>activs.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>torch.Size([64, 20])</code></pre>
+</div>
+</div>
+<p>Think about why <code>activs</code> has this shape—we have a batch size of 64, and we need to calculate the probability of each of 20 categories. Here’s what one of those activations looks like:</p>
+<div id="cell-64" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>activs[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>TensorBase([-1.4608,  0.9895,  0.5279, -1.0224, -1.4174, -0.1778, -0.4821, -0.2561,  0.6638,  0.1715,  2.3625,  4.2209,  1.0515,  4.5342,  0.5485,  1.0585, -0.7959,  2.2770, -1.9935,  1.9646],
+       grad_fn=&lt;AliasBackward0&gt;)</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>note: Getting Model Activations: Knowing how to manually get a mini-batch and pass it into a model, and look at the activations and loss, is really important for debugging your model. It is also very helpful for learning, so that you can see exactly what is going on.</p>
+</blockquote>
+<p>They aren’t yet scaled to between 0 and 1, but we learned how to do that in &lt;<chapter_mnist_basics>&gt;, using the <code>sigmoid</code> function. We also saw how to calculate a loss based on this—this is our loss function from &lt;<chapter_mnist_basics>&gt;, with the addition of <code>log</code> as discussed in the last chapter:</chapter_mnist_basics></chapter_mnist_basics></p>
+<div id="cell-67" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binary_cross_entropy(inputs, targets):</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> inputs.sigmoid()</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>torch.where(targets<span class="op">==</span><span class="dv">1</span>, inputs, <span class="dv">1</span><span class="op">-</span>inputs).log().mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Note that because we have a one-hot-encoded dependent variable, we can’t directly use <code>nll_loss</code> or <code>softmax</code> (and therefore we can’t use <code>cross_entropy</code>):</p>
+<ul>
+<li><code>softmax</code>, as we saw, requires that all predictions sum to 1, and tends to push one activation to be much larger than the others (due to the use of <code>exp</code>); however, we may well have multiple objects that we’re confident appear in an image, so restricting the maximum sum of activations to 1 is not a good idea. By the same reasoning, we may want the sum to be <em>less</em> than 1, if we don’t think <em>any</em> of the categories appear in an image.</li>
+<li><code>nll_loss</code>, as we saw, returns the value of just one activation: the single activation corresponding with the single label for an item. This doesn’t make sense when we have multiple labels.</li>
+</ul>
+<p>On the other hand, the <code>binary_cross_entropy</code> function, which is just <code>mnist_loss</code> along with <code>log</code>, provides just what we need, thanks to the magic of PyTorch’s elementwise operations. Each activation will be compared to each target for each column, so we don’t have to do anything to make this function work for multiple columns.</p>
+<blockquote class="blockquote">
+<p>j: One of the things I really like about working with libraries like PyTorch, with broadcasting and elementwise operations, is that quite frequently I find I can write code that works equally well for a single item or a batch of items, without changes. <code>binary_cross_entropy</code> is a great example of this. By using these operations, we don’t have to write loops ourselves, and can rely on PyTorch to do the looping we need as appropriate for the rank of the tensors we’re working with.</p>
+</blockquote>
+<p>PyTorch already provides this function for us. In fact, it provides a number of versions, with rather confusing names!</p>
+<p><code>F.binary_cross_entropy</code> and its module equivalent <code>nn.BCELoss</code> calculate cross-entropy on a one-hot-encoded target, but do not include the initial <code>sigmoid</code>. Normally for one-hot-encoded targets you’ll want <code>F.binary_cross_entropy_with_logits</code> (or <code>nn.BCEWithLogitsLoss</code>), which do both sigmoid and binary cross-entropy in a single function, as in the preceding example.</p>
+<p>The equivalent for single-label datasets (like MNIST or the Pet dataset), where the target is encoded as a single integer, is <code>F.nll_loss</code> or <code>nn.NLLLoss</code> for the version without the initial softmax, and <code>F.cross_entropy</code> or <code>nn.CrossEntropyLoss</code> for the version with the initial softmax.</p>
+<p>Since we have a one-hot-encoded target, we will use <code>BCEWithLogitsLoss</code>:</p>
+<div id="cell-71" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>loss_func <span class="op">=</span> nn.BCEWithLogitsLoss()</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> loss_func(activs, y)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>loss</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>TensorMultiCategory(1.0524, grad_fn=&lt;AliasBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>We don’t actually need to tell fastai to use this loss function (although we can if we want) since it will be automatically chosen for us. fastai knows that the <code>DataLoaders</code> has multiple category labels, so it will use <code>nn.BCEWithLogitsLoss</code> by default.</p>
+<p>One change compared to the last chapter is the metric we use: because this is a multilabel problem, we can’t use the accuracy function. Why is that? Well, accuracy was comparing our outputs to our targets like so:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy(inp, targ, axis<span class="op">=-</span><span class="dv">1</span>):</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Compute accuracy with `targ` when `pred` is bs * n_classes"</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    pred <span class="op">=</span> inp.argmax(dim<span class="op">=</span>axis)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (pred <span class="op">==</span> targ).<span class="bu">float</span>().mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The class predicted was the one with the highest activation (this is what <code>argmax</code> does). Here it doesn’t work because we could have more than one prediction on a single image. After applying the sigmoid to our activations (to make them between 0 and 1), we need to decide which ones are 0s and which ones are 1s by picking a <em>threshold</em>. Each value above the threshold will be considered as a 1, and each value lower than the threshold will be considered a 0:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accuracy_multi(inp, targ, thresh<span class="op">=</span><span class="fl">0.5</span>, sigmoid<span class="op">=</span><span class="va">True</span>):</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"Compute accuracy when `inp` and `targ` are the same size."</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sigmoid: inp <span class="op">=</span> inp.sigmoid()</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ((inp<span class="op">&gt;</span>thresh)<span class="op">==</span>targ.<span class="bu">bool</span>()).<span class="bu">float</span>().mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If we pass <code>accuracy_multi</code> directly as a metric, it will use the default value for <code>threshold</code>, which is 0.5. We might want to adjust that default and create a new version of <code>accuracy_multi</code> that has a different default. To help with this, there is a function in Python called <code>partial</code>. It allows us to <em>bind</em> a function with some arguments or keyword arguments, making a new version of that function that, whenever it is called, always includes those arguments. For instance, here is a simple function taking two arguments:</p>
+<div id="cell-74" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hello(name, say_what<span class="op">=</span><span class="st">"Hello"</span>): <span class="cf">return</span> <span class="ss">f"</span><span class="sc">{</span>say_what<span class="sc">}</span><span class="ss"> </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">."</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>say_hello(<span class="st">'Jeremy'</span>),say_hello(<span class="st">'Jeremy'</span>, <span class="st">'Ahoy!'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>('Hello Jeremy.', 'Ahoy! Jeremy.')</code></pre>
+</div>
+</div>
+<p>We can switch to a French version of that function by using <code>partial</code>:</p>
+<div id="cell-76" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> partial(say_hello, say_what<span class="op">=</span><span class="st">"Bonjour"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>f(<span class="st">"Jeremy"</span>),f(<span class="st">"Sylvain"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>('Bonjour Jeremy.', 'Bonjour Sylvain.')</code></pre>
+</div>
+</div>
+<p>We can now train our model. Let’s try setting the accuracy threshold to 0.2 for our metric:</p>
+<div id="cell-78" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(dls, resnet50, metrics<span class="op">=</span>partial(accuracy_multi, thresh<span class="op">=</span><span class="fl">0.2</span>))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">3</span>, base_lr<span class="op">=</span><span class="fl">3e-3</span>, freeze_epochs<span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Downloading: "https://download.pytorch.org/models/resnet50-0676ba61.pth" to /home/jhoward/.cache/torch/hub/checkpoints/resnet50-0676ba61.pth</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id":"c484136db37545eaa1d12a678f33a5d0","version_major":2,"version_minor":0,"quarto_mimetype":"application/vnd.jupyter.widget-view+json"}
+</script>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy_multi</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.942999</td>
+<td>0.698309</td>
+<td>0.230896</td>
+<td>00:05</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.822529</td>
+<td>0.567567</td>
+<td>0.287151</td>
+<td>00:04</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.604535</td>
+<td>0.200134</td>
+<td>0.818327</td>
+<td>00:04</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.359754</td>
+<td>0.123086</td>
+<td>0.945558</td>
+<td>00:04</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+
+<style>
+    /* Turns off some styling */
+    progress {
+        /* gets rid of default border in Firefox and Opera. */
+        border: none;
+        /* Needs to be in here for Safari polyfill so background images work as expected. */
+        background-size: auto;
+    }
+    .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+        background: #F44336;
+    }
+</style>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">accuracy_multi</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.133748</td>
+<td>0.116784</td>
+<td>0.943725</td>
+<td>00:05</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.117125</td>
+<td>0.107055</td>
+<td>0.950837</td>
+<td>00:05</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.098062</td>
+<td>0.103551</td>
+<td>0.950877</td>
+<td>00:05</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Picking a threshold is important. If you pick a threshold that’s too low, you’ll often be failing to select correctly labeled objects. We can see this by changing our metric, and then calling <code>validate</code>, which returns the validation loss and metrics:</p>
+<div id="cell-80" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>learn.metrics <span class="op">=</span> partial(accuracy_multi, thresh<span class="op">=</span><span class="fl">0.1</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>learn.validate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>(#2) [0.10477833449840546,0.9314740300178528]</code></pre>
+</div>
+</div>
+<p>If you pick a threshold that’s too high, you’ll only be selecting the objects for which your model is very confident:</p>
+<div id="cell-82" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>learn.metrics <span class="op">=</span> partial(accuracy_multi, thresh<span class="op">=</span><span class="fl">0.99</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>learn.validate()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>(#2) [0.10477833449840546,0.9429482221603394]</code></pre>
+</div>
+</div>
+<p>We can find the best threshold by trying a few levels and seeing what works best. This is much faster if we just grab the predictions once:</p>
+<div id="cell-84" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>preds,targs <span class="op">=</span> learn.get_preds()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+
+</div>
+</div>
+<p>Then we can call the metric directly. Note that by default <code>get_preds</code> applies the output activation function (sigmoid, in this case) for us, so we’ll need to tell <code>accuracy_multi</code> to not apply it:</p>
+<div id="cell-86" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>accuracy_multi(preds, targs, thresh<span class="op">=</span><span class="fl">0.9</span>, sigmoid<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>TensorImage(0.9567)</code></pre>
+</div>
+</div>
+<p>We can now use this approach to find the best threshold level:</p>
+<div id="cell-88" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> torch.linspace(<span class="fl">0.05</span>,<span class="fl">0.95</span>,<span class="dv">29</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>accs <span class="op">=</span> [accuracy_multi(preds, targs, thresh<span class="op">=</span>i, sigmoid<span class="op">=</span><span class="va">False</span>) <span class="cf">for</span> i <span class="kw">in</span> xs]</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>plt.plot(xs,accs)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_multicat_files/figure-html/cell-36-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In this case, we’re using the validation set to pick a hyperparameter (the threshold), which is the purpose of the validation set. Sometimes students have expressed their concern that we might be <em>overfitting</em> to the validation set, since we’re trying lots of values to see which is the best. However, as you see in the plot, changing the threshold in this case results in a smooth curve, so we’re clearly not picking some inappropriate outlier. This is a good example of where you have to be careful of the difference between theory (don’t try lots of hyperparameter values or you might overfit the validation set) versus practice (if the relationship is smooth, then it’s fine to do this).</p>
+<p>This concludes the part of this chapter dedicated to multi-label classification. Next, we’ll take a look at a regression problem.</p>
+</section>
+</section>
+<section id="regression" class="level2">
+<h2 class="anchored" data-anchor-id="regression">Regression</h2>
+<p>It’s easy to think of deep learning models as being classified into domains, like <em>computer vision</em>, <em>NLP</em>, and so forth. And indeed, that’s how fastai classifies its applications—largely because that’s how most people are used to thinking of things.</p>
+<p>But really, that’s hiding a more interesting and deeper perspective. A model is defined by its independent and dependent variables, along with its loss function. That means that there’s really a far wider array of models than just the simple domain-based split. Perhaps we have an independent variable that’s an image, and a dependent that’s text (e.g., generating a caption from an image); or perhaps we have an independent variable that’s text and dependent that’s an image (e.g., generating an image from a caption—which is actually possible for deep learning to do!); or perhaps we’ve got images, texts, and tabular data as independent variables, and we’re trying to predict product purchases… the possibilities really are endless.</p>
+<p>To be able to move beyond fixed applications, to crafting your own novel solutions to novel problems, it helps to really understand the data block API (and maybe also the mid-tier API, which we’ll see later in the book). As an example, let’s consider the problem of <em>image regression</em>. This refers to learning from a dataset where the independent variable is an image, and the dependent variable is one or more floats. Often we see people treat image regression as a whole separate application—but as you’ll see here, we can treat it as just another CNN on top of the data block API.</p>
+<p>We’re going to jump straight to a somewhat tricky variant of image regression, because we know you’re ready for it! We’re going to do a key point model. A <em>key point</em> refers to a specific location represented in an image—in this case, we’ll use images of people and we’ll be looking for the center of the person’s face in each image. That means we’ll actually be predicting <em>two</em> values for each image: the row and column of the face center.</p>
+<section id="assemble-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="assemble-the-data">Assemble the Data</h3>
+<p>We will use the <a href="https://icu.ee.ethz.ch/research/datsets.html">Biwi Kinect Head Pose dataset</a> for this section. We’ll begin by downloading the dataset as usual:</p>
+<div id="cell-94" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.BIWI_HEAD_POSE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-95" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hide</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>Path.BASE_PATH <span class="op">=</span> path</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s see what we’ve got!</p>
+<div id="cell-97" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>path.ls().<span class="bu">sorted</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(#50) [Path('01'),Path('01.obj'),Path('02'),Path('02.obj'),Path('03'),Path('03.obj'),Path('04'),Path('04.obj'),Path('05'),Path('05.obj')...]</code></pre>
+</div>
+</div>
+<p>There are 24 directories numbered from 01 to 24 (they correspond to the different people photographed), and a corresponding <em>.obj</em> file for each (we won’t need them here). Let’s take a look inside one of these directories:</p>
+<div id="cell-99" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>(path<span class="op">/</span><span class="st">'01'</span>).ls().<span class="bu">sorted</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(#1000) [Path('01/depth.cal'),Path('01/frame_00003_pose.txt'),Path('01/frame_00003_rgb.jpg'),Path('01/frame_00004_pose.txt'),Path('01/frame_00004_rgb.jpg'),Path('01/frame_00005_pose.txt'),Path('01/frame_00005_rgb.jpg'),Path('01/frame_00006_pose.txt'),Path('01/frame_00006_rgb.jpg'),Path('01/frame_00007_pose.txt')...]</code></pre>
+</div>
+</div>
+<p>Inside the subdirectories, we have different frames, each of them come with an image (<em>_rgb.jpg</em>) and a pose file (<em>_pose.txt</em>). We can easily get all the image files recursively with <code>get_image_files</code>, then write a function that converts an image filename to its associated pose file:</p>
+<div id="cell-101" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>img_files <span class="op">=</span> get_image_files(path)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> img2pose(x): <span class="cf">return</span> Path(<span class="ss">f'</span><span class="sc">{</span><span class="bu">str</span>(x)[:<span class="op">-</span><span class="dv">7</span>]<span class="sc">}</span><span class="ss">pose.txt'</span>)</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>img2pose(img_files[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>Path('13/frame_00349_pose.txt')</code></pre>
+</div>
+</div>
+<p>Let’s take a look at our first image:</p>
+<div id="cell-103" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>im <span class="op">=</span> PILImage.create(img_files[<span class="dv">0</span>])</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>im.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(480, 640)</code></pre>
+</div>
+</div>
+<div id="cell-104" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>im.to_thumb(<span class="dv">160</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_multicat_files/figure-html/cell-43-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The Biwi dataset website used to explain the format of the pose text file associated with each image, which shows the location of the center of the head. The details of this aren’t important for our purposes, so we’ll just show the function we use to extract the head center point:</p>
+<div id="cell-106" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>cal <span class="op">=</span> np.genfromtxt(path<span class="op">/</span><span class="st">'01'</span><span class="op">/</span><span class="st">'rgb.cal'</span>, skip_footer<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_ctr(f):</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>    ctr <span class="op">=</span> np.genfromtxt(img2pose(f), skip_header<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>    c1 <span class="op">=</span> ctr[<span class="dv">0</span>] <span class="op">*</span> cal[<span class="dv">0</span>][<span class="dv">0</span>]<span class="op">/</span>ctr[<span class="dv">2</span>] <span class="op">+</span> cal[<span class="dv">0</span>][<span class="dv">2</span>]</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>    c2 <span class="op">=</span> ctr[<span class="dv">1</span>] <span class="op">*</span> cal[<span class="dv">1</span>][<span class="dv">1</span>]<span class="op">/</span>ctr[<span class="dv">2</span>] <span class="op">+</span> cal[<span class="dv">1</span>][<span class="dv">2</span>]</span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tensor([c1,c2])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This function returns the coordinates as a tensor of two items:</p>
+<div id="cell-108" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>get_ctr(img_files[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>tensor([384.6370, 259.4787])</code></pre>
+</div>
+</div>
+<p>We can pass this function to <code>DataBlock</code> as <code>get_y</code>, since it is responsible for labeling each item. We’ll resize the images to half their input size, just to speed up training a bit.</p>
+<p>One important point to note is that we should not just use a random splitter. The reason for this is that the same people appear in multiple images in this dataset, but we want to ensure that our model can generalize to people that it hasn’t seen yet. Each folder in the dataset contains the images for one person. Therefore, we can create a splitter function that returns true for just one person, resulting in a validation set containing just that person’s images.</p>
+<p>The only other difference from the previous data block examples is that the second block is a <code>PointBlock</code>. This is necessary so that fastai knows that the labels represent coordinates; that way, it knows that when doing data augmentation, it should do the same augmentation to these coordinates as it does to the images:</p>
+<div id="cell-110" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>biwi <span class="op">=</span> DataBlock(</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(ImageBlock, PointBlock),</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>    get_y<span class="op">=</span>get_ctr,</span>
+<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>FuncSplitter(<span class="kw">lambda</span> o: o.parent.name<span class="op">==</span><span class="st">'13'</span>),</span>
+<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a>    batch_tfms<span class="op">=</span>aug_transforms(size<span class="op">=</span>(<span class="dv">240</span>,<span class="dv">320</span>)), </span>
+<span id="cb73-7"><a href="#cb73-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p>important: Points and Data Augmentation: We’re not aware of other libraries (except for fastai) that automatically and correctly apply data augmentation to coordinates. So, if you’re working with another library, you may need to disable data augmentation for these kinds of problems.</p>
+</blockquote>
+<p>Before doing any modeling, we should look at our data to confirm it seems okay:</p>
+<div id="cell-113" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> biwi.dataloaders(path)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>dls.show_batch(max_n<span class="op">=</span><span class="dv">9</span>, figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_multicat_files/figure-html/cell-47-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That’s looking good! As well as looking at the batch visually, it’s a good idea to also look at the underlying tensors (especially as a student; it will help clarify your understanding of what your model is really seeing):</p>
+<div id="cell-115" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>xb,yb <span class="op">=</span> dls.one_batch()</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>xb.shape,yb.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(torch.Size([64, 3, 240, 320]), torch.Size([64, 1, 2]))</code></pre>
+</div>
+</div>
+<p>Make sure that you understand <em>why</em> these are the shapes for our mini-batches.</p>
+<p>Here’s an example of one row from the dependent variable:</p>
+<div id="cell-118" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>yb[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>TensorPoint([[-0.3375,  0.2193]], device='cuda:6')</code></pre>
+</div>
+</div>
+<p>As you can see, we haven’t had to use a separate <em>image regression</em> application; all we’ve had to do is label the data, and tell fastai what kinds of data the independent and dependent variables represent.</p>
+<p>It’s the same for creating our <code>Learner</code>. We will use the same function as before, with one new parameter, and we will be ready to train our model.</p>
+</section>
+<section id="training-a-model" class="level3">
+<h3 class="anchored" data-anchor-id="training-a-model">Training a Model</h3>
+<p>As usual, we can use <code>vision_learner</code> to create our <code>Learner</code>. Remember way back in &lt;<chapter_intro>&gt; how we used <code>y_range</code> to tell fastai the range of our targets? We’ll do the same here (coordinates in fastai and PyTorch are always rescaled between -1 and +1):</chapter_intro></p>
+<div id="cell-123" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> vision_learner(dls, resnet18, y_range<span class="op">=</span>(<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>y_range</code> is implemented in fastai using <code>sigmoid_range</code>, which is defined as:</p>
+<div id="cell-125" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid_range(x, lo, hi): <span class="cf">return</span> torch.sigmoid(x) <span class="op">*</span> (hi<span class="op">-</span>lo) <span class="op">+</span> lo</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This is set as the final layer of the model, if <code>y_range</code> is defined. Take a moment to think about what this function does, and why it forces the model to output activations in the range <code>(lo,hi)</code>.</p>
+<p>Here’s what it looks like:</p>
+<div id="cell-127" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>plot_function(partial(sigmoid_range,lo<span class="op">=-</span><span class="dv">1</span>,hi<span class="op">=</span><span class="dv">1</span>), <span class="bu">min</span><span class="op">=-</span><span class="dv">4</span>, <span class="bu">max</span><span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/jhoward/anaconda3/lib/python3.7/site-packages/fastbook/__init__.py:55: UserWarning: Not providing a value for linspace's steps is deprecated and will throw a runtime error in a future release. This warning will appear only once per process. (Triggered internally at  /pytorch/aten/src/ATen/native/RangeFactories.cpp:23.)
+  x = torch.linspace(min,max)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_multicat_files/figure-html/cell-52-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We didn’t specify a loss function, which means we’re getting whatever fastai chooses as the default. Let’s see what it picked for us:</p>
+<div id="cell-129" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>dls.loss_func</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>FlattenedLoss of MSELoss()</code></pre>
+</div>
+</div>
+<p>This makes sense, since when coordinates are used as the dependent variable, most of the time we’re likely to be trying to predict something as close as possible; that’s basically what <code>MSELoss</code> (mean squared error loss) does. If you want to use a different loss function, you can pass it to <code>vision_learner</code> using the <code>loss_func</code> parameter.</p>
+<p>Note also that we didn’t specify any metrics. That’s because the MSE is already a useful metric for this task (although it’s probably more interpretable after we take the square root).</p>
+<p>We can pick a good learning rate with the learning rate finder:</p>
+<div id="cell-131" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>learn.lr_find()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>SuggestedLRs(lr_min=0.005754399299621582, lr_steep=0.033113110810518265)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_multicat_files/figure-html/cell-54-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We’ll try an LR of 1e-2:</p>
+<div id="cell-133" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> <span class="fl">1e-2</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">3</span>, lr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.049630</td>
+<td>0.007602</td>
+<td>00:42</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output cell-output-display">
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">epoch</th>
+<th data-quarto-table-cell-role="th">train_loss</th>
+<th data-quarto-table-cell-role="th">valid_loss</th>
+<th data-quarto-table-cell-role="th">time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.008714</td>
+<td>0.004291</td>
+<td>00:53</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.003213</td>
+<td>0.000715</td>
+<td>00:53</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.001482</td>
+<td>0.000036</td>
+<td>00:53</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Generally when we run this we get a loss of around 0.0001, which corresponds to an average coordinate prediction error of:</p>
+<div id="cell-135" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>math.sqrt(<span class="fl">0.0001</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>0.01</code></pre>
+</div>
+</div>
+<p>This sounds very accurate! But it’s important to take a look at our results with <code>Learner.show_results</code>. The left side are the actual (<em>ground truth</em>) coordinates and the right side are our model’s predictions:</p>
+<div id="cell-137" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>learn.show_results(ds_idx<span class="op">=</span><span class="dv">1</span>, nrows<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="06_multicat_files/figure-html/cell-57-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s quite amazing that with just a few minutes of computation we’ve created such an accurate key points model, and without any special domain-specific application. This is the power of building on flexible APIs, and using transfer learning! It’s particularly striking that we’ve been able to use transfer learning so effectively even between totally different tasks; our pretrained model was trained to do image classification, and we fine-tuned for image regression.</p>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>In problems that are at first glance completely different (single-label classification, multi-label classification, and regression), we end up using the same model with just different numbers of outputs. The loss function is the one thing that changes, which is why it’s important to double-check that you are using the right loss function for your problem.</p>
+<p>fastai will automatically try to pick the right one from the data you built, but if you are using pure PyTorch to build your <code>DataLoader</code>s, make sure you think hard when you have to decide on your choice of loss function, and remember that you most probably want:</p>
+<ul>
+<li><code>nn.CrossEntropyLoss</code> for single-label classification</li>
+<li><code>nn.BCEWithLogitsLoss</code> for multi-label classification</li>
+<li><code>nn.MSELoss</code> for regression</li>
+</ul>
+</section>
+<section id="questionnaire" class="level2">
+<h2 class="anchored" data-anchor-id="questionnaire">Questionnaire</h2>
+<ol type="1">
+<li>How could multi-label classification improve the usability of the bear classifier?</li>
+<li>How do we encode the dependent variable in a multi-label classification problem?</li>
+<li>How do you access the rows and columns of a DataFrame as if it was a matrix?</li>
+<li>How do you get a column by name from a DataFrame?</li>
+<li>What is the difference between a <code>Dataset</code> and <code>DataLoader</code>?</li>
+<li>What does a <code>Datasets</code> object normally contain?</li>
+<li>What does a <code>DataLoaders</code> object normally contain?</li>
+<li>What does <code>lambda</code> do in Python?</li>
+<li>What are the methods to customize how the independent and dependent variables are created with the data block API?</li>
+<li>Why is softmax not an appropriate output activation function when using a one hot encoded target?</li>
+<li>Why is <code>nll_loss</code> not an appropriate loss function when using a one-hot-encoded target?</li>
+<li>What is the difference between <code>nn.BCELoss</code> and <code>nn.BCEWithLogitsLoss</code>?</li>
+<li>Why can’t we use regular accuracy in a multi-label problem?</li>
+<li>When is it okay to tune a hyperparameter on the validation set?</li>
+<li>How is <code>y_range</code> implemented in fastai? (See if you can implement it yourself and test it without peeking!)</li>
+<li>What is a regression problem? What loss function should you use for such a problem?</li>
+<li>What do you need to do to make sure the fastai library applies the same data augmentation to your input images and your target point coordinates?</li>
+</ol>
+<section id="further-research" class="level3">
+<h3 class="anchored" data-anchor-id="further-research">Further Research</h3>
+<ol type="1">
+<li>Read a tutorial about Pandas DataFrames and experiment with a few methods that look interesting to you. See the book’s website for recommended tutorials.</li>
+<li>Retrain the bear classifier using multi-label classification. See if you can make it work effectively with images that don’t contain any bears, including showing that information in the web application. Try an image with two different kinds of bears. Check whether the accuracy on the single-label dataset is impacted using multi-label classification.</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

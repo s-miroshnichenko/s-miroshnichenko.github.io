@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>nlp – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="第十章nlp-深入探讨rnns" class="level1">
+<h1>第十章：NLP 深入探讨：RNNs</h1>
+<p>在第一章中，我们看到深度学习可以用于处理自然语言数据集并取得出色的结果。我们的示例依赖于使用预训练的语言模型，并对其进行微调以对评论进行分类。该示例突出了 NLP 和计算机视觉中迁移学习的区别：通常情况下，在 NLP 中，预训练模型是在不同任务上训练的。</p>
+<p>我们所谓的<em>语言模型</em>是一个经过训练以猜测文本中下一个单词的模型（在读取之前的单词后）。这种任务称为<em>自监督学习</em>：我们不需要为我们的模型提供标签，只需向其提供大量文本。它有一个过程可以从数据中自动获取标签，这个任务并不是微不足道的：为了正确猜测句子中的下一个单词，模型将必须发展对英语（或其他语言）的理解。自监督学习也可以用于其他领域；例如，参见<a href="https://oreil.ly/ECjfJ">“自监督学习和计算机视觉”</a>以了解视觉应用。自监督学习通常不用于直接训练的模型，而是用于预训练用于迁移学习的模型。</p>
+</section>
+<section id="术语自监督学习" class="level1">
+<h1>术语：自监督学习</h1>
+<p>使用嵌入在自变量中的标签来训练模型，而不是需要外部标签。例如，训练一个模型来预测文本中的下一个单词。</p>
+<p>我们在第一章中用于分类 IMDb 评论的语言模型是在维基百科上预训练的。通过直接微调这个语言模型到电影评论分类器，我们取得了出色的结果，但通过一个额外的步骤，我们甚至可以做得更好。维基百科的英语与 IMDb 的英语略有不同，因此，我们可以将我们的预训练语言模型微调到 IMDb 语料库，然后将<em>那个</em>作为我们分类器的基础。</p>
+<p>即使我们的语言模型了解我们在任务中使用的语言的基础知识（例如，我们的预训练模型是英语），熟悉我们的目标语料库的风格也是有帮助的。它可能是更非正式的语言，或者更技术性的，有新词要学习或者不同的句子构成方式。在 IMDb 数据集的情况下，将会有很多电影导演和演员的名字，通常比维基百科中看到的语言更不正式。</p>
+<p>我们已经看到，使用 fastai，我们可以下载一个预训练的英语语言模型，并用它来获得 NLP 分类的最新结果。（我们预计很快将提供更多语言的预训练模型；实际上，当您阅读本书时，它们可能已经可用。）那么，为什么我们要详细学习如何训练语言模型呢？</p>
+<p>当然，一个原因是了解您正在使用的模型的基础知识是有帮助的。但还有另一个非常实际的原因，那就是如果在微调分类模型之前微调（基于序列的）语言模型，您将获得更好的结果。例如，对于 IMDb 情感分析任务，数据集包括额外的 50,000 条电影评论，这些评论没有任何积极或消极的标签。由于训练集中有 25,000 条带标签的评论，验证集中有 25,000 条，总共有 100,000 条电影评论。我们可以使用所有这些评论来微调仅在维基百科文章上训练的预训练语言模型，这将导致一个特别擅长预测电影评论下一个单词的语言模型。</p>
+<p>这被称为通用语言模型微调（ULMFiT）方法。<a href="https://oreil.ly/rET-C">介绍它的论文</a>表明，在将语言模型微调到传递学习到分类任务之前，这个额外的微调阶段会导致预测显著更好。使用这种方法，我们在 NLP 中有三个传递学习阶段，如图 10-1 所总结。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1001.png" class="img-fluid figure-img"></p>
+<figcaption>ULMFiT 过程的图表</figcaption>
+</figure>
+</div>
+<section id="图-10-1ulmfit-过程" class="level6">
+<h6 class="anchored" data-anchor-id="图-10-1ulmfit-过程">图 10-1。ULMFiT 过程</h6>
+<p>我们现在将探讨如何将神经网络应用于这个语言建模问题，使用前两章介绍的概念。但在继续阅读之前，请暂停一下，思考一下<em>您</em>将如何处理这个问题。</p>
+</section>
+</section>
+<section id="文本预处理" class="level1">
+<h1>文本预处理</h1>
+<p>到目前为止，我们学到的如何构建语言模型并不明显。句子的长度可能不同，文档可能很长。那么我们如何使用神经网络来预测句子的下一个单词呢？让我们找出答案！</p>
+<p>我们已经看到分类变量可以作为神经网络的独立变量使用。以下是我们为单个分类变量采取的方法：</p>
+<ol type="1">
+<li><p>制作该分类变量的所有可能级别的列表（我们将称此列表为<em>词汇</em>）。</p></li>
+<li><p>用词汇表中的索引替换每个级别。</p></li>
+<li><p>为此创建一个包含每个级别的行的嵌入矩阵（即，词汇表中的每个项目）。</p></li>
+<li><p>将此嵌入矩阵用作神经网络的第一层。（专用嵌入矩阵可以将步骤 2 中创建的原始词汇索引作为输入；这相当于但比使用表示索引的独热编码向量作为输入更快速和更有效。）</p></li>
+</ol>
+<p>我们几乎可以用文本做同样的事情！新的是序列的概念。首先，我们将数据集中的所有文档连接成一个大字符串，然后将其拆分为单词（或<em>标记</em>），从而给我们一个非常长的单词列表。我们的独立变量将是从我们非常长的列表中的第一个单词开始并以倒数第二个单词结束的单词序列，我们的因变量将是从第二个单词开始并以最后一个单词结束的单词序列。</p>
+<p>我们的词汇将由一些常见词汇和我们语料库中特定的新词汇（例如电影术语或演员的名字）混合组成。我们的嵌入矩阵将相应构建：对于预训练模型词汇中的词，我们将使用预训练模型的嵌入矩阵中的相应行；但对于新词，我们将没有任何内容，因此我们将只是用随机向量初始化相应的行。</p>
+<p>创建语言模型所需的每个步骤都与自然语言处理领域的术语相关联，并且有 fastai 和 PyTorch 类可用于帮助。步骤如下：</p>
+<p>标记化</p>
+<p>将文本转换为单词列表（或字符，或子字符串，取决于您模型的粒度）。</p>
+<p>数值化</p>
+<p>列出所有出现的唯一单词（词汇表），并通过查找其在词汇表中的索引将每个单词转换为一个数字。</p>
+<p>语言模型数据加载器创建</p>
+<p>fastai 提供了一个<code>LMDataLoader</code>类，它会自动处理创建一个依赖变量，该变量与独立变量相差一个标记。它还处理一些重要的细节，例如如何以保持所需结构的方式对训练数据进行洗牌。</p>
+<p>语言模型创建</p>
+<p>我们需要一种特殊类型的模型，可以处理我们以前没有见过的输入列表，这些列表可能非常大或非常小。有许多方法可以做到这一点；在本章中，我们将使用<em>循环神经网络</em>（RNN）。我们将在第十二章中详细介绍 RNN 的细节，但现在，您可以将其视为另一个深度神经网络。</p>
+<p>让我们详细看看每个步骤是如何工作的。</p>
+<section id="分词" class="level2">
+<h2 class="anchored" data-anchor-id="分词">分词</h2>
+<p>当我们说“将文本转换为单词列表”时，我们忽略了很多细节。例如，我们如何处理标点符号？我们如何处理像“don’t”这样的单词？它是一个单词还是两个？长的医学或化学术语怎么办？它们应该被分割成各自的含义部分吗？连字符词怎么处理？像德语和波兰语这样的语言如何处理，它们可以从许多部分组成一个非常长的单词？像日语和中文这样的语言如何处理，它们根本不使用基础，也没有一个明确定义的<em>单词</em>的概念？</p>
+<p>由于这些问题没有一个正确答案，所以也没有一个分词的方法。有三种主要方法：</p>
+<p>基于单词的</p>
+<p>将一个句子按空格分割，同时应用特定于语言的规则，尝试在没有空格的情况下分隔含义部分（例如将“don’t”转换为“do n’t”）。通常，标点符号也会被分割成单独的标记。</p>
+<p>基于子词的</p>
+<p>根据最常出现的子字符串将单词分割成较小的部分。例如，“occasion”可能被分词为“o c ca sion”。</p>
+<p>基于字符的</p>
+<p>将一个句子分割成其各个字符。</p>
+<p>我们将在这里看一下单词和子词的分词，将字符为基础的分词留给你在本章末尾的问卷中实现。</p>
+</section>
+</section>
+<section id="行话token" class="level1">
+<h1>行话：Token</h1>
+<p>由分词过程创建的列表的一个元素。它可以是一个单词，一个单词的一部分（一个<em>子词</em>），或一个单个字符。</p>
+<section id="使用-fastai-进行单词分词" class="level2">
+<h2 class="anchored" data-anchor-id="使用-fastai-进行单词分词">使用 fastai 进行单词分词</h2>
+<p>fastai 并没有提供自己的分词器，而是提供了一个一致的接口来使用外部库中的一系列分词器。分词是一个活跃的研究领域，新的和改进的分词器不断涌现，因此 fastai 使用的默认值也会发生变化。然而，API 和选项不应该发生太大变化，因为 fastai 试图在底层技术发生变化时保持一致的 API。</p>
+<p>让我们尝试一下我们在第一章中使用的 IMDb 数据集：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们需要获取文本文件以尝试一个分词器。就像<code>get_image_files</code>（我们已经使用了很多次）获取路径中的所有图像文件一样，<code>get_text_files</code>获取路径中的所有文本文件。我们还可以选择性地传递<code>folders</code>来限制搜索到特定的子文件夹列表：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_text_files(path, folders <span class="op">=</span> [<span class="st">'train'</span>, <span class="st">'test'</span>, <span class="st">'unsup'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这是一个我们将要分词的评论（我们这里只打印开头部分以节省空间）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>txt <span class="op">=</span> files[<span class="dv">0</span>].<span class="bu">open</span>().read()<span class="op">;</span> txt[:<span class="dv">75</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">'This movie, which I just discovered at the video store, has apparently sit '</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在撰写本书时，fastai 的默认英语单词分词器使用了一个名为<em>spaCy</em>的库。它有一个复杂的规则引擎，具有针对 URL、特殊英语单词等的特殊规则，以及更多。然而，我们不会直接使用<code>SpacyTokenizer</code>，而是使用<code>WordTokenizer</code>，因为它将始终指向 fastai 当前默认的单词分词器（取决于你阅读本书的时间，可能不一定是 spaCy）。</p>
+<p>让我们试一试。我们将使用 fastai 的<code>coll_repr(*collection*,*n*)</code>函数来显示结果。这会显示<em><code>collection</code></em>的前<em><code>n</code></em>个项目，以及完整的大小——这是<code>L</code>默认使用的。请注意，fastai 的分词器接受一个要分词的文档集合，因此我们必须将<code>txt</code>包装在一个列表中：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>spacy <span class="op">=</span> WordTokenizer()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>toks <span class="op">=</span> first(spacy([txt]))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coll_repr(toks, <span class="dv">30</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#201) ['This','movie',',','which','I','just','discovered','at','the','video','s</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> tore<span class="st">','</span>,<span class="st">','</span>has<span class="st">','</span>apparently<span class="st">','</span>sit<span class="st">','</span>around<span class="st">','</span><span class="cf">for</span><span class="st">','</span>a<span class="st">','</span>couple<span class="st">','</span>of<span class="st">','</span>years<span class="st">','</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> without<span class="st">','</span>a<span class="st">','</span>distributor<span class="st">','</span>.<span class="st">','</span>It<span class="st">',"'</span>s<span class="st">",'easy','to','see'...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如你所看到的，spaCy 主要只是将单词和标点符号分开。但它在这里也做了其他事情：它将“it’s”分割成“it”和“’s”。这是直观的；这些实际上是分开的单词。分词是一个令人惊讶的微妙任务，当你考虑到所有必须处理的细节时。幸运的是，spaCy 为我们处理得相当好——例如，在这里我们看到“.”在终止句子时被分开，但在首字母缩写或数字中不会被分开：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>first(spacy([<span class="st">'The U.S. dollar $1 is $1.00.'</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#9) ['The','U.S.','dollar','$','1','is','$','1.00','.']</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后 fastai 通过<code>Tokenizer</code>类为分词过程添加了一些额外功能：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tkn <span class="op">=</span> Tokenizer(spacy)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coll_repr(tkn(txt), <span class="dv">31</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#228) ['xxbos','xxmaj','this','movie',',','which','i','just','discovered','at',</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="st">'the'</span>,<span class="st">'video'</span>,<span class="st">'store'</span>,<span class="st">','</span>,<span class="st">'has'</span>,<span class="st">'apparently'</span>,<span class="st">'sit'</span>,<span class="st">'around'</span>,<span class="st">'for'</span>,<span class="st">'a'</span>,<span class="st">'couple</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ','of','years','without','a','distributor','.','xxmaj','it',"'s",'easy'...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>请注意，现在有一些以“xx”开头的标记，这不是英语中常见的单词前缀。这些是<em>特殊标记</em>。</p>
+<p>例如，列表中的第一项<code>xxbos</code>是一个特殊标记，表示新文本的开始（“BOS”是一个标准的 NLP 缩写，意思是“流的开始”）。通过识别这个开始标记，模型将能够学习需要“忘记”先前说过的内容，专注于即将出现的单词。</p>
+<p>这些特殊标记并不是直接来自 spaCy。它们存在是因为 fastai 默认添加它们，通过在处理文本时应用一系列规则。这些规则旨在使模型更容易识别句子中的重要部分。在某种意义上，我们正在将原始的英语语言序列翻译成一个简化的标记化语言——这种语言被设计成易于模型学习。</p>
+<p>例如，规则将用一个感叹号替换四个感叹号，后面跟着一个特殊的<em>重复字符</em>标记，然后是数字四。通过这种方式，模型的嵌入矩阵可以编码关于重复标点等一般概念的信息，而不需要为每个标点符号的重复次数添加单独的标记。同样，一个大写的单词将被替换为一个特殊的大写标记，后面跟着单词的小写版本。这样，嵌入矩阵只需要单词的小写版本，节省了计算和内存资源，但仍然可以学习大写的概念。</p>
+<p>以下是一些你会看到的主要特殊标记：</p>
+<p><code>xxbos</code></p>
+<p>指示文本的开始（这里是一篇评论）</p>
+<p><code>xxmaj</code></p>
+<p>指示下一个单词以大写字母开头（因为我们将所有字母转换为小写）</p>
+<p><code>xxunk</code></p>
+<p>指示下一个单词是未知的</p>
+<p>要查看使用的规则，可以查看默认规则：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>defaults.text_proc_rules</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>[<span class="op">&lt;</span>function fastai.text.core.fix_html(x)<span class="op">&gt;</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span>function fastai.text.core.replace_rep(t)<span class="op">&gt;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span>function fastai.text.core.replace_wrep(t)<span class="op">&gt;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span>function fastai.text.core.spec_add_spaces(t)<span class="op">&gt;</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span>function fastai.text.core.rm_useless_spaces(t)<span class="op">&gt;</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span>function fastai.text.core.replace_all_caps(t)<span class="op">&gt;</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span>function fastai.text.core.replace_maj(t)<span class="op">&gt;</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a> <span class="op">&lt;</span>function fastai.text.core.lowercase(t, add_bos<span class="op">=</span><span class="va">True</span>, add_eos<span class="op">=</span><span class="va">False</span>)<span class="op">&gt;</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如常，你可以通过在笔记本中键入以下内容查看每个规则的源代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>??replace_rep</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>以下是每个标记的简要摘要：</p>
+<p><code>fix_html</code></p>
+<p>用可读版本替换特殊的 HTML 字符（IMDb 评论中有很多这样的字符）</p>
+<p><code>replace_rep</code></p>
+<p>用一个特殊标记替换任何重复三次或更多次的字符（<code>xxrep</code>），重复的次数，然后是字符</p>
+<p><code>replace_wrep</code></p>
+<p>用一个特殊标记替换任何重复三次或更多次的单词（<code>xxwrep</code>），重复的次数，然后是单词</p>
+<p><code>spec_add_spaces</code></p>
+<p>在/和#周围添加空格</p>
+<p><code>rm_useless_spaces</code></p>
+<p>删除所有空格的重复</p>
+<p><code>replace_all_caps</code></p>
+<p>将所有大写字母单词转换为小写，并在其前面添加一个特殊标记（<code>xxcap</code>）</p>
+<p><code>replace_maj</code></p>
+<p>将大写的单词转换为小写，并在其前面添加一个特殊标记（<code>xxmaj</code>）</p>
+<p><code>lowercase</code></p>
+<p>将所有文本转换为小写，并在开头（<code>xxbos</code>）和/或结尾（<code>xxeos</code>）添加一个特殊标记</p>
+<p>让我们看看其中一些的操作：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>coll_repr(tkn(<span class="st">'&amp;copy;   Fast.ai www.fast.ai/INDEX'</span>), <span class="dv">31</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">"(#11) ['xxbos','©','xxmaj','fast.ai','xxrep','3','w','.fast.ai','/','xxup','ind</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ex'...]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在让我们看看子词标记化是如何工作的。</p>
+</section>
+<section id="子词标记化" class="level2">
+<h2 class="anchored" data-anchor-id="子词标记化">子词标记化</h2>
+<p>除了在前一节中看到的<em>单词标记化</em>方法之外，另一种流行的标记化方法是<em>子词标记化</em>。单词标记化依赖于一个假设，即空格在句子中提供了有意义的组件的有用分隔。然而，这个假设并不总是适用。例如，考虑这个句子：我的名字是郝杰瑞（中文中的“My name is Jeremy Howard”）。这对于单词标记器来说不会很好，因为其中没有空格！像中文和日文这样的语言不使用空格，事实上它们甚至没有一个明确定义的“单词”概念。其他语言，如土耳其语和匈牙利语，可以将许多子词组合在一起而不使用空格，创建包含许多独立信息片段的非常长的单词。</p>
+<p>为了处理这些情况，通常最好使用子词标记化。这个过程分为两步：</p>
+<ol type="1">
+<li><p>分析一组文档以找到最常出现的字母组。这些将成为词汇表。</p></li>
+<li><p>使用这个<em>子词单元</em>的词汇对语料库进行标记化。</p></li>
+</ol>
+<p>让我们看一个例子。对于我们的语料库，我们将使用前 2,000 条电影评论：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>txts <span class="op">=</span> L(o.<span class="bu">open</span>().read() <span class="cf">for</span> o <span class="kw">in</span> files[:<span class="dv">2000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们实例化我们的标记器，传入我们想要创建的词汇表的大小，然后我们需要“训练”它。也就是说，我们需要让它阅读我们的文档并找到常见的字符序列以创建词汇表。这是通过<code>setup</code>完成的。正如我们将很快看到的，<code>setup</code>是一个特殊的 fastai 方法，在我们通常的数据处理流程中会自动调用。然而，由于目前我们正在手动执行所有操作，因此我们必须自己调用它。这是一个为给定词汇表大小执行这些步骤并显示示例输出的函数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> subword(sz):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    sp <span class="op">=</span> SubwordTokenizer(vocab_sz<span class="op">=</span>sz)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    sp.setup(txts)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">' '</span>.join(first(sp([txt]))[:<span class="dv">40</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们试一试：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>subword(<span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">'▁This ▁movie , ▁which ▁I ▁just ▁dis c over ed ▁at ▁the ▁video ▁st or e , ▁has</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ▁a p par ent ly ▁s it ▁around ▁for ▁a ▁couple ▁of ▁years ▁without ▁a ▁dis t</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> ri but <span class="kw">or</span> . ▁It<span class="st">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>使用 fastai 的子词标记器时，特殊字符<code>▁</code>代表原始文本中的空格字符。</p>
+<p>如果我们使用较小的词汇表，每个标记将代表更少的字符，并且需要更多的标记来表示一个句子：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>subword(<span class="dv">200</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">'▁ T h i s ▁movie , ▁w h i ch ▁I ▁ j us t ▁ d i s c o ver ed ▁a t ▁the ▁ v id e</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; o ▁ st or e , ▁h a s'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>另一方面，如果我们使用较大的词汇表，大多数常见的英语单词将最终出现在词汇表中，我们将不需要那么多来表示一个句子：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>subword(<span class="dv">10000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">"▁This ▁movie , ▁which ▁I ▁just ▁discover ed ▁at ▁the ▁video ▁store , ▁has</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ▁apparently ▁sit ▁around ▁for ▁a ▁couple ▁of ▁years ▁without ▁a ▁distributor</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> . ▁It <span class="st">' s ▁easy ▁to ▁see ▁why . ▁The ▁story ▁of ▁two ▁friends ▁living"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>选择子词词汇表大小代表一种折衷：较大的词汇表意味着每个句子的标记较少，这意味着训练速度更快，内存更少，并且模型需要记住的状态更少；但是，缺点是，这意味着更大的嵌入矩阵，这需要更多的数据来学习。</p>
+<p>总的来说，子词标记化提供了一种在字符标记化（即使用较小的子词词汇表）和单词标记化（即使用较大的子词词汇表）之间轻松切换的方法，并且处理每种人类语言而无需开发特定于语言的算法。它甚至可以处理其他“语言”，如基因组序列或 MIDI 音乐符号！因此，过去一年中，它的流行度飙升，似乎很可能成为最常见的标记化方法（当您阅读本文时，它可能已经是了！）。</p>
+<p>一旦我们的文本被分割成标记，我们需要将它们转换为数字。我们将在下一步中看到这一点。</p>
+</section>
+<section id="使用-fastai-进行数字化" class="level2">
+<h2 class="anchored" data-anchor-id="使用-fastai-进行数字化">使用 fastai 进行数字化</h2>
+<p><em>数字化</em>是将标记映射到整数的过程。这些步骤基本上与创建<code>Category</code>变量所需的步骤相同，例如 MNIST 中数字的因变量：</p>
+<ol type="1">
+<li><p>制作该分类变量的所有可能级别的列表（词汇表）。</p></li>
+<li><p>用词汇表中的索引替换每个级别。</p></li>
+</ol>
+<p>让我们看看在之前看到的单词标记化文本上的实际操作：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>toks <span class="op">=</span> tkn(txt)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(coll_repr(tkn(txt), <span class="dv">31</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#228) ['xxbos','xxmaj','this','movie',',','which','i','just','discovered','at',</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="st">'the'</span>,<span class="st">'video'</span>,<span class="st">'store'</span>,<span class="st">','</span>,<span class="st">'has'</span>,<span class="st">'apparently'</span>,<span class="st">'sit'</span>,<span class="st">'around'</span>,<span class="st">'for'</span>,<span class="st">'a'</span>,<span class="st">'couple</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ','of','years','without','a','distributor','.','xxmaj','it',"'s",'easy'...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>就像<code>SubwordTokenizer</code>一样，我们需要在<code>Numericalize</code>上调用<code>setup</code>；这是我们创建词汇表的方法。这意味着我们首先需要我们的标记化语料库。由于标记化需要一段时间，fastai 会并行进行；但是对于这个手动演示，我们将使用一个小的子集：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>toks200 <span class="op">=</span> txts[:<span class="dv">200</span>].<span class="bu">map</span>(tkn)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>toks200[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#228)</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> [<span class="st">'xxbos'</span>,<span class="st">'xxmaj'</span>,<span class="st">'this'</span>,<span class="st">'movie'</span>,<span class="st">','</span>,<span class="st">'which'</span>,<span class="st">'i'</span>,<span class="st">'just'</span>,<span class="st">'discovered'</span>,<span class="st">'at'</span>...]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们可以将这个传递给<code>setup</code>来创建我们的词汇表：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> Numericalize()</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>num.setup(toks200)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>coll_repr(num.vocab,<span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">"(#2000) ['xxunk','xxpad','xxbos','xxeos','xxfld','xxrep','xxwrep','xxup','xxmaj</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ','the','.',',','a','and','of','to','is','in','i','it'...]"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们的特殊规则标记首先出现，然后每个单词按频率顺序出现一次。<code>Numericalize</code>的默认值为<code>min_freq=3</code>和<code>max_vocab=60000</code>。<code>max_vocab=60000</code>导致 fastai 用特殊的<em>未知单词</em>标记<code>xxunk</code>替换除最常见的 60,000 个单词之外的所有单词。这有助于避免过大的嵌入矩阵，因为这可能会减慢训练速度并占用太多内存，并且还可能意味着没有足够的数据来训练稀有单词的有用表示。然而，通过设置<code>min_freq</code>来处理最后一个问题更好；默认值<code>min_freq=3</code>意味着出现少于三次的任何单词都将被替换为<code>xxunk</code>。</p>
+<p>fastai 还可以使用您提供的词汇表对数据集进行数字化，方法是将单词列表作为<code>vocab</code>参数传递。</p>
+<p>一旦我们创建了我们的<code>Numericalize</code>对象，我们可以像使用函数一样使用它：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>nums <span class="op">=</span> num(toks)[:<span class="dv">20</span>]<span class="op">;</span> nums</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tensor([  <span class="dv">2</span>,   <span class="dv">8</span>,  <span class="dv">21</span>,  <span class="dv">28</span>,  <span class="dv">11</span>,  <span class="dv">90</span>,  <span class="dv">18</span>,  <span class="dv">59</span>,   <span class="dv">0</span>,  <span class="dv">45</span>,   <span class="dv">9</span>, <span class="dv">351</span>, <span class="dv">499</span>,  <span class="dv">11</span>,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="dv">72</span>, <span class="dv">533</span>, <span class="dv">584</span>, <span class="dv">146</span>,  <span class="dv">29</span>,  <span class="dv">12</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这一次，我们的标记已经转换为模型可以接收的整数张量。我们可以检查它们是否映射回原始文本：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">' '</span>.join(num.vocab[o] <span class="cf">for</span> o <span class="kw">in</span> nums)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">'xxbos xxmaj this movie , which i just xxunk at the video store , has apparently</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; sit around for a'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="line-block">xxbos | xxmaj | 在 | 这个 | 章节 | ， | 我们 | 将 | 回顾 | 一下 | 分类 | 的 | 例子 |</div>
+</section>
+<section id="回到我们之前的例子有-6-个长度为-15-的批次如果我们选择序列长度为-5那意味着我们首先输入以下数组" class="level2">
+<h2 class="anchored" data-anchor-id="回到我们之前的例子有-6-个长度为-15-的批次如果我们选择序列长度为-5那意味着我们首先输入以下数组">回到我们之前的例子，有 6 个长度为 15 的批次，如果我们选择序列长度为 5，那意味着我们首先输入以下数组：</h2>
+<p>处理图像时，我们需要将它们全部调整为相同的高度和宽度，然后将它们组合在一起形成一个小批次，以便它们可以有效地堆叠在一个张量中。这里会有一点不同，因为不能简单地将文本调整为所需的长度。此外，我们希望我们的语言模型按顺序阅读文本，以便它可以有效地预测下一个单词是什么。这意味着每个新批次应该从上一个批次结束的地方开始。</p>
+<p>假设我们有以下文本：</p>
+<blockquote class="blockquote">
+<p>在这一章中，我们将回顾我们在第一章中学习的分类电影评论的例子，并深入挖掘。首先，我们将看一下将文本转换为数字所需的处理步骤以及如何自定义它。通过这样做，我们将有另一个使用数据块 API 中的预处理器的例子。</p>
+<p>然后我们将学习如何构建一个语言模型并训练它一段时间。</p>
+</blockquote>
+<p>标记化过程将添加特殊标记并处理标点以返回这个文本：</p>
+<blockquote class="blockquote">
+<p>xxbos 在这一章中，我们将回顾我们在第一章中学习的分类电影评论的例子，并深入挖掘。首先，我们将看一下将文本转换为数字所需的处理步骤以及如何自定义它。通过这样做，我们将有另一个使用数据块 API 中的预处理器的例子。</p>
+</blockquote>
+<p>现在我们有 90 个标记，用空格分隔。假设我们想要一个批次大小为 6。我们需要将这个文本分成 6 个长度为 15 的连续部分：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>转换</th>
+<th>文本</th>
+<th>为</th>
+<th>数字</th>
+<th>和</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>电影</td>
+<td>评论</td>
+<td>我们</td>
+<td>研究</td>
+<td>在</td>
+</tr>
+<tr class="even">
+<td>首先</td>
+<td>我们</td>
+<td>将</td>
+<td>看</td>
+<td>处理</td>
+</tr>
+<tr class="odd">
+<td>如何</td>
+<td>自定义</td>
+<td>它</td>
+<td>。</td>
+<td>通过</td>
+</tr>
+<tr class="even">
+<td>预处理器</td>
+<td>在</td>
+<td>数据</td>
+<td>块</td>
+<td>xxup</td>
+</tr>
+<tr class="odd">
+<td>将</td>
+<td>学习</td>
+<td>我们</td>
+<td>如何</td>
+<td>构建</td>
+</tr>
+</tbody>
+</table>
+<p>在理想的情况下，我们可以将这一个批次提供给我们的模型。但这种方法不具有可扩展性，因为在这个玩具示例之外，一个包含所有标记的单个批次不太可能适合我们的 GPU 内存（这里有 90 个标记，但所有 IMDb 评论一起给出了数百万个）。</p>
+<p>因此，我们需要将这个数组更细地划分为固定序列长度的子数组。在这些子数组内部和之间保持顺序非常重要，因为我们将使用一个保持状态的模型，以便在预测接下来的内容时记住之前读到的内容。</p>
+<div class="line-block">语言 | 模型 | 和 | 训练 |</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>xxbos</th>
+<th>xxmaj</th>
+<th>在</th>
+<th>这个</th>
+<th>章节</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>分类</td>
+<td>的</td>
+<td>例子</td>
+<td>在</td>
+<td>电影</td>
+</tr>
+<tr class="even">
+<td>首先</td>
+<td>我们</td>
+<td>将</td>
+<td>看</td>
+<td>到</td>
+</tr>
+<tr class="odd">
+<td>如何</td>
+<td>自定义</td>
+<td>它</td>
+<td>。</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>预处理器</td>
+<td>使用</td>
+<td>在</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>将</td>
+<td>学习</td>
+<td>我们</td>
+<td>如何</td>
+<td>构建</td>
+</tr>
+</tbody>
+</table>
+<p>然后，这一个：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>，</th>
+<th>我们</th>
+<th>将</th>
+<th>回顾</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>章节</td>
+<td>1</td>
+<td>和</td>
+<td>深入</td>
+</tr>
+<tr class="even">
+<td>处理</td>
+<td>步骤</td>
+<td>必要</td>
+<td>将</td>
+</tr>
+<tr class="odd">
+<td>通过</td>
+<td>这样做</td>
+<td>，</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>数据</td>
+<td>块</td>
+<td>xxup</td>
+<td>api</td>
+</tr>
+<tr class="odd">
+<td>现在我们有了数字，我们需要将它们分批放入模型中。</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>最后：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>将我们的文本放入语言模型的批次中</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>更深</td>
+</tr>
+<tr class="even">
+<td>将文本转换为数字，并按行翻译成中文：</td>
+</tr>
+<tr class="odd">
+<td>我们</td>
+</tr>
+<tr class="even">
+<td>。</td>
+</tr>
+<tr class="odd">
+<td>它</td>
+</tr>
+</tbody>
+</table>
+<p>回到我们的电影评论数据集，第一步是通过将各个文本串联在一起将其转换为流。与图像一样，最好随机化输入的顺序，因此在每个时期的开始，我们将对条目进行洗牌以生成新的流（我们对文档的顺序进行洗牌，而不是其中的单词顺序，否则文本将不再有意义！）。</p>
+<p>然后将此流切成一定数量的批次（这是我们的<em>批量大小</em>）。例如，如果流有 50,000 个标记，我们设置批量大小为 10，这将给我们 5,000 个标记的 10 个小流。重要的是我们保留标记的顺序（因此从 1 到 5,000 为第一个小流，然后从 5,001 到 10,000…），因为我们希望模型读取连续的文本行（如前面的示例）。在预处理期间，在每个文本的开头添加一个<code>xxbos</code>标记，以便模型知道当读取流时新条目何时开始。</p>
+<p>因此，总结一下，每个时期我们都会对文档集合进行洗牌，并将它们连接成一个标记流。然后将该流切成一批固定大小的连续小流。我们的模型将按顺序读取小流，并由于内部状态，无论我们选择的序列长度如何，它都将产生相同的激活。</p>
+<p>当我们创建<code>LMDataLoader</code>时，所有这些都是由 fastai 库在幕后完成的。我们首先将我们的<code>Numericalize</code>对象应用于标记化的文本</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>nums200 <span class="op">=</span> toks200.<span class="bu">map</span>(num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后将其传递给<code>LMDataLoader</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>dl <span class="op">=</span> LMDataLoader(nums200)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们通过获取第一批来确认这是否给出了预期的结果</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> first(dl)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>x.shape,y.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>(torch.Size([<span class="dv">64</span>, <span class="dv">72</span>]), torch.Size([<span class="dv">64</span>, <span class="dv">72</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后查看独立变量的第一行，这应该是第一个文本的开头：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">' '</span>.join(num.vocab[o] <span class="cf">for</span> o <span class="kw">in</span> x[<span class="dv">0</span>][:<span class="dv">20</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">'xxbos xxmaj this movie , which i just xxunk at the video store , has apparently</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; sit around for a'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>依赖变量是相同的，只是偏移了一个标记：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">' '</span>.join(num.vocab[o] <span class="cf">for</span> o <span class="kw">in</span> y[<span class="dv">0</span>][:<span class="dv">20</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">'xxmaj this movie , which i just xxunk at the video store , has apparently sit</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; around for a couple'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这就完成了我们需要对数据应用的所有预处理步骤。我们现在准备训练我们的文本分类器。</p>
+</section>
+</section>
+<section id="训练文本分类器" class="level1">
+<h1>训练文本分类器</h1>
+<p>正如我们在本章开头看到的那样，使用迁移学习训练最先进的文本分类器有两个步骤：首先，我们需要微调在 Wikipedia 上预训练的语言模型以适应 IMDb 评论的语料库，然后我们可以使用该模型来训练分类器。</p>
+<p>像往常一样，让我们从组装数据开始。</p>
+<section id="使用-datablock-的语言模型" class="level2">
+<h2 class="anchored" data-anchor-id="使用-datablock-的语言模型">使用 DataBlock 的语言模型</h2>
+<p>当<code>TextBlock</code>传递给<code>DataBlock</code>时，fastai 会自动处理标记化和数值化。所有可以传递给<code>Tokenizer</code>和<code>Numericalize</code>的参数也可以传递给<code>TextBlock</code>。在下一章中，我们将讨论分别运行每个步骤的最简单方法，以便进行调试，但您也可以通过在数据的子集上手动运行它们来进行调试，如前几节所示。不要忘记<code>DataBlock</code>的方便的<code>summary</code>方法，用于调试数据问题非常有用。</p>
+<p>这是我们如何使用<code>TextBlock</code>使用 fastai 的默认值创建语言模型的方式：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>get_imdb <span class="op">=</span> partial(get_text_files, folders<span class="op">=</span>[<span class="st">'train'</span>, <span class="st">'test'</span>, <span class="st">'unsup'</span>])</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>dls_lm <span class="op">=</span> DataBlock(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>TextBlock.from_folder(path, is_lm<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>get_imdb, splitter<span class="op">=</span>RandomSplitter(<span class="fl">0.1</span>)</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>).dataloaders(path, path<span class="op">=</span>path, bs<span class="op">=</span><span class="dv">128</span>, seq_len<span class="op">=</span><span class="dv">80</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>与我们在<code>DataBlock</code>中使用的以前类型不同的一件事是，我们不仅仅直接使用类（即<code>TextBlock（...）</code>，而是调用<em>类方法</em>。类方法是 Python 方法，如其名称所示，属于<em>类</em>而不是<em>对象</em>。（如果您对类方法不熟悉，请务必在网上搜索更多信息，因为它们在许多 Python 库和应用程序中常用；我们在本书中以前使用过几次，但没有特别提到。）<code>TextBlock</code>之所以特殊是因为设置数值化器的词汇表可能需要很长时间（我们必须读取和标记化每个文档以获取词汇表）。</p>
+<p>为了尽可能高效，fastai 执行了一些优化：</p>
+<ul>
+<li><p>它将标记化的文档保存在临时文件夹中，因此不必多次对其进行标记化。</p></li>
+<li><p>它并行运行多个标记化过程，以利用计算机的 CPU。</p></li>
+</ul>
+<p>我们需要告诉<code>TextBlock</code>如何访问文本，以便它可以进行这种初始预处理——这就是<code>from_folder</code>的作用。</p>
+<p><code>show_batch</code>然后以通常的方式工作：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>dls_lm.show_batch(max_n<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>text</th>
+<th>text_</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>xxbos xxmaj it ’s awesome ! xxmaj in xxmaj story xxmaj mode , your going from punk to pro . xxmaj you have to complete goals that involve skating , driving , and walking . xxmaj you create your own skater and give it a name , and you can make it look stupid or realistic . xxmaj you are with your friend xxmaj eric throughout the game until he betrays you and gets you kicked off of the skateboard</td>
+<td>xxmaj it ’s awesome ! xxmaj in xxmaj story xxmaj mode , your going from punk to pro . xxmaj you have to complete goals that involve skating , driving , and walking . xxmaj you create your own skater and give it a name , and you can make it look stupid or realistic . xxmaj you are with your friend xxmaj eric throughout the game until he betrays you and gets you kicked off of the skateboard xxunk</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>what xxmaj i ’ve read , xxmaj death xxmaj bed is based on an actual dream , xxmaj george xxmaj barry , the director , successfully transferred dream to film , only a genius could accomplish such a task . xxmaj old mansions make for good quality horror , as do portraits , not sure what to make of the killer bed with its killer yellow liquid , quite a bizarre dream , indeed . xxmaj also , this</td>
+<td>xxmaj i ’ve read , xxmaj death xxmaj bed is based on an actual dream , xxmaj george xxmaj barry , the director , successfully transferred dream to film , only a genius could accomplish such a task . xxmaj old mansions make for good quality horror , as do portraits , not sure what to make of the killer bed with its killer yellow liquid , quite a bizarre dream , indeed . xxmaj also , this is</td>
+</tr>
+</tbody>
+</table>
+<p>现在我们的数据准备好了，我们可以对预训练语言模型进行微调。</p>
+</section>
+<section id="微调语言模型" class="level2">
+<h2 class="anchored" data-anchor-id="微调语言模型">微调语言模型</h2>
+<p>将整数单词索引转换为我们可以用于神经网络的激活时，我们将使用嵌入，就像我们在协同过滤和表格建模中所做的那样。然后，我们将把这些嵌入馈送到<em>递归神经网络</em>（RNN）中，使用一种称为<em>AWD-LSTM</em>的架构（我们将在第十二章中向您展示如何从头开始编写这样一个模型）。正如我们之前讨论的，预训练模型中的嵌入与为不在预训练词汇表中的单词添加的随机嵌入合并。这在<code>language_model_learner</code>内部自动处理：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> language_model_learner(</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>    dls_lm, AWD_LSTM, drop_mult<span class="op">=</span><span class="fl">0.3</span>,</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[accuracy, Perplexity()]).to_fp16()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>默认使用的损失函数是交叉熵损失，因为我们基本上有一个分类问题（不同类别是我们词汇表中的单词）。这里使用的<em>困惑度</em>指标通常用于 NLP 的语言模型：它是损失的指数（即<code>torch.exp(cross_entropy)</code>）。我们还包括准确性指标，以查看我们的模型在尝试预测下一个单词时有多少次是正确的，因为交叉熵（正如我们所见）很难解释，并且更多地告诉我们有关模型信心而不是准确性。</p>
+<p>让我们回到本章开头的流程图。第一个箭头已经为我们完成，并作为 fastai 中的预训练模型提供，我们刚刚构建了第二阶段的<code>DataLoaders</code>和<code>Learner</code>。现在我们准备好对我们的语言模型进行微调！</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1001.png" class="img-fluid figure-img"></p>
+<figcaption>ULMFiT 过程的图表</figcaption>
+</figure>
+</div>
+<p>每个时代的训练需要相当长的时间，因此我们将在训练过程中保存中间模型结果。由于<code>fine_tune</code>不会为我们执行此操作，因此我们将使用<code>fit_one_cycle</code>。就像<code>cnn_learner</code>一样，当使用预训练模型（这是默认设置）时，<code>language_model_learner</code>在使用时会自动调用<code>freeze</code>，因此这将仅训练嵌入（模型中唯一包含随机初始化权重的部分——即我们 IMDb 词汇表中存在但不在预训练模型词汇表中的单词的嵌入）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">1</span>, <span class="fl">2e-2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>perplexity</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>4.120048</td>
+<td>3.912788</td>
+<td>0.299565</td>
+<td>50.038246</td>
+<td>11:39</td>
+</tr>
+</tbody>
+</table>
+<p>这个模型训练时间较长，所以现在是谈论保存中间结果的好机会。</p>
+</section>
+<section id="保存和加载模型" class="level2">
+<h2 class="anchored" data-anchor-id="保存和加载模型">保存和加载模型</h2>
+<p>您可以轻松保存模型的状态如下：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>learn.save(<span class="st">'1epoch'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这将在 <em>learn.path/models/</em> 中创建一个名为 <em>1epoch.pth</em> 的文件。如果您想在另一台机器上加载模型，或者稍后恢复训练，可以按照以下方式加载此文件的内容：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> learn.load(<span class="st">'1epoch'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>一旦初始训练完成，我们可以在解冻后继续微调模型：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>learn.unfreeze()</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">10</span>, <span class="fl">2e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>perplexity</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>3.893486</td>
+<td>3.772820</td>
+<td>0.317104</td>
+<td>43.502548</td>
+<td>12:37</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>3.820479</td>
+<td>3.717197</td>
+<td>0.323790</td>
+<td>41.148880</td>
+<td>12:30</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>3.735622</td>
+<td>3.659760</td>
+<td>0.330321</td>
+<td>38.851997</td>
+<td>12:09</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>3.677086</td>
+<td>3.624794</td>
+<td>0.333960</td>
+<td>37.516987</td>
+<td>12:12</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>3.636646</td>
+<td>3.601300</td>
+<td>0.337017</td>
+<td>36.645859</td>
+<td>12:05</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>3.553636</td>
+<td>3.584241</td>
+<td>0.339355</td>
+<td>36.026001</td>
+<td>12:04</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>3.507634</td>
+<td>3.571892</td>
+<td>0.341353</td>
+<td>35.583862</td>
+<td>12:08</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>3.444101</td>
+<td>3.565988</td>
+<td>0.342194</td>
+<td>35.374371</td>
+<td>12:08</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>3.398597</td>
+<td>3.566283</td>
+<td>0.342647</td>
+<td>35.384815</td>
+<td>12:11</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td>3.375563</td>
+<td>3.568166</td>
+<td>0.342528</td>
+<td>35.451500</td>
+<td>12:05</td>
+</tr>
+</tbody>
+</table>
+<p>完成后，我们保存所有模型，除了将激活转换为在我们的词汇表中选择每个标记的概率的最终层。不包括最终层的模型称为<em>编码器</em>。我们可以使用 <code>save_encoder</code> 来保存它：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>learn.save_encoder(<span class="st">'finetuned'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="术语编码器" class="level1">
+<h1>术语：编码器</h1>
+<p>不包括任务特定的最终层。当应用于视觉 CNN 时，这个术语与“主体”几乎意思相同，但在 NLP 和生成模型中更常用“编码器”。</p>
+<p>这完成了文本分类过程的第二阶段：微调语言模型。我们现在可以使用它来微调一个分类器，使用 IMDb 的情感标签。然而，在继续微调分类器之前，让我们快速尝试一些不同的东西：使用我们的模型生成随机评论。</p>
+<section id="文本生成" class="level2">
+<h2 class="anchored" data-anchor-id="文本生成">文本生成</h2>
+<p>因为我们的模型经过训练可以猜测句子的下一个单词，所以我们可以用它来写新评论：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>TEXT <span class="op">=</span> <span class="st">"I liked this movie because"</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>N_WORDS <span class="op">=</span> <span class="dv">40</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>N_SENTENCES <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> [learn.predict(TEXT, N_WORDS, temperature<span class="op">=</span><span class="fl">0.75</span>)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(N_SENTENCES)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span>.join(preds))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>i liked this movie because of its story <span class="kw">and</span> characters . The story line was very</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> strong , very good <span class="cf">for</span> a sci <span class="op">-</span> fi film . The main character , Alucard , was</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> very well developed <span class="kw">and</span> brought the whole story</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>i liked this movie because i like the idea of the premise of the movie , the (</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> very ) convenient virus ( which , when you have to kill a few people , the <span class="st">"</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; evil " machine has to be used to protect</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如您所看到的，我们添加了一些随机性（我们根据模型返回的概率选择一个随机单词），这样我们就不会得到完全相同的评论两次。我们的模型没有任何关于句子结构或语法规则的编程知识，但它显然已经学会了很多关于英语句子：我们可以看到它正确地大写了（<em>I</em> 被转换为 <em>i</em>，因为我们的规则要求两个字符或更多才能认为一个单词是大写的，所以看到它小写是正常的）并且使用一致的时态。一般的评论乍一看是有意义的，只有仔细阅读时才能注意到有些地方有点不对。对于在几个小时内训练的模型来说，这还不错！</p>
+<p>但我们的最终目标不是训练一个生成评论的模型，而是对其进行分类…所以让我们使用这个模型来做到这一点。</p>
+</section>
+<section id="创建分类器数据加载器" class="level2">
+<h2 class="anchored" data-anchor-id="创建分类器数据加载器">创建分类器数据加载器</h2>
+<p>我们现在从语言模型微调转向分类器微调。简而言之，语言模型预测文档的下一个单词，因此不需要任何外部标签。然而，分类器预测外部标签——在 IMDb 的情况下，是文档的情感。</p>
+<p>这意味着我们用于 NLP 分类的 <code>DataBlock</code> 结构看起来非常熟悉。它几乎与我们为许多图像分类数据集看到的相同：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>dls_clas <span class="op">=</span> DataBlock(</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(TextBlock.from_folder(path, vocab<span class="op">=</span>dls_lm.vocab),CategoryBlock),</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    get_y <span class="op">=</span> parent_label,</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>partial(get_text_files, folders<span class="op">=</span>[<span class="st">'train'</span>, <span class="st">'test'</span>]),</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>).dataloaders(path, path<span class="op">=</span>path, bs<span class="op">=</span><span class="dv">128</span>, seq_len<span class="op">=</span><span class="dv">72</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>就像图像分类一样，<code>show_batch</code> 显示了依赖变量（情感，在这种情况下）与每个独立变量（电影评论文本）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>dls_clas.show_batch(max_n<span class="op">=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>文本</th>
+<th>类别</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>xxbos 我给这部电影打了 3 颗头骨的评分，只是因为女孩们知道如何尖叫，这部电影本可以更好，如果演员更好的话，双胞胎还行，我相信他们是邪恶的，但是最大和最小的兄弟，他们表现得真的很糟糕，看起来他们在读剧本而不是表演……。剧透：如果他们是吸血鬼，为什么他们会冻结血液？吸血鬼不能喝冻结的血液，电影中的姐姐说让我们在她活着的时候喝她……。但是当他们搬到另一栋房子时，他们带了一个冷藏盒装着他们的冻结血液。剧透结束这是浪费时间，这让我很生气，因为我读了所有关于它的评论</td>
+<td>neg</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>xxbos 我已经阅读了所有的《爱来的方式》系列书籍。我充分了解电影无法使用书中的所有方面，但通常它们至少会有书中的主要内容。我对这部电影感到非常失望。这部电影中唯一与书中相同的是，书中有 xxmaj missy 的父亲来到 xxunk （在书中父母都来了）。就是这样。故事情节扭曲且牵强，是的，悲伤，与书中完全不同，我无法享受。即使我没有读过这本书，它也太悲伤了。我知道拓荒生活很艰难，但整部电影都是一个沮丧的故事。评分</td>
+<td>neg</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>xxbos 这部电影，用一个更好的词来说，很糟糕。我从哪里开始呢……电影摄影 - 这或许是我今年看过的最糟糕的。看起来就像摄影师之间在互相抛接相机。也许他们只有一台相机。这让你感觉像是一个排球。有一堆场景，零零散散地扔进去，完全没有连贯性。当他们做 ‘分屏’ 时，那是荒谬的。一切都被压扁了，看起来荒谬。颜色调整完全错了。这些人需要学会如何平衡相机。这部 ‘电影’ 制作很差，</td>
+<td>neg</td>
+</tr>
+</tbody>
+</table>
+<p>从 <code>DataBlock</code> 的定义来看，每个部分都与我们构建的先前数据块相似，但有两个重要的例外：</p>
+<ul>
+<li><p><code>TextBlock.from_folder</code> 不再具有 <code>is_lm=True</code> 参数。</p></li>
+<li><p>我们传递了为语言模型微调创建的 <code>vocab</code>。</p></li>
+</ul>
+<p>我们传递语言模型的 <code>vocab</code> 是为了确保我们使用相同的标记到索引的对应关系。否则，我们在微调语言模型中学到的嵌入对这个模型没有任何意义，微调步骤也没有任何用处。</p>
+<p>通过传递 <code>is_lm=False</code>（或者根本不传递 <code>is_lm</code>，因为它默认为 <code>False</code>），我们告诉 <code>TextBlock</code> 我们有常规标记的数据，而不是将下一个标记作为标签。然而，我们必须处理一个挑战，这与将多个文档合并成一个小批次有关。让我们通过一个示例来看，尝试创建一个包含前 10 个文档的小批次。首先我们将它们数值化：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>nums_samp <span class="op">=</span> toks200[:<span class="dv">10</span>].<span class="bu">map</span>(num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在让我们看看这 10 条电影评论中每条有多少个标记：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>nums_samp.<span class="bu">map</span>(<span class="bu">len</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#10) [228,238,121,290,196,194,533,124,581,155]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>记住，PyTorch 的 <code>DataLoader</code> 需要将批次中的所有项目整合到一个张量中，而一个张量具有固定的形状（即，每个轴上都有特定的长度，并且所有项目必须一致）。这应该听起来很熟悉：我们在图像中也遇到了同样的问题。在那种情况下，我们使用裁剪、填充和/或压缩来使所有输入大小相同。对于文档来说，裁剪可能不是一个好主意，因为我们可能会删除一些关键信息（话虽如此，对于图像也是同样的问题，我们在那里使用裁剪；数据增强在自然语言处理领域尚未得到很好的探索，因此也许在自然语言处理中也有使用裁剪的机会！）。你不能真正“压缩”一个文档。所以只剩下填充了！</p>
+<p>我们将扩展最短的文本以使它们都具有相同的大小。为此，我们使用一个特殊的填充标记，该标记将被我们的模型忽略。此外，为了避免内存问题并提高性能，我们将大致相同长度的文本批量处理在一起（对于训练集进行一些洗牌）。我们通过在每个时期之前（对于训练集）按长度对文档进行排序来实现这一点。结果是，整理成单个批次的文档往往具有相似的长度。我们不会将每个批次填充到相同的大小，而是使用每个批次中最大文档的大小作为目标大小。</p>
+</section>
+</section>
+<section id="动态调整图像大小" class="level1">
+<h1>动态调整图像大小</h1>
+<p>可以对图像执行类似的操作，这对于不规则大小的矩形图像特别有用，但在撰写本文时，尚无库提供良好的支持，也没有任何涵盖此内容的论文。然而，我们计划很快将其添加到 fastai 中，因此请关注本书的网站；一旦我们成功运行，我们将添加有关此内容的信息。</p>
+<p>当使用<code>TextBlock</code>和<code>is_lm=False</code>时，数据块 API 会自动为我们进行排序和填充。（对于语言模型数据，我们不会遇到这个问题，因为我们首先将所有文档连接在一起，然后将它们分成相同大小的部分。）</p>
+<p>我们现在可以创建一个用于分类文本的模型：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> text_classifier_learner(dls_clas, AWD_LSTM, drop_mult<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>                                metrics<span class="op">=</span>accuracy).to_fp16()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在训练分类器之前的最后一步是从我们微调的语言模型中加载编码器。我们使用<code>load_encoder</code>而不是<code>load</code>，因为我们只有编码器的预训练权重可用；<code>load</code>默认情况下会在加载不完整的模型时引发异常：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> learn.load_encoder(<span class="st">'finetuned'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="微调分类器" class="level2">
+<h2 class="anchored" data-anchor-id="微调分类器">微调分类器</h2>
+<p>最后一步是使用有区分性的学习率和<em>逐步解冻</em>进行训练。在计算机视觉中，我们经常一次性解冻整个模型，但对于 NLP 分类器，我们发现逐层解冻会产生真正的差异：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">1</span>, <span class="fl">2e-2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.347427</td>
+<td>0.184480</td>
+<td>0.929320</td>
+<td>00:33</td>
+</tr>
+</tbody>
+</table>
+<p>仅仅一个时期，我们就获得了与第一章中的训练相同的结果——还不错！我们可以将<code>freeze_to</code>设置为<code>-2</code>，以冻结除最后两个参数组之外的所有参数组：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>learn.freeze_to(<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">1</span>, <span class="bu">slice</span>(<span class="fl">1e-2</span><span class="op">/</span>(<span class="fl">2.6</span><span class="op">**</span><span class="dv">4</span>),<span class="fl">1e-2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.247763</td>
+<td>0.171683</td>
+<td>0.934640</td>
+<td>00:37</td>
+</tr>
+</tbody>
+</table>
+<p>然后我们可以解冻更多层并继续训练：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>learn.freeze_to(<span class="op">-</span><span class="dv">3</span>)</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">1</span>, <span class="bu">slice</span>(<span class="fl">5e-3</span><span class="op">/</span>(<span class="fl">2.6</span><span class="op">**</span><span class="dv">4</span>),<span class="fl">5e-3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.193377</td>
+<td>0.156696</td>
+<td>0.941200</td>
+<td>00:45</td>
+</tr>
+</tbody>
+</table>
+<p>最后，整个模型！</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>learn.unfreeze()</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">2</span>, <span class="bu">slice</span>(<span class="fl">1e-3</span><span class="op">/</span>(<span class="fl">2.6</span><span class="op">**</span><span class="dv">4</span>),<span class="fl">1e-3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.172888</td>
+<td>0.153770</td>
+<td>0.943120</td>
+<td>01:01</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.161492</td>
+<td>0.155567</td>
+<td>0.942640</td>
+<td>00:57</td>
+</tr>
+</tbody>
+</table>
+<p>我们达到了 94.3%的准确率，这在仅仅三年前是最先进的性能。通过在所有文本上训练另一个模型，并对这两个模型的预测进行平均，我们甚至可以达到 95.1%的准确率，这是由 ULMFiT 论文引入的最先进技术。仅仅几个月前，通过微调一个更大的模型并使用昂贵的数据增强技术（将句子翻译成另一种语言，然后再翻译回来，使用另一个模型进行翻译）来打破了这一记录。</p>
+<p>使用预训练模型让我们构建了一个非常强大的微调语言模型，可以用来生成假评论或帮助对其进行分类。这是令人兴奋的事情，但要记住这项技术也可以被用于恶意目的。</p>
+</section>
+</section>
+<section id="虚假信息和语言模型" class="level1">
+<h1>虚假信息和语言模型</h1>
+<p>即使是基于规则的简单算法，在广泛使用深度学习语言模型之前，也可以用来创建欺诈账户并试图影响决策者。ProPublica 的计算记者 Jeff Kao 分析了发送给美国联邦通信委员会（FCC）有关 2017 年废除网络中立提案的评论。在他的文章“可能伪造了一百多万条支持废除网络中立的评论”中，他报告了他是如何发现一大批反对网络中立的评论，这些评论似乎是通过某种 Mad Libs 风格的邮件合并生成的。在图 10-2 中，Kao 已经帮助着色编码了这些虚假评论，以突出它们的公式化特性。</p>
+<p><img src="img/dlcf_1002.png" class="img-fluid"></p>
+<section id="图-10-2.-fcc-在网络中立辩论期间收到的评论" class="level6">
+<h6 class="anchored" data-anchor-id="图-10-2.-fcc-在网络中立辩论期间收到的评论">图 10-2. FCC 在网络中立辩论期间收到的评论</h6>
+<p>Kao 估计“2200 多万条评论中不到 80 万条…可以被认为是真正独特的”，“超过 99%的真正独特评论支持保持网络中立”。</p>
+<p>鉴于自 2017 年以来语言建模的进展，这种欺诈性活动现在几乎不可能被发现。您现在拥有所有必要的工具来创建一个引人注目的语言模型 - 可以生成与上下文相关、可信的文本。它不一定会完全准确或正确，但它会是可信的。想象一下，当这种技术与我们近年来了解到的各种虚假信息活动结合在一起时会意味着什么。看看 Reddit 对话中显示的图 10-3，其中基于 OpenAI 的 GPT-2 算法的语言模型正在讨论美国政府是否应该削减国防开支。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1003.png" class="img-fluid figure-img"></p>
+<figcaption>Reddit 上的算法自言自语</figcaption>
+</figure>
+</div>
+</section>
+<section id="图-10-3.-reddit-上的算法自言自语" class="level6">
+<h6 class="anchored" data-anchor-id="图-10-3.-reddit-上的算法自言自语">图 10-3. Reddit 上的算法自言自语</h6>
+<p>在这种情况下，解释了正在使用算法生成对话。但想象一下，如果一个坏演员决定在社交网络上发布这样的算法会发生什么 - 他们可以慢慢而谨慎地这样做，让算法随着时间逐渐发展出追随者和信任。要做到这一点并不需要太多资源，就可以让成千上万的账户这样做。在这种情况下，我们很容易想象到在线讨论的绝大部分都是来自机器人，而没有人会意识到这种情况正在发生。</p>
+<p>我们已经开始看到机器学习被用来生成身份的例子。例如，图 10-4 显示了 Katie Jones 的 LinkedIn 个人资料。</p>
+<p><img src="img/dlcf_1004.png" class="img-fluid"></p>
+</section>
+<section id="图-10-4.-katie-jones-的-linkedin-个人资料" class="level6">
+<h6 class="anchored" data-anchor-id="图-10-4.-katie-jones-的-linkedin-个人资料">图 10-4. Katie Jones 的 LinkedIn 个人资料</h6>
+<p>Katie Jones 在 LinkedIn 上与几位主流华盛顿智库成员有联系。但她并不存在。你看到的那张图片是由生成对抗网络自动生成的，而某人名为 Katie Jones 的确没有毕业于战略与国际研究中心。</p>
+<p>许多人假设或希望算法将在这里为我们辩护 - 我们将开发能够自动识别自动生成内容的分类算法。然而，问题在于这将永远是一场军备竞赛，更好的分类（或鉴别器）算法可以用来创建更好的生成算法。</p>
+</section>
+</section>
+<section id="结论" class="level1">
+<h1>结论</h1>
+<p>在本章中，我们探讨了 fastai 库中提供的最后一个开箱即用的应用：文本。我们看到了两种类型的模型：可以生成文本的语言模型，以及可以确定评论是积极还是消极的分类器。为了构建一个最先进的分类器，我们使用了一个预训练的语言模型，对其进行微调以适应我们任务的语料库，然后使用其主体（编码器）与一个新的头部进行分类。</p>
+<p>在结束本书的这一部分之前，我们将看看 fastai 库如何帮助您为您的特定问题组装数据。</p>
+</section>
+<section id="问卷" class="level1">
+<h1>问卷</h1>
+<ol type="1">
+<li><p>什么是自监督学习？</p></li>
+<li><p>什么是语言模型？</p></li>
+<li><p>为什么语言模型被认为是自监督的？</p></li>
+<li><p>自监督模型通常用于什么？</p></li>
+<li><p>为什么我们要微调语言模型？</p></li>
+<li><p>创建一流文本分类器的三个步骤是什么？</p></li>
+<li><p>50,000 个未标记的电影评论如何帮助为 IMDb 数据集创建更好的文本分类器？</p></li>
+<li><p>为语言模型准备数据的三个步骤是什么？</p></li>
+<li><p>什么是标记化？为什么我们需要它？</p></li>
+<li><p>列出三种标记化方法。</p></li>
+<li><p>什么是 <code>xxbos</code>？</p></li>
+<li><p>列出 fastai 在标记化期间应用的四条规则。</p></li>
+<li><p>为什么重复字符被替换为一个显示重复次数和被重复的字符的标记？</p></li>
+<li><p>什么是数值化？</p></li>
+<li><p>为什么会有单词被替换为“未知单词”标记？</p></li>
+<li><p>使用批量大小为 64，表示第一批次的张量的第一行包含数据集的前 64 个标记。那个张量的第二行包含什么？第二批次的第一行包含什么？（小心 - 学生经常答错这个问题！一定要在书的网站上检查你的答案。）</p></li>
+<li><p>为什么文本分类需要填充？为什么语言建模不需要填充？</p></li>
+<li><p>NLP 的嵌入矩阵包含什么？它的形状是什么？</p></li>
+<li><p>什么是困惑度？</p></li>
+<li><p>为什么我们必须将语言模型的词汇传递给分类器数据块？</p></li>
+<li><p>什是逐步解冻？</p></li>
+<li><p>为什么文本生成总是可能领先于自动识别机器生成的文本？</p></li>
+</ol>
+<section id="进一步研究" class="level2">
+<h2 class="anchored" data-anchor-id="进一步研究">进一步研究</h2>
+<ol type="1">
+<li><p>看看你能学到关于语言模型和虚假信息的什么。今天最好的语言模型是什么？看看它们的一些输出。你觉得它们令人信服吗？坏人如何最好地利用这样的模型来制造冲突和不确定性？</p></li>
+<li><p>考虑到模型不太可能能够一致地识别机器生成的文本，可能需要哪些其他方法来处理利用深度学习的大规模虚假信息活动？</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

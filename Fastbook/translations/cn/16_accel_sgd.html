@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>accel_sgd – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="第十六章训练过程" class="level1">
+<h1>第十六章：训练过程</h1>
+<p>现在你知道如何为计算机视觉、自然图像处理、表格分析和协同过滤创建最先进的架构，也知道如何快速训练它们。所以我们完成了，对吧？还没有。我们仍然需要探索一下训练过程的更多内容。</p>
+<p>我们在第四章中解释了随机梯度下降的基础：将一个小批量数据传递给模型，用损失函数将其与目标进行比较，然后计算这个损失函数对每个权重的梯度，然后使用公式更新权重：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>new_weight <span class="op">=</span> weight <span class="op">-</span> lr <span class="op">*</span> weight.grad</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们在训练循环中从头开始实现了这个，看到 PyTorch 提供了一个简单的<code>nn.SGD</code>类，可以为我们的每个参数进行这个计算。在本章中，我们将构建一些更快的优化器，使用一个灵活的基础。但在训练过程中，我们可能还想要改变一些东西。对于训练循环的任何调整，我们都需要一种方法来向 SGD 的基础添加一些代码。fastai 库有一个回调系统来做到这一点，我们将教你所有相关知识。</p>
+<p>让我们从标准的 SGD 开始建立一个基线；然后我们将介绍最常用的优化器。</p>
+</section>
+<section id="建立基线" class="level1">
+<h1>建立基线</h1>
+<p>首先，我们将使用普通的 SGD 创建一个基线，并将其与 fastai 的默认优化器进行比较。我们将通过使用与第十四章中相同的<code>get_data</code>来获取 Imagenette：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> get_data(URLs.IMAGENETTE_160, <span class="dv">160</span>, <span class="dv">128</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们将创建一个没有预训练的 ResNet-34，并传递任何接收到的参数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_learner(<span class="op">**</span>kwargs):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cnn_learner(dls, resnet34, pretrained<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                    metrics<span class="op">=</span>accuracy, <span class="op">**</span>kwargs).to_fp16()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这是默认的 fastai 优化器，具有通常的 3e-3 学习率：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">3</span>, <span class="fl">0.003</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>2.571932</td>
+<td>2.685040</td>
+<td>0.322548</td>
+<td>00:11</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>1.904674</td>
+<td>1.852589</td>
+<td>0.437452</td>
+<td>00:11</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.586909</td>
+<td>1.374908</td>
+<td>0.594904</td>
+<td>00:11</td>
+</tr>
+</tbody>
+</table>
+<p>现在让我们尝试普通的 SGD。我们可以将<code>opt_func</code>（优化函数）传递给<code>cnn_learner</code>，以便让 fastai 使用任何优化器：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(opt_func<span class="op">=</span>SGD)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>首先要看的是<code>lr_find</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>learn.lr_find()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">0.017378008365631102</span>, <span class="fl">3.019951861915615e-07</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_16in01.png" class="img-fluid"></p>
+<p>看起来我们需要使用比我们通常使用的更高的学习率：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">3</span>, <span class="fl">0.03</span>, moms<span class="op">=</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>2.969412</td>
+<td>2.214596</td>
+<td>0.242038</td>
+<td>00:09</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2.442730</td>
+<td>1.845950</td>
+<td>0.362548</td>
+<td>00:09</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2.157159</td>
+<td>1.741143</td>
+<td>0.408917</td>
+<td>00:09</td>
+</tr>
+</tbody>
+</table>
+<p>因为用动量加速 SGD 是一个很好的主意，fastai 在<code>fit_one_cycle</code>中默认执行这个操作，所以我们用<code>moms=(0,0,0)</code>关闭它。我们很快会讨论动量。</p>
+<p>显然，普通的 SGD 训练速度不如我们所希望的快。所以让我们学习一些技巧来加速训练！</p>
+</section>
+<section id="通用优化器" class="level1">
+<h1>通用优化器</h1>
+<p>为了构建我们加速的 SGD 技巧，我们需要从一个灵活的优化器基础开始。在 fastai 之前没有任何库提供这样的基础，但在 fastai 的开发过程中，我们意识到学术文献中看到的所有优化器改进都可以使用<em>优化器回调</em>来处理。这些是我们可以组合、混合和匹配在优化器中构建优化器步骤的小代码片段。它们由 fastai 的轻量级<code>Optimizer</code>类调用。这些是我们在本书中使用的两个关键方法在<code>Optimizer</code>中的定义：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> zero_grad(<span class="va">self</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p,<span class="op">*</span>_ <span class="kw">in</span> <span class="va">self</span>.all_params():</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        p.grad.detach_()</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        p.grad.zero_()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> step(<span class="va">self</span>):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> p,pg,state,hyper <span class="kw">in</span> <span class="va">self</span>.all_params():</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> cb <span class="kw">in</span> <span class="va">self</span>.cbs:</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>            state <span class="op">=</span> _update(state, cb(p, <span class="op">**</span>{<span class="op">**</span>state, <span class="op">**</span>hyper}))</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.state[p] <span class="op">=</span> state</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如我们在从头开始训练 MNIST 模型时看到的，<code>zero_grad</code>只是循环遍历模型的参数并将梯度设置为零。它还调用<code>detach_</code>，这会删除任何梯度计算的历史，因为在<code>zero_grad</code>之后不再需要它。</p>
+<p>更有趣的方法是<code>step</code>，它循环遍历回调（<code>cbs</code>）并调用它们来更新参数（如果<code>cb</code>返回任何内容，<code>_update</code>函数只是调用<code>state.update</code>）。正如你所看到的，<code>Optimizer</code>本身不执行任何 SGD 步骤。让我们看看如何将 SGD 添加到<code>Optimizer</code>中。</p>
+<p>这是一个优化器回调，通过将<code>-lr</code>乘以梯度并将其添加到参数（当在 PyTorch 中传递<code>Tensor.add_</code>两个参数时，它们在相加之前相乘）来执行单个 SGD 步骤：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sgd_cb(p, lr, <span class="op">**</span>kwargs): p.data.add_(<span class="op">-</span>lr, p.grad.data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们可以使用<code>cbs</code>参数将这个传递给<code>Optimizer</code>；我们需要使用<code>partial</code>，因为<code>Learner</code>将调用这个函数来创建我们的优化器：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>opt_func <span class="op">=</span> partial(Optimizer, cbs<span class="op">=</span>[sgd_cb])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们看看这是否有效：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(opt_func<span class="op">=</span>opt_func)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>learn.fit(<span class="dv">3</span>, <span class="fl">0.03</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>2.730918</td>
+<td>2.009971</td>
+<td>0.332739</td>
+<td>00:09</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2.204893</td>
+<td>1.747202</td>
+<td>0.441529</td>
+<td>00:09</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.875621</td>
+<td>1.684515</td>
+<td>0.445350</td>
+<td>00:09</td>
+</tr>
+</tbody>
+</table>
+<p>它正在工作！这就是我们如何在 fastai 中从头开始创建 SGD。现在让我们看看这个“动量”是什么。</p>
+</section>
+<section id="动量" class="level1">
+<h1>动量</h1>
+<p>正如在第四章中所描述的，SGD 可以被看作站在山顶上，通过在每个时间点沿着最陡峭的斜坡方向迈出一步来往下走。但如果我们有一个球在山上滚动呢？在每个给定点，它不会完全按照梯度的方向前进，因为它会有<em>动量</em>。具有更多动量的球（例如，一个更重的球）会跳过小凸起和洞，更有可能到达崎岖山脉的底部。另一方面，乒乓球会卡在每一个小缝隙中。</p>
+<p>那么我们如何将这个想法带到 SGD 中呢？我们可以使用移动平均值，而不仅仅是当前梯度，来进行我们的步骤：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>weight.avg <span class="op">=</span> beta <span class="op">*</span> weight.avg <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span>beta) <span class="op">*</span> weight.grad</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>new_weight <span class="op">=</span> weight <span class="op">-</span> lr <span class="op">*</span> weight.avg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这里<code>beta</code>是我们选择的一个数字，定义了要使用多少动量。如果<code>beta</code>为 0，第一个方程变为<code>weight.avg = weight.grad</code>，因此我们最终得到普通的 SGD。但如果它接近 1，所选择的主要方向是以前步骤的平均值。（如果你对统计学有一点了解，你可能会在第一个方程中认出<em>指数加权移动平均</em>，它经常用于去噪数据并获得潜在趋势。）</p>
+<p>请注意，我们写<code>weight.avg</code>以突出显示我们需要为模型的每个参数存储移动平均值（它们都有自己独立的移动平均值）。</p>
+<p>图 16-1 显示了一个单参数的噪声数据示例，其中动量曲线以红色绘制，参数的梯度以蓝色绘制。梯度增加，然后减少，动量很好地跟随总体趋势，而不会受到噪声的太大影响。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1601.png" class="img-fluid figure-img"></p>
+<figcaption>显示动量示例的图表</figcaption>
+</figure>
+</div>
+<section id="图-16-1动量的一个例子" class="level6">
+<h6 class="anchored" data-anchor-id="图-16-1动量的一个例子">图 16-1。动量的一个例子</h6>
+<p>如果损失函数有窄谷，我们需要导航：普通的 SGD 会使我们从一边反弹到另一边，而带有动量的 SGD 会将这些平均值平滑地滚动到一侧。参数<code>beta</code>确定我们使用的动量的强度：使用较小的<code>beta</code>，我们会保持接近实际梯度值，而使用较高的<code>beta</code>，我们将主要朝着梯度的平均值前进，直到梯度的任何变化使得该趋势移动。</p>
+<p>使用较大的<code>beta</code>，我们可能会错过梯度改变方向并滚动到一个小的局部最小值。这是一个期望的副作用：直观地，当我们向模型展示一个新的输入时，它会看起来像训练集中的某个东西，但不会<em>完全</em>像它。它将对应于损失函数中接近我们在训练结束时得到的最小值的点，但不会<em>在</em>那个最小值。因此，我们宁愿在一个宽阔的最小值中进行训练，附近的点具有近似相同的损失（或者如果你喜欢的话，损失尽可能平坦的点）。图 16-2 显示了当我们改变<code>beta</code>时，图 16-1 中的图表如何变化。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1602.png" class="img-fluid figure-img"></p>
+<figcaption>显示 beta 值如何影响动量的图表</figcaption>
+</figure>
+</div>
+</section>
+<section id="图-16-2不同-beta-值的动量" class="level6">
+<h6 class="anchored" data-anchor-id="图-16-2不同-beta-值的动量">图 16-2。不同 beta 值的动量</h6>
+<p>我们可以看到在这些示例中，<code>beta</code>太高会导致梯度的整体变化被忽略。在带动量的 SGD 中，通常使用的<code>beta</code>值为 0.9。</p>
+<p><code>fit_one_cycle</code>默认从 0.95 开始，逐渐调整到 0.85，然后在训练结束时逐渐移回到 0.95。让我们看看在普通 SGD 中添加动量后我们的训练情况如何。</p>
+<p>要向我们的优化器添加动量，我们首先需要跟踪移动平均梯度，我们可以使用另一个回调来实现。当优化器回调返回一个<code>dict</code>时，它用于更新优化器的状态，并在下一步传回优化器。因此，这个回调将跟踪梯度平均值，存储在名为<code>grad_avg</code>的参数中：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_grad(p, mom, grad_avg<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> grad_avg <span class="kw">is</span> <span class="va">None</span>: grad_avg <span class="op">=</span> torch.zeros_like(p.grad.data)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">'grad_avg'</span>: grad_avg<span class="op">*</span>mom <span class="op">+</span> p.grad.data}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>要使用它，我们只需在我们的步骤函数中用<code>grad_avg</code>替换<code>p.grad.data</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> momentum_step(p, lr, grad_avg, <span class="op">**</span>kwargs): p.data.add_(<span class="op">-</span>lr, grad_avg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>opt_func <span class="op">=</span> partial(Optimizer, cbs<span class="op">=</span>[average_grad,momentum_step], mom<span class="op">=</span><span class="fl">0.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>Learner</code>将自动调度<code>mom</code>和<code>lr</code>，因此<code>fit_one_cycle</code>甚至可以与我们自定义的<code>Optimizer</code>一起使用：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(opt_func<span class="op">=</span>opt_func)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">3</span>, <span class="fl">0.03</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>2.856000</td>
+<td>2.493429</td>
+<td>0.246115</td>
+<td>00:10</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2.504205</td>
+<td>2.463813</td>
+<td>0.348280</td>
+<td>00:10</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2.187387</td>
+<td>1.755670</td>
+<td>0.418853</td>
+<td>00:10</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_sched()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_16in02.png" class="img-fluid"></p>
+<p>我们仍然没有得到很好的结果，所以让我们看看我们还能做什么。</p>
+</section>
+</section>
+<section id="rmsprop" class="level1">
+<h1>RMSProp</h1>
+<p>RMSProp 是由 Geoffrey Hinton 在<a href="https://oreil.ly/FVcIE">他的 Coursera 课程“神经网络机器学习”第 6 讲 e</a>中介绍的 SGD 的另一种变体。与 SGD 的主要区别在于它使用自适应学习率：每个参数都有自己特定的学习率，由全局学习率控制。这样，我们可以通过为需要大幅度改变的权重提供更高的学习率来加速训练，而对于已经足够好的权重，则提供较低的学习率。</p>
+<p>我们如何决定哪些参数应该具有较高的学习率，哪些不应该？我们可以查看梯度来获取一个想法。如果一个参数的梯度一直接近于零，那么该参数将需要更高的学习率，因为损失是平的。另一方面，如果梯度到处都是，我们可能应该小心并选择一个较低的学习率以避免发散。我们不能简单地平均梯度来查看它们是否变化很多，因为大正数和大负数的平均值接近于零。相反，我们可以使用通常的技巧，即取绝对值或平方值（然后在平均后取平方根）。</p>
+<p>再次，为了确定噪声背后的一般趋势，我们将使用移动平均值，具体来说是梯度的平方的移动平均值。然后，我们将通过使用当前梯度（用于方向）除以这个移动平均值的平方根来更新相应的权重（这样，如果它很低，有效的学习率将更高，如果它很高，有效的学习率将更低）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>w.square_avg <span class="op">=</span> alpha <span class="op">*</span> w.square_avg <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span>alpha) <span class="op">*</span> (w.grad <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>new_w <span class="op">=</span> w <span class="op">-</span> lr <span class="op">*</span> w.grad <span class="op">/</span> math.sqrt(w.square_avg <span class="op">+</span> eps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>eps</code>（<em>epsilon</em>）是为了数值稳定性而添加的（通常设置为 1e-8），<code>alpha</code>的默认值通常为 0.99。</p>
+<p>我们可以通过做与<code>avg_grad</code>类似的事情将其添加到<code>Optimizer</code>中，但是多了一个<code>**2</code>：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_sqr_grad(p, sqr_mom, sqr_avg<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sqr_avg <span class="kw">is</span> <span class="va">None</span>: sqr_avg <span class="op">=</span> torch.zeros_like(p.grad.data)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">'sqr_avg'</span>: sqr_avg<span class="op">*</span>sqr_mom <span class="op">+</span> p.grad.data<span class="op">**</span><span class="dv">2</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们可以像以前一样定义我们的步骤函数和优化器：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rms_prop_step(p, lr, sqr_avg, eps, grad_avg<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs):</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    denom <span class="op">=</span> sqr_avg.sqrt().add_(eps)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    p.data.addcdiv_(<span class="op">-</span>lr, p.grad, denom)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>opt_func <span class="op">=</span> partial(Optimizer, cbs<span class="op">=</span>[average_sqr_grad,rms_prop_step],</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>                   sqr_mom<span class="op">=</span><span class="fl">0.99</span>, eps<span class="op">=</span><span class="fl">1e-7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>让我们试一试：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> get_learner(opt_func<span class="op">=</span>opt_func)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">3</span>, <span class="fl">0.003</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>accuracy</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>2.766912</td>
+<td>1.845900</td>
+<td>0.402548</td>
+<td>00:11</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>2.194586</td>
+<td>1.510269</td>
+<td>0.504459</td>
+<td>00:11</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1.869099</td>
+<td>1.447939</td>
+<td>0.544968</td>
+<td>00:11</td>
+</tr>
+</tbody>
+</table>
+<p>好多了！现在我们只需将这些想法结合起来，我们就有了 Adam，fastai 的默认优化器。</p>
+</section>
+<section id="adam" class="level1">
+<h1>Adam</h1>
+<p>Adam 将 SGD 与动量和 RMSProp 的思想结合在一起：它使用梯度的移动平均作为方向，并除以梯度平方的移动平均的平方根，为每个参数提供自适应学习率。</p>
+<p>Adam 计算移动平均值的方式还有一个不同之处。它采用<em>无偏</em>移动平均值，即</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>w.avg <span class="op">=</span> beta <span class="op">*</span> w.avg <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span>beta) <span class="op">*</span> w.grad</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>unbias_avg <span class="op">=</span> w.avg <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (beta<span class="op">**</span>(i<span class="op">+</span><span class="dv">1</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>如果我们是第<code>i</code>次迭代（从 0 开始，就像 Python 一样）。这个除数<code>1 - (beta**(i+1))</code>确保无偏平均值看起来更像开始时的梯度（因为<code>beta &lt; 1</code>，分母很快接近 1）。</p>
+<p>将所有内容放在一起，我们的更新步骤看起来像这样：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>w.avg <span class="op">=</span> beta1 <span class="op">*</span> w.avg <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span>beta1) <span class="op">*</span> w.grad</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>unbias_avg <span class="op">=</span> w.avg <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> (beta1<span class="op">**</span>(i<span class="op">+</span><span class="dv">1</span>)))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>w.sqr_avg <span class="op">=</span> beta2 <span class="op">*</span> w.sqr_avg <span class="op">+</span> (<span class="dv">1</span><span class="op">-</span>beta2) <span class="op">*</span> (w.grad <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>new_w <span class="op">=</span> w <span class="op">-</span> lr <span class="op">*</span> unbias_avg <span class="op">/</span> sqrt(w.sqr_avg <span class="op">+</span> eps)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>至于 RMSProp，<code>eps</code>通常设置为 1e-8，文献建议的<code>(beta1，beta2)</code>的默认值为<code>(0.9，0.999)</code>。</p>
+<p>在 fastai 中，Adam 是我们使用的默认优化器，因为它可以加快训练速度，但我们发现<code>beta2=0.99</code>更适合我们使用的调度类型。<code>beta1</code>是动量参数，我们在调用<code>fit_one_cycle</code>时用参数<code>moms</code>指定。至于<code>eps</code>，fastai 使用默认值 1e-5。<code>eps</code>不仅仅对数值稳定性有用。更高的<code>eps</code>限制了调整学习率的最大值。举个极端的例子，如果<code>eps</code>为 1，那么调整后的学习率永远不会高于基本学习率。</p>
+<p>与其在书中展示所有这些代码，我们让你去看看 fastai 的优化器笔记本<a href="https://oreil.ly/"><em>https://oreil.ly/</em></a>*24_O[GitHub 存储库]（浏览 _nbs<em>文件夹并搜索名为</em>optimizer*的笔记本）。你会看到到目前为止我们展示的所有代码，以及 Adam 和其他优化器，以及许多示例和测试。</p>
+<p>当我们从 SGD 转换为 Adam 时，有一件事情会改变，那就是我们如何应用权重衰减，这可能会产生重要的后果。</p>
+</section>
+<section id="解耦权重衰减" class="level1">
+<h1>解耦权重衰减</h1>
+<p>权重衰减，我们在第八章中讨论过，相当于（在普通 SGD 的情况下）用以下方式更新参数：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>new_weight <span class="op">=</span> weight <span class="op">-</span> lr<span class="op">*</span>weight.grad <span class="op">-</span> lr<span class="op">*</span>wd<span class="op">*</span>weight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这个公式的最后一部分解释了这种技术的名称：每个权重都会被<code>lr * wd</code>的因子衰减。</p>
+<p>权重衰减的另一个名称是<em>L2 正则化</em>，它包括将所有平方权重的总和添加到损失中（乘以权重衰减）。正如我们在第八章中看到的，这可以直接表达在梯度上：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>weight.grad <span class="op">+=</span> wd<span class="op">*</span>weight</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>对于 SGD，这两个公式是等价的。然而，这种等价性仅适用于标准 SGD，因为正如我们在动量、RMSProp 或 Adam 中看到的，更新周围有一些额外的梯度公式。</p>
+<p>大多数库使用第二种公式，但 Ilya Loshchilov 和 Frank Hutter 在<a href="https://oreil.ly/w37Ac">“解耦权重衰减正则化”</a>中指出，第一种方法是 Adam 优化器或动量的唯一正确方法，这就是为什么 fastai 将其设为默认值。</p>
+<p>现在你知道了<code>learn.fit_one_cycle</code>这行代码背后隐藏的一切！</p>
+<p>然而，优化器只是训练过程的一部分。当你需要改变 fastai 的训练循环时，你不能直接改变库内的代码。相反，我们设计了一套回调系统，让你可以在独立的块中编写任何你喜欢的调整，然后进行混合和匹配。</p>
+</section>
+<section id="回调" class="level1">
+<h1>回调</h1>
+<p>有时候你需要稍微改变事物的工作方式。事实上，我们已经看到了这种情况的例子：Mixup，fp16 训练，每个时期重置模型以训练 RNN 等。我们如何进行这种类型的调整训练过程？</p>
+<p>我们已经看到了基本训练循环，借助<code>Optimizer</code>类的帮助，对于单个时期，它看起来像这样：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xb,yb <span class="kw">in</span> dl:</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_func(model(xb), yb)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    opt.step()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    opt.zero_grad()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>图 16-3 展示了如何形象地描绘这一点。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1603.png" class="img-fluid figure-img"></p>
+<figcaption>基本训练循环</figcaption>
+</figure>
+</div>
+<section id="图-16-3.-基本训练循环" class="level6">
+<h6 class="anchored" data-anchor-id="图-16-3.-基本训练循环">图 16-3. 基本训练循环</h6>
+<p>深度学习从业者通常自定义训练循环的常规方式是复制现有训练循环，然后将特定更改所需的代码插入其中。这几乎是你在网上找到的所有代码的样子。但是它存在严重问题。</p>
+<p>某个特定调整过的训练循环不太可能满足您的特定需求。可以对训练循环进行数百次更改，这意味着可能有数十亿种可能的排列组合。您不能只是从这里的一个训练循环中复制一个调整，从那里的另一个训练循环中复制另一个调整，然后期望它们都能一起工作。每个都将基于对其所在环境的不同假设，使用不同的命名约定，并期望数据以不同的格式存在。</p>
+<p>我们需要一种方法，允许用户在训练循环的任何部分插入自己的代码，但以一种一致和明确定义的方式。计算机科学家已经提出了一个优雅的解决方案：回调。<em>回调</em>是您编写并注入到另一段代码中的代码片段，在预定义的点执行。事实上，回调已经多年用于深度学习训练循环。问题在于，在以前的库中，只能在可能需要的一小部分地方注入代码——更重要的是，回调无法执行它们需要执行的所有操作。</p>
+<p>为了能够像手动复制和粘贴训练循环并直接插入代码一样灵活，回调必须能够读取训练循环中的所有可能信息，根据需要修改所有信息，并完全控制批次、周期甚至整个训练循环何时应该终止。fastai 是第一个提供所有这些功能的库。它修改了训练循环，使其看起来像图 16-4。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1604.png" class="img-fluid figure-img"></p>
+<figcaption>带有回调的训练循环</figcaption>
+</figure>
+</div>
+</section>
+<section id="图-16-4.-带有回调的训练循环" class="level6">
+<h6 class="anchored" data-anchor-id="图-16-4.-带有回调的训练循环">图 16-4. 带有回调的训练循环</h6>
+<p>这种方法的有效性在过去几年中得到了验证——通过使用 fastai 回调系统，我们能够实现我们尝试的每一篇新论文，并满足每一个修改训练循环的用户请求。训练循环本身并不需要修改。图 16-5 展示了添加的一些回调。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_1605.png" class="img-fluid figure-img"></p>
+<figcaption>一些 fastai 回调</figcaption>
+</figure>
+</div>
+</section>
+<section id="图-16-5.-一些-fastai-回调" class="level6">
+<h6 class="anchored" data-anchor-id="图-16-5.-一些-fastai-回调">图 16-5. 一些 fastai 回调</h6>
+<p>这很重要，因为这意味着我们头脑中的任何想法，我们都可以实现。我们永远不需要深入 PyTorch 或 fastai 的源代码，并临时拼凑一个系统来尝试我们的想法。当我们实现自己的回调来开发自己的想法时，我们知道它们将与 fastai 提供的所有其他功能一起工作——因此我们将获得进度条、混合精度训练、超参数退火等等。</p>
+<p>另一个优点是，它使逐渐删除或添加功能以及执行消融研究变得容易。您只需要调整传递给 fit 函数的回调列表。</p>
+<p>例如，这是每个训练循环批次运行的 fastai 源代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>._split(b)<span class="op">;</span>                                  <span class="va">self</span>(<span class="st">'begin_batch'</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.pred <span class="op">=</span> <span class="va">self</span>.model(<span class="op">*</span><span class="va">self</span>.xb)<span class="op">;</span>                <span class="va">self</span>(<span class="st">'after_pred'</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.loss <span class="op">=</span> <span class="va">self</span>.loss_func(<span class="va">self</span>.pred, <span class="op">*</span><span class="va">self</span>.yb)<span class="op">;</span> <span class="va">self</span>(<span class="st">'after_loss'</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.training: <span class="cf">return</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.loss.backward()<span class="op">;</span>                            <span class="va">self</span>(<span class="st">'after_backward'</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.opt.step()<span class="op">;</span>                                 <span class="va">self</span>(<span class="st">'after_step'</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.opt.zero_grad()</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> CancelBatchException:                         <span class="va">self</span>(<span class="st">'after_cancel_batch'</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a><span class="cf">finally</span>:                                             <span class="va">self</span>(<span class="st">'after_batch'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>形式为<code>self('...')</code>的调用是回调被调用的地方。正如您所看到的，这发生在每一步之后。回调将接收整个训练状态，并且还可以修改它。例如，输入数据和目标标签分别在<code>self.xb</code>和<code>self.yb</code>中；回调可以修改这些以修改训练循环看到的数据。它还可以修改<code>self.loss</code>甚至梯度。</p>
+<p>让我们通过编写一个回调来看看这在实践中是如何工作的。</p>
+</section>
+<section id="创建回调" class="level2">
+<h2 class="anchored" data-anchor-id="创建回调">创建回调</h2>
+<p>当您想要编写自己的回调时，可用事件的完整列表如下：</p>
+<p><code>begin_fit</code></p>
+<p>在做任何事情之前调用；适用于初始设置。</p>
+<p><code>begin_epoch</code></p>
+<p>在每个周期开始时调用；对于需要在每个周期重置的任何行为都很有用。</p>
+<p><code>begin_train</code></p>
+<p>在周期的训练部分开始时调用。</p>
+<p><code>begin_batch</code></p>
+<p>在每个批次开始时调用，就在绘制该批次之后。可以用于对批次进行任何必要的设置（如超参数调度）或在输入/目标进入模型之前对其进行更改（例如，通过应用 Mixup）。</p>
+<p><code>after_pred</code></p>
+<p>在计算模型对批次的输出后调用。可以用于在将其馈送到损失函数之前更改该输出。</p>
+<p><code>after_loss</code></p>
+<p>在计算损失之后但在反向传播之前调用。可以用于向损失添加惩罚（例如在 RNN 训练中的 AR 或 TAR）。</p>
+<p><code>after_backward</code></p>
+<p>在反向传播之后调用，但在参数更新之前调用。可以在更新之前对梯度进行更改（例如通过梯度裁剪）。</p>
+<p><code>after_step</code></p>
+<p>在步骤之后和梯度归零之前调用。</p>
+<p><code>after_batch</code></p>
+<p>在批次结束时调用，以在下一个批次之前执行任何必要的清理。</p>
+<p><code>after_train</code></p>
+<p>在时代的训练阶段结束时调用。</p>
+<p><code>begin_validate</code></p>
+<p>在时代的验证阶段开始时调用；用于特定于验证所需的任何设置。</p>
+<p><code>after_validate</code></p>
+<p>在时代的验证部分结束时调用。</p>
+<p><code>after_epoch</code></p>
+<p>在时代结束时调用，进行下一个时代之前的任何清理。</p>
+<p><code>after_fit</code></p>
+<p>在训练结束时调用，进行最终清理。</p>
+<p>此列表的元素可作为特殊变量<code>event</code>的属性使用，因此您只需在笔记本中键入<code>event.</code>并按 Tab 键即可查看所有选项的列表</p>
+<p>让我们看一个例子。您是否还记得在第十二章中我们需要确保在每个时代的训练和验证开始时调用我们的特殊<code>reset</code>方法？我们使用 fastai 提供的<code>ModelResetter</code>回调来为我们执行此操作。但它究竟是如何工作的呢？这是该类的完整源代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> ModelResetter(Callback):</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> begin_train(<span class="va">self</span>):    <span class="va">self</span>.model.reset()</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> begin_validate(<span class="va">self</span>): <span class="va">self</span>.model.reset()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>是的，实际上就是这样！它只是在完成时代的训练或验证后，调用一个名为<code>reset</code>的方法。</p>
+<p>回调通常像这样“简短而甜美”。实际上，让我们再看一个。这是添加 RNN 正则化（AR 和 TAR）的 fastai 回调的源代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> RNNRegularizer(Callback):</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, alpha<span class="op">=</span><span class="fl">0.</span>, beta<span class="op">=</span><span class="fl">0.</span>): <span class="va">self</span>.alpha,<span class="va">self</span>.beta <span class="op">=</span> alpha,beta</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> after_pred(<span class="va">self</span>):</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.raw_out,<span class="va">self</span>.out <span class="op">=</span> <span class="va">self</span>.pred[<span class="dv">1</span>],<span class="va">self</span>.pred[<span class="dv">2</span>]</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.learn.pred <span class="op">=</span> <span class="va">self</span>.pred[<span class="dv">0</span>]</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> after_loss(<span class="va">self</span>):</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="va">self</span>.training: <span class="cf">return</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.alpha <span class="op">!=</span> <span class="fl">0.</span>:</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.learn.loss <span class="op">+=</span> <span class="va">self</span>.alpha <span class="op">*</span> <span class="va">self</span>.out[<span class="op">-</span><span class="dv">1</span>].<span class="bu">float</span>().<span class="bu">pow</span>(<span class="dv">2</span>).mean()</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.beta <span class="op">!=</span> <span class="fl">0.</span>:</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>            h <span class="op">=</span> <span class="va">self</span>.raw_out[<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="bu">len</span>(h)<span class="op">&gt;</span><span class="dv">1</span>:</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.learn.loss <span class="op">+=</span> <span class="va">self</span>.beta <span class="op">*</span> (h[:,<span class="dv">1</span>:] <span class="op">-</span> h[:,:<span class="op">-</span><span class="dv">1</span>]</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>                                               ).<span class="bu">float</span>().<span class="bu">pow</span>(<span class="dv">2</span>).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="自己编写代码" class="level1">
+<h1>自己编写代码。</h1>
+<p>回去重新阅读“激活正则化和时间激活正则化”，然后再看看这里的代码。确保您理解它在做什么以及为什么。</p>
+<p>在这两个示例中，请注意我们如何可以通过直接检查<code>self.model</code>或<code>self.pred</code>来访问训练循环的属性。这是因为<code>Callback</code>将始终尝试获取其内部<code>Learner</code>中没有的属性。这些是<code>self.learn.model</code>或<code>self.learn.pred</code>的快捷方式。请注意，它们适用于读取属性，但不适用于编写属性，这就是为什么当<code>RNNRegularizer</code>更改损失或预测时，您会看到<code>self.learn.loss =</code>或<code>self.learn.pred =</code>。</p>
+<p>在编写回调时，可以直接检查<code>Learner</code>的以下属性：</p>
+<p><code>model</code></p>
+<p>用于训练/验证的模型。</p>
+<p><code>data</code></p>
+<p>底层的<code>DataLoaders</code>。</p>
+<p><code>loss_func</code></p>
+<p>使用的损失函数。</p>
+<p><code>opt</code></p>
+<p>用于更新模型参数的优化器。</p>
+<p><code>opt_func</code></p>
+<p>用于创建优化器的函数。</p>
+<p><code>cbs</code></p>
+<p>包含所有<code>Callback</code>的列表。</p>
+<p><code>dl</code></p>
+<p>用于迭代的当前<code>DataLoader</code>。</p>
+<p><code>x</code>/<code>xb</code></p>
+<p>从<code>self.dl</code>中绘制的最后一个输入（可能由回调修改）。<code>xb</code>始终是一个元组（可能有一个元素），<code>x</code>是去元组化的。您只能分配给<code>xb</code>。</p>
+<p><code>y</code>/<code>yb</code></p>
+<p>从<code>self.dl</code>中绘制的最后一个目标（可能由回调修改）。<code>yb</code>始终是一个元组（可能有一个元素），<code>y</code>是去元组化的。您只能分配给<code>yb</code>。</p>
+<p><code>pred</code></p>
+<p>从<code>self.model</code>中绘制的最后预测（可能由回调修改）。</p>
+<p><code>loss</code></p>
+<p>最后计算的损失（可能由回调修改）。</p>
+<p><code>n_epoch</code></p>
+<p>此次训练的时代数。</p>
+<p><code>n_iter</code></p>
+<p>当前<code>self.dl</code>中的迭代次数。</p>
+<p><code>纪元</code></p>
+<p>当前纪元索引（从 0 到<code>n_epoch-1</code>）。</p>
+<p><code>iter</code></p>
+<p><code>self.dl</code>中的当前迭代索引（从 0 到<code>n_iter-1</code>）。</p>
+<p>以下属性由<code>TrainEvalCallback</code>添加，除非您刻意删除该回调，否则应该可用：</p>
+<p><code>train_iter</code></p>
+<p>自此次训练开始以来已完成的训练迭代次数</p>
+<p><code>pct_train</code></p>
+<p>已完成的训练迭代的百分比（从 0 到 1）</p>
+<p><code>training</code></p>
+<p>一个指示我们是否处于训练模式的标志</p>
+<p>以下属性由<code>Recorder</code>添加，除非您刻意删除该回调，否则应该可用：</p>
+<p><code>smooth_loss</code></p>
+<p>训练损失的指数平均版本</p>
+<p>回调也可以通过使用异常系统中断训练循环的任何部分。</p>
+<section id="回调排序和异常" class="level2">
+<h2 class="anchored" data-anchor-id="回调排序和异常">回调排序和异常</h2>
+<p>有时回调需要能够告诉 fastai 跳过一个批次或一个纪元，或者完全停止训练。例如，考虑<code>TerminateOnNaNCallback</code>。这个方便的回调将在损失变为无穷大或<code>NaN</code>（<em>不是一个数字</em>）时自动停止训练。以下是此回调的 fastai 源代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TerminateOnNaNCallback(Callback):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    run_before<span class="op">=</span>Recorder</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> after_batch(<span class="va">self</span>):</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> torch.isinf(<span class="va">self</span>.loss) <span class="kw">or</span> torch.isnan(<span class="va">self</span>.loss):</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">raise</span> CancelFitException</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>raise CancelFitException</code>这一行告诉训练循环在这一点中断训练。训练循环捕获此异常并不再运行任何进一步的训练或验证。可用的回调控制流异常如下：</p>
+<p><code>CancelFitException</code></p>
+<p>跳过本批次的其余部分并转到<code>after_batch</code>。</p>
+<p><code>CancelEpochException</code></p>
+<p>跳过本纪元的训练部分的其余部分并转到<code>after_train</code>。</p>
+<p><code>CancelTrainException</code></p>
+<p>跳过本纪元的验证部分的其余部分并转到<code>after_validate</code>。</p>
+<p><code>CancelValidException</code></p>
+<p>跳过本纪元的其余部分并转到<code>after_epoch</code>。</p>
+<p><code>CancelBatchException</code></p>
+<p>训练中断并转到<code>after_fit</code>。</p>
+<p>您可以检测是否发生了其中一个异常，并添加代码，以在以下事件之后立即执行：</p>
+<p><code>after_cancel_batch</code></p>
+<p>在继续到<code>after_batch</code>之前立即到达<code>CancelBatchException</code>后</p>
+<p><code>after_cancel_train</code></p>
+<p>在继续到<code>after_epoch</code>之前立即到达<code>CancelTrainException</code>后</p>
+<p><code>after_cancel_valid</code></p>
+<p>在继续到<code>after_epoch</code>之前立即到达<code>CancelValidException</code>后</p>
+<p><code>after_cancel_epoch</code></p>
+<p>在继续到<code>after_epoch</code>之前立即到达<code>CancelEpochException</code>后</p>
+<p><code>after_cancel_fit</code></p>
+<p>在继续到<code>after_fit</code>之前立即到达<code>CancelFitException</code>后</p>
+<p>有时需要按特定顺序调用回调。例如，在<code>TerminateOnNaNCallback</code>的情况下，很重要的是<code>Recorder</code>在此回调之后运行其<code>after_batch</code>，以避免注册<code>NaN</code>损失。您可以在回调中指定<code>run_before</code>（此回调必须在之前运行…）或<code>run_after</code>（此回调必须在之后运行…）以确保您需要的顺序。</p>
+</section>
+</section>
+<section id="结论" class="level1">
+<h1>结论</h1>
+<p>在本章中，我们仔细研究了训练循环，探讨了 SGD 的变体以及为什么它们可能更强大。在撰写本文时，开发新的优化器是一个活跃的研究领域，因此在阅读本章时，可能会在<a href="https://book.fast.ai">书籍网站</a>上发布新变体的附录。请务必查看我们的通用优化器框架如何帮助您快速实现新的优化器。</p>
+<p>我们还研究了强大的回调系统，该系统允许您通过允许您在每个步骤之间检查和修改任何参数来自定义训练循环的每一部分。</p>
+</section>
+<section id="问卷调查" class="level1">
+<h1>问卷调查</h1>
+<ol type="1">
+<li><p>SGD 一步的方程是什么，以数学或代码形式（您喜欢的方式）？</p></li>
+<li><p>我们传递什么给<code>cnn_learner</code>以使用非默认优化器？</p></li>
+<li><p>什么是优化器回调？</p></li>
+<li><p>优化器中的<code>zero_grad</code>是做什么的？</p></li>
+<li><p>优化器中的<code>step</code>是做什么的？通常优化器中如何实现它？</p></li>
+<li><p>重写<code>sgd_cb</code>以使用<code>+=</code>运算符，而不是<code>add_</code>。</p></li>
+<li><p>什么是动量？写出方程式。</p></li>
+<li><p>动量的物理类比是什么？它如何应用在我们的模型训练设置中？</p></li>
+<li><p>动量值越大对梯度有什么影响？</p></li>
+<li><p>1cycle 训练的动量的默认值是多少？</p></li>
+<li><p>RMSProp 是什么？写出方程。</p></li>
+<li><p>梯度的平方值表示什么？</p></li>
+<li><p>Adam 与动量和 RMSProp 有何不同？</p></li>
+<li><p>写出 Adam 的方程。</p></li>
+<li><p>计算几批虚拟值的<code>unbias_avg</code>和<code>w.avg</code>的值。</p></li>
+<li><p>在 Adam 中，<code>eps</code>值较高会产生什么影响？</p></li>
+<li><p>阅读 fastai 存储库中的优化器笔记本并执行它。</p></li>
+<li><p>在哪些情况下，像 Adam 这样的动态学习率方法会改变权重衰减的行为？</p></li>
+<li><p>训练循环的四个步骤是什么？</p></li>
+<li><p>为什么使用回调比为每个想要添加的调整编写新的训练循环更好？</p></li>
+<li><p>fastai 回调系统设计的哪些方面使其像复制和粘贴代码片段一样灵活？</p></li>
+<li><p>在编写回调时，如何获取可用事件的列表？</p></li>
+<li><p>编写<code>ModelResetter</code>回调（请不要偷看）。</p></li>
+<li><p>如何在回调内部访问训练循环的必要属性？何时可以使用或不使用与它们配套的快捷方式？</p></li>
+<li><p>回调如何影响训练循环的控制流？</p></li>
+<li><p>编写<code>TerminateOnNaN</code>回调（如果可能的话，请不要偷看）。</p></li>
+<li><p>如何确保你的回调在另一个回调之后或之前运行？</p></li>
+</ol>
+<section id="进一步研究" class="level2">
+<h2 class="anchored" data-anchor-id="进一步研究">进一步研究</h2>
+<ol type="1">
+<li><p>查阅“修正的 Adam”论文，使用通用优化器框架实现它，并尝试一下。搜索其他最近在实践中表现良好的优化器，并选择一个实现。</p></li>
+<li><p>查看<a href="https://docs.fast.ai">文档</a>中的混合精度回调。尝试理解每个事件和代码行的作用。</p></li>
+<li><p>从头开始实现自己版本的学习率查找器。与 fastai 的版本进行比较。</p></li>
+<li><p>查看 fastai 附带的回调的源代码。看看能否找到一个与你要做的类似的回调，以获得一些灵感。</p></li>
+</ol>
+</section>
+</section>
+<section id="深度学习基础总结" class="level1">
+<h1>深度学习基础：总结</h1>
+<p>恭喜你——你已经完成了书中“深度学习基础”部分！现在你理解了 fastai 的所有应用程序和最重要的架构是如何构建的，以及训练它们的推荐方法——你拥有构建这些内容所需的所有信息。虽然你可能不需要创建自己的训练循环或批归一化层，但了解幕后发生的事情对于调试、性能分析和部署解决方案非常有帮助。</p>
+<p>既然你现在理解了 fastai 应用的基础，一定要花时间深入研究源代码笔记本，并运行和实验它们的部分。这将让你更清楚地了解 fastai 中的所有内容是如何开发的。</p>
+<p>在下一节中，我们将更深入地探讨：我们将探索神经网络的实际前向和后向传递是如何进行的，以及我们可以利用哪些工具来获得更好的性能。然后，我们将继续进行一个项目，将书中的所有材料汇集在一起，用它来构建一个用于解释卷积神经网络的工具。最后但并非最不重要的是，我们将从头开始构建 fastai 的<code>Learner</code>类。</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

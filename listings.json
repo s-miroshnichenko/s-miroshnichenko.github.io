@@ -2,6 +2,7 @@
   {
     "listing": "/posts.html",
     "items": [
+      "/posts/2025-10-22-1.html",
       "/posts/2025-10-21-1.html",
       "/posts/2025-09-25-1.html"
     ]
@@ -9,6 +10,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2025-10-22-1.html",
       "/posts/2025-10-21-1.html",
       "/posts/2025-09-25-1.html"
     ]

@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>pet_breeds – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="第五章图像分类" class="level1">
+<h1>第五章：图像分类</h1>
+<p>现在您了解了深度学习是什么、它的用途以及如何创建和部署模型，现在是时候深入了！在理想的世界中，深度学习从业者不必了解每个细节是如何在底层工作的。但事实上，我们还没有生活在理想的世界中。事实是，要使您的模型真正起作用并可靠地工作，您必须正确处理很多细节，并检查很多细节。这个过程需要能够在训练神经网络时查看内部情况，找到可能的问题，并知道如何解决它们。</p>
+<p>因此，从本书开始，我们将深入研究深度学习的机制。计算机视觉模型的架构是什么，自然语言处理模型的架构是什么，表格模型的架构是什么等等？如何创建一个与您特定领域需求匹配的架构？如何从训练过程中获得最佳结果？如何加快速度？随着数据集的变化，您必须做出哪些改变？</p>
+<p>我们将从重复第一章中查看的相同基本应用程序开始，但我们将做两件事：</p>
+<ul>
+<li><p>让它们变得更好。</p></li>
+<li><p>将它们应用于更多类型的数据。</p></li>
+</ul>
+<p>为了做这两件事，我们将不得不学习深度学习难题的所有部分。这包括不同类型的层、正则化方法、优化器、如何将层组合成架构、标记技术等等。但我们不会一次性把所有这些东西都扔给你；我们将根据需要逐步引入它们，以解决与我们正在处理的项目相关的实际问题。</p>
+</section>
+<section id="从狗和猫到宠物品种" class="level1">
+<h1>从狗和猫到宠物品种</h1>
+<p>在我们的第一个模型中，我们学会了如何区分狗和猫。就在几年前，这被认为是一个非常具有挑战性的任务——但今天，这太容易了！我们将无法向您展示训练模型时的细微差别，因为我们在不担心任何细节的情况下获得了几乎完美的结果。但事实证明，同一数据集还允许我们解决一个更具挑战性的问题：找出每张图像中显示的宠物品种是什么。</p>
+<p>在第一章中，我们将应用程序呈现为已解决的问题。但这不是实际情况下的工作方式。我们从一个我们一无所知的数据集开始。然后我们必须弄清楚它是如何组合的，如何从中提取我们需要的数据，以及这些数据是什么样子的。在本书的其余部分，我们将向您展示如何在实践中解决这些问题，包括理解我们正在处理的数据以及在进行建模时测试的所有必要中间步骤。</p>
+<p>我们已经下载了宠物数据集，并且可以使用与第一章相同的代码获取到该数据集的路径：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai2.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>现在，如果我们要理解如何从每个图像中提取每只宠物的品种，我们需要了解数据是如何布局的。数据布局的细节是深度学习难题的重要组成部分。数据通常以以下两种方式之一提供：</p>
+<ul>
+<li><p>表示数据项的个别文件，例如文本文档或图像，可能组织成文件夹或具有表示有关这些项信息的文件名</p></li>
+<li><p>数据表（例如，以 CSV 格式）中的数据，其中每行是一个项目，可能包括文件名，提供表中数据与其他格式（如文本文档和图像）中数据之间的连接</p></li>
+</ul>
+<p>有一些例外情况——特别是在基因组学等领域，可能存在二进制数据库格式或甚至网络流——但总体而言，您将处理的绝大多数数据集将使用这两种格式的某种组合。</p>
+<p>要查看数据集中的内容，我们可以使用<code>ls</code>方法：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>path.ls()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#3) [Path('annotations'),Path('images'),Path('models')]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们可以看到这个数据集为我们提供了<em>images</em>和<em>annotations</em>目录。数据集的<a href="https://oreil.ly/xveoN">网站</a>告诉我们<em>annotations</em>目录包含有关宠物所在位置而不是它们是什么的信息。在本章中，我们将进行分类，而不是定位，也就是说我们关心的是宠物是什么，而不是它们在哪里。因此，我们暂时会忽略<em>annotations</em>目录。那么，让我们来看看<em>images</em>目录里面的内容：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(path<span class="op">/</span><span class="st">"images"</span>).ls()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="co">#7394) [Path('images/great_pyrenees_173.jpg'),Path('images/wheaten_terrier_46.j</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> pg<span class="st">'),Path('</span>images<span class="op">/</span>Ragdoll_262.jpg<span class="st">'),Path('</span>images<span class="op">/</span>german_shorthaired_3.jpg<span class="st">'),P</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ath</span>(<span class="st">'images/american_bulldog_196.jpg'</span>),Path(<span class="st">'images/boxer_188.jpg'</span>),Path(<span class="st">'ima</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; ges/staffordshire_bull_terrier_173.jpg'),Path('images/basset_hound_71.jpg'),P</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> ath(<span class="st">'images/staffordshire_bull_terrier_37.jpg'</span>),Path(<span class="st">'images/yorkshire_terrie</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="er"> &gt; r_18.jpg')...]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在 fastai 中，大多数返回集合的函数和方法使用一个名为<code>L</code>的类。这个类可以被认为是普通 Python <code>list</code>类型的增强版本，具有用于常见操作的附加便利。例如，当我们在笔记本中显示这个类的对象时，它会以这里显示的格式显示。首先显示的是集合中的项目数，前面带有<code>#</code>。在前面的输出中，你还会看到列表后面有省略号。这意味着只显示了前几个项目，这是件好事，因为我们不希望屏幕上出现超过 7000 个文件名！</p>
+<p>通过检查这些文件名，我们可以看到它们似乎是如何结构化的。每个文件名包含宠物品种，然后是一个下划线（<code>_</code>），一个数字，最后是文件扩展名。我们需要创建一段代码，从单个<code>Path</code>中提取品种。Jupyter 笔记本使这变得容易，因为我们可以逐渐构建出可用的东西，然后用于整个数据集。在这一点上，我们必须小心不要做太多假设。例如，如果你仔细观察，你可能会注意到一些宠物品种包含多个单词，因此我们不能简单地在找到的第一个<code>_</code>字符处中断。为了让我们能够测试我们的代码，让我们挑选出一个这样的文件名：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fname <span class="op">=</span> (path<span class="op">/</span><span class="st">"images"</span>).ls()[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>从这样的字符串中提取信息的最强大和灵活的方法是使用<em>regular expression</em>，也称为<em>regex</em>。正则表达式是一种特殊的字符串，用正则表达式语言编写，它指定了一个一般规则，用于决定另一个字符串是否通过测试（即“匹配”正则表达式），并且可能用于从另一个字符串中提取特定部分。在这种情况下，我们需要一个正则表达式从文件名中提取宠物品种。</p>
+<p>我们没有空间在这里为您提供完整的正则表达式教程，但有许多优秀的在线教程，我们知道你们中的许多人已经熟悉这个神奇的工具。如果你不熟悉，那完全没问题——这是一个让你纠正的绝佳机会！我们发现正则表达式是我们编程工具包中最有用的工具之一，我们的许多学生告诉我们，这是他们最兴奋学习的事情之一。所以赶紧去谷歌搜索“正则表达式教程”吧，然后在你看得很开心之后回到这里。<a href="https://book.fast.ai">书籍网站</a>也提供了我们喜欢的教程列表。</p>
+</section>
+<section id="亚历克西斯说" class="level1">
+<h1>亚历克西斯说</h1>
+<p>正则表达式不仅非常方便，而且还有有趣的起源。它们之所以被称为“regular”，是因为它们最初是“regular”语言的示例，这是乔姆斯基层次结构中最低的一级。这是语言学家诺姆·乔姆斯基开发的一种语法分类，他还写了《句法结构》，这是一项寻找人类语言基础形式语法的开创性工作。这是计算的魅力之一：你每天使用的工具可能实际上来自太空船。</p>
+<p>当你编写正则表达式时，最好的方法是首先针对一个示例尝试。让我们使用<code>findall</code>方法来对<code>fname</code>对象的文件名尝试一个正则表达式：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>re.findall(<span class="vs">r'</span><span class="kw">(</span><span class="dv">.</span><span class="op">+</span><span class="kw">)</span><span class="vs">_</span><span class="dv">\d</span><span class="op">+</span><span class="dv">.</span><span class="vs">jpg</span><span class="dv">$</span><span class="vs">'</span>, fname.name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>[<span class="st">'great_pyrenees'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这个正则表达式提取出所有字符，直到最后一个下划线字符，只要后续字符是数字，然后是 JPEG 文件扩展名。</p>
+<p>现在我们确认了正则表达式对示例的有效性，让我们用它来标记整个数据集。fastai 提供了许多类来帮助标记。对于使用正则表达式进行标记，我们可以使用<code>RegexLabeller</code>类。在这个例子中，我们使用了数据块 API，我们在第二章中看到过（实际上，我们几乎总是使用数据块 API——它比我们在第一章中看到的简单工厂方法更灵活）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pets <span class="op">=</span> DataBlock(blocks <span class="op">=</span> (ImageBlock, CategoryBlock),</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                 get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                 splitter<span class="op">=</span>RandomSplitter(seed<span class="op">=</span><span class="dv">42</span>),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                 get_y<span class="op">=</span>using_attr(RegexLabeller(<span class="vs">r'</span><span class="kw">(</span><span class="dv">.</span><span class="op">+</span><span class="kw">)</span><span class="vs">_</span><span class="dv">\d</span><span class="op">+</span><span class="dv">.</span><span class="vs">jpg</span><span class="dv">$</span><span class="vs">'</span>), <span class="st">'name'</span>),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                 item_tfms<span class="op">=</span>Resize(<span class="dv">460</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                 batch_tfms<span class="op">=</span>aug_transforms(size<span class="op">=</span><span class="dv">224</span>, min_scale<span class="op">=</span><span class="fl">0.75</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> pets.dataloaders(path<span class="op">/</span><span class="st">"images"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这个<code>DataBlock</code>调用中一个重要的部分是我们以前没有见过的这两行：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>item_tfms<span class="op">=</span>Resize(<span class="dv">460</span>),</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>batch_tfms<span class="op">=</span>aug_transforms(size<span class="op">=</span><span class="dv">224</span>, min_scale<span class="op">=</span><span class="fl">0.75</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这些行实现了一个我们称之为<em>预调整</em>的 fastai 数据增强策略。预调整是一种特殊的图像增强方法，旨在最大限度地减少数据破坏，同时保持良好的性能。</p>
+</section>
+<section id="预调整" class="level1">
+<h1>预调整</h1>
+<p>我们需要我们的图像具有相同的尺寸，这样它们可以整合成张量传递给 GPU。我们还希望最小化我们执行的不同增强计算的数量。性能要求表明，我们应该尽可能将我们的增强变换组合成更少的变换（以减少计算数量和损失操作的数量），并将图像转换为统一尺寸（以便在 GPU 上更有效地处理）。</p>
+<p>挑战在于，如果在调整大小到增强尺寸之后执行各种常见的数据增强变换，可能会引入虚假的空白区域，降低数据质量，或两者兼而有之。例如，将图像旋转 45 度会在新边界的角落区域填充空白，这不会教会模型任何东西。许多旋转和缩放操作将需要插值来创建像素。这些插值像素是从原始图像数据派生的，但质量较低。</p>
+<p>为了解决这些挑战，预调整采用了图 5-1 中显示的两种策略：</p>
+<ol type="1">
+<li><p>将图像调整为相对“大”的尺寸，即明显大于目标训练尺寸。</p></li>
+<li><p>将所有常见的增强操作（包括调整大小到最终目标大小）组合成一个，并在 GPU 上一次性执行组合操作，而不是单独执行操作并多次插值。</p></li>
+</ol>
+<p>第一步是调整大小，创建足够大的图像，使其内部区域有多余的边距，以允许进一步的增强变换而不会产生空白区域。这个转换通过调整大小为一个正方形，使用一个大的裁剪尺寸来实现。在训练集上，裁剪区域是随机选择的，裁剪的大小被选择为覆盖图像宽度或高度中较小的那个。在第二步中，GPU 用于所有数据增强，并且所有潜在破坏性操作都一起完成，最后进行单次插值。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_0501.png" class="img-fluid figure-img"></p>
+<figcaption>训练集上的预调整</figcaption>
+</figure>
+</div>
+<section id="图-5-1训练集上的预调整" class="level6">
+<h6 class="anchored" data-anchor-id="图-5-1训练集上的预调整">图 5-1。训练集上的预调整</h6>
+<p>这张图片展示了两个步骤：</p>
+<ol type="1">
+<li><p><em>裁剪全宽或全高</em>：这在<code>item_tfms</code>中，因此它应用于每个单独的图像，然后再复制到 GPU。它用于确保所有图像具有相同的尺寸。在训练集上，裁剪区域是随机选择的。在验证集上，总是选择图像的中心正方形。</p></li>
+<li><p><em>随机裁剪和增强</em>：这在<code>batch_tfms</code>中，因此它一次在 GPU 上应用于整个批次，这意味着速度快。在验证集上，只有调整大小到模型所需的最终大小。在训练集上，首先进行随机裁剪和任何其他增强。</p></li>
+</ol>
+<p>要在 fastai 中实现此过程，您可以使用<code>Resize</code>作为具有大尺寸的项目转换，以及<code>RandomResizedCrop</code>作为具有较小尺寸的批处理转换。如果在<code>aug_transforms</code>函数中包含<code>min_scale</code>参数，<code>RandomResizedCrop</code>将为您添加，就像在上一节中的<code>DataBlock</code>调用中所做的那样。或者，您可以在初始<code>Resize</code>中使用<code>pad</code>或<code>squish</code>而不是<code>crop</code>（默认值）。</p>
+<p>图 5-2 显示了一个图像经过缩放、插值、旋转，然后再次插值（这是所有其他深度学习库使用的方法），显示在右侧，以及一个图像经过缩放和旋转作为一个操作，然后插值一次（fastai 方法），显示在左侧。</p>
+<p><img src="img/dlcf_0502.png" class="img-fluid"></p>
+</section>
+<section id="图-5-2fastai-数据增强策略左与传统方法右的比较" class="level6">
+<h6 class="anchored" data-anchor-id="图-5-2fastai-数据增强策略左与传统方法右的比较">图 5-2。fastai 数据增强策略（左）与传统方法（右）的比较</h6>
+<p>您可以看到右侧的图像定义不够清晰，在左下角有反射填充伪影；此外，左上角的草完全消失了。我们发现，在实践中，使用预调整显著提高了模型的准确性，通常也会加快速度。</p>
+<p>fastai 库还提供了简单的方法来检查您的数据在训练模型之前的外观，这是一个非常重要的步骤。我们将在下一步中看到这些。</p>
+</section>
+<section id="检查和调试-datablock" class="level2">
+<h2 class="anchored" data-anchor-id="检查和调试-datablock">检查和调试 DataBlock</h2>
+<p>我们永远不能假设我们的代码完美运行。编写<code>DataBlock</code>就像编写蓝图一样。如果您的代码中有语法错误，您将收到错误消息，但是您无法保证您的模板会按照您的意图在数据源上运行。因此，在训练模型之前，您应该始终检查您的数据。</p>
+<p>您可以使用<code>show_batch</code>方法来执行此操作：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dls.show_batch(nrows<span class="op">=</span><span class="dv">1</span>, ncols<span class="op">=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_05in01.png" class="img-fluid"></p>
+<p>查看每个图像，并检查每个图像是否具有正确的宠物品种标签。通常，数据科学家使用的数据可能不如领域专家熟悉：例如，我实际上不知道这些宠物品种中的许多是什么。由于我不是宠物品种的专家，我会在这一点上使用谷歌图像搜索一些这些品种，并确保图像看起来与我在输出中看到的相似。</p>
+<p>如果在构建<code>DataBlock</code>时出现错误，您可能在此步骤之前不会看到它。为了调试这个问题，我们鼓励您使用<code>summary</code>方法。它将尝试从您提供的源创建一个批次，并提供大量细节。此外，如果失败，您将准确地看到错误发生的位置，并且库将尝试为您提供一些帮助。例如，一个常见的错误是忘记使用<code>Resize</code>转换，因此最终得到不同大小的图片并且无法将它们整理成批次。在这种情况下，摘要将如下所示（请注意，自撰写时可能已更改确切文本，但它将给您一个概念）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>pets1 <span class="op">=</span> DataBlock(blocks <span class="op">=</span> (ImageBlock, CategoryBlock),</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                 get_items<span class="op">=</span>get_image_files,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                 splitter<span class="op">=</span>RandomSplitter(seed<span class="op">=</span><span class="dv">42</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                 get_y<span class="op">=</span>using_attr(RegexLabeller(<span class="vs">r'</span><span class="kw">(</span><span class="dv">.</span><span class="op">+</span><span class="kw">)</span><span class="vs">_</span><span class="dv">\d</span><span class="op">+</span><span class="dv">.</span><span class="vs">jpg</span><span class="dv">$</span><span class="vs">'</span>), <span class="st">'name'</span>))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>pets1.summary(path<span class="op">/</span><span class="st">"images"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>Setting<span class="op">-</span>up <span class="bu">type</span> transforms pipelines</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>Collecting items <span class="im">from</span> <span class="op">/</span>home<span class="op">/</span>sgugger<span class="op">/</span>.fastai<span class="op">/</span>data<span class="op">/</span>oxford<span class="op">-</span>iiit<span class="op">-</span>pet<span class="op">/</span>images</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>Found <span class="dv">7390</span> items</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> datasets of sizes <span class="dv">5912</span>,<span class="dv">1478</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>Setting up Pipeline: PILBase.create</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>Setting up Pipeline: partial <span class="op">-&gt;</span> Categorize</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>Building one sample</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  Pipeline: PILBase.create</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    starting <span class="im">from</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>      <span class="op">/</span>home<span class="op">/</span>sgugger<span class="op">/</span>.fastai<span class="op">/</span>data<span class="op">/</span>oxford<span class="op">-</span>iiit<span class="op">-</span>pet<span class="op">/</span>images<span class="op">/</span>american_bulldog_83.jpg</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    applying PILBase.create gives</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      PILImage mode<span class="op">=</span>RGB size<span class="op">=</span><span class="dv">375</span><span class="er">x500</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  Pipeline: partial <span class="op">-&gt;</span> Categorize</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    starting <span class="im">from</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>      <span class="op">/</span>home<span class="op">/</span>sgugger<span class="op">/</span>.fastai<span class="op">/</span>data<span class="op">/</span>oxford<span class="op">-</span>iiit<span class="op">-</span>pet<span class="op">/</span>images<span class="op">/</span>american_bulldog_83.jpg</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    applying partial gives</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>      american_bulldog</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>    applying Categorize gives</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>      TensorCategory(<span class="dv">12</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>Final sample: (PILImage mode<span class="op">=</span>RGB size<span class="op">=</span><span class="dv">375</span><span class="er">x500</span>, TensorCategory(<span class="dv">12</span>))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>Setting up after_item: Pipeline: ToTensor</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>Setting up before_batch: Pipeline:</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>Setting up after_batch: Pipeline: IntToFloatTensor</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>Building one batch</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>Applying item_tfms to the first sample:</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  Pipeline: ToTensor</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>    starting <span class="im">from</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      (PILImage mode<span class="op">=</span>RGB size<span class="op">=</span><span class="dv">375</span><span class="er">x500</span>, TensorCategory(<span class="dv">12</span>))</span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    applying ToTensor gives</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>      (TensorImage of size <span class="dv">3</span><span class="er">x500x375</span>, TensorCategory(<span class="dv">12</span>))</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>Adding the <span class="bu">next</span> <span class="dv">3</span> samples</span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>No before_batch transform to <span class="bu">apply</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>Collating items <span class="kw">in</span> a batch</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>Error<span class="op">!</span> It<span class="st">'s not possible to collate your items in a batch</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="er">Could not collate the 0-th members of your tuples because got the following</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a>shapes:</span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a>torch.Size([<span class="dv">3</span>, <span class="dv">500</span>, <span class="dv">375</span>]),torch.Size([<span class="dv">3</span>, <span class="dv">375</span>, <span class="dv">500</span>]),torch.Size([<span class="dv">3</span>, <span class="dv">333</span>, <span class="dv">500</span>]),</span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a>torch.Size([<span class="dv">3</span>, <span class="dv">375</span>, <span class="dv">500</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>您可以看到我们如何收集数据并拆分数据，如何从文件名转换为<em>样本</em>（元组（图像，类别）），然后应用了哪些项目转换以及如何在批处理中无法整理这些样本（因为形状不同）。</p>
+<p>一旦您认为数据看起来正确，我们通常建议下一步应该使用它来训练一个简单的模型。我们经常看到人们将实际模型的训练推迟得太久。结果，他们不知道他们的基准结果是什么样的。也许您的问题不需要大量花哨的领域特定工程。或者数据似乎根本无法训练模型。这些都是您希望尽快了解的事情。</p>
+<p>对于这个初始测试，我们将使用与第一章中使用的相同简单模型：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet34, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>error_rate</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.491732</td>
+<td>0.337355</td>
+<td>0.108254</td>
+<td>00:18</td>
+</tr>
+<tr class="even">
+<td>epoch</td>
+<td>train_loss</td>
+<td>valid_loss</td>
+<td>error_rate</td>
+<td>time</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0.503154</td>
+<td>0.293404</td>
+<td>0.096076</td>
+<td>00:23</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0.314759</td>
+<td>0.225316</td>
+<td>0.066306</td>
+<td>00:23</td>
+</tr>
+</tbody>
+</table>
+<p>正如我们之前简要讨论过的，当我们拟合模型时显示的表格展示了每个训练周期后的结果。记住，一个周期是对数据中所有图像的完整遍历。显示的列是训练集中项目的平均损失、验证集上的损失，以及我们请求的任何指标——在这种情况下是错误率。</p>
+<p>请记住<em>损失</em>是我们决定用来优化模型参数的任何函数。但是我们实际上并没有告诉 fastai 我们想要使用什么损失函数。那么它在做什么呢？fastai 通常会根据您使用的数据和模型类型尝试选择适当的损失函数。在这种情况下，我们有图像数据和分类结果，所以 fastai 会默认使用<em>交叉熵损失</em>。</p>
+</section>
+</section>
+<section id="交叉熵损失" class="level1">
+<h1>交叉熵损失</h1>
+<p><em>交叉熵损失</em>是一个类似于我们在上一章中使用的损失函数，但是（正如我们将看到的）有两个好处：</p>
+<ul>
+<li><p>即使我们的因变量有两个以上的类别，它也能正常工作。</p></li>
+<li><p>这将导致更快速、更可靠的训练。</p></li>
+</ul>
+<p>要理解交叉熵损失如何处理具有两个以上类别的因变量，我们首先必须了解损失函数看到的实际数据和激活是什么样子的。</p>
+<section id="查看激活和标签" class="level2">
+<h2 class="anchored" data-anchor-id="查看激活和标签">查看激活和标签</h2>
+<p>让我们看看我们模型的激活。要从我们的<code>DataLoaders</code>中获取一批真实数据，我们可以使用<code>one_batch</code>方法：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> dls.one_batch()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如您所见，这返回了因变量和自变量，作为一个小批量。让我们看看我们的因变量中包含什么：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>TensorCategory([<span class="dv">11</span>,  <span class="dv">0</span>,  <span class="dv">0</span>,  <span class="dv">5</span>, <span class="dv">20</span>,  <span class="dv">4</span>, <span class="dv">22</span>, <span class="dv">31</span>, <span class="dv">23</span>, <span class="dv">10</span>, <span class="dv">20</span>,  <span class="dv">2</span>,  <span class="dv">3</span>, <span class="dv">27</span>, <span class="dv">18</span>, <span class="dv">23</span>,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="dv">33</span>,  <span class="dv">5</span>, <span class="dv">24</span>,  <span class="dv">7</span>,  <span class="dv">6</span>, <span class="dv">12</span>,  <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">35</span>, <span class="dv">14</span>, <span class="dv">10</span>, <span class="dv">15</span>,  <span class="dv">3</span>,  <span class="dv">3</span>, <span class="dv">21</span>,  <span class="dv">5</span>, <span class="dv">19</span>, <span class="dv">14</span>, <span class="dv">12</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="dv">15</span>, <span class="dv">27</span>,  <span class="dv">1</span>, <span class="dv">17</span>, <span class="dv">10</span>,  <span class="dv">7</span>,  <span class="dv">6</span>, <span class="dv">15</span>, <span class="dv">23</span>, <span class="dv">36</span>,  <span class="dv">1</span>, <span class="dv">35</span>,  <span class="dv">6</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         <span class="dv">4</span>, <span class="dv">29</span>, <span class="dv">24</span>, <span class="dv">32</span>,  <span class="dv">2</span>, <span class="dv">14</span>, <span class="dv">26</span>, <span class="dv">25</span>, <span class="dv">21</span>,  <span class="dv">0</span>, <span class="dv">29</span>, <span class="dv">31</span>, <span class="dv">18</span>,  <span class="dv">7</span>,  <span class="dv">7</span>, <span class="dv">17</span>],</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> device<span class="op">=</span><span class="st">'cuda:5'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们的批量大小是 64，因此在这个张量中有 64 行。每行是一个介于 0 和 36 之间的整数，代表我们 37 种可能的宠物品种。我们可以通过使用<code>Learner.get_preds</code>来查看预测（我们神经网络最后一层的激活）。这个函数默认返回预测和目标，但由于我们已经有了目标，我们可以通过将其赋值给特殊变量<code>_</code>来有效地忽略它们：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>preds,_ <span class="op">=</span> learn.get_preds(dl<span class="op">=</span>[(x,y)])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>preds[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="fl">7.9069e-04</span>, <span class="fl">6.2350e-05</span>, <span class="fl">3.7607e-05</span>, <span class="fl">2.9260e-06</span>, <span class="fl">1.3032e-05</span>, <span class="fl">2.5760e-05</span>,</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="fl">6.2341e-08</span>, <span class="fl">3.6400e-07</span>, <span class="fl">4.1311e-06</span>, <span class="fl">1.3310e-04</span>, <span class="fl">2.3090e-03</span>, <span class="fl">9.9281e-01</span>,</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="fl">4.6494e-05</span>, <span class="fl">6.4266e-07</span>, <span class="fl">1.9780e-06</span>, <span class="fl">5.7005e-07</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="fl">3.3448e-06</span>, <span class="fl">3.5691e-03</span>, <span class="fl">3.4385e-06</span>, <span class="fl">1.1578e-05</span>, <span class="fl">1.5916e-06</span>, <span class="fl">8.5567e-08</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="fl">5.0773e-08</span>, <span class="fl">2.2978e-06</span>, <span class="fl">1.4150e-06</span>, <span class="fl">3.5459e-07</span>, <span class="fl">1.4599e-04</span>, <span class="fl">5.6198e-08</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a> <span class="op">&gt;</span> <span class="fl">3.4108e-07</span>, <span class="fl">2.0813e-06</span>, <span class="fl">8.0568e-07</span>, <span class="fl">4.3381e-07</span>,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        <span class="fl">1.0069e-05</span>, <span class="fl">9.1020e-07</span>, <span class="fl">4.8714e-06</span>, <span class="fl">1.2734e-06</span>, <span class="fl">2.4735e-06</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>实际预测是 37 个介于 0 和 1 之间的概率，总和为 1：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(preds[<span class="dv">0</span>]),preds[<span class="dv">0</span>].<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">37</span>, tensor(<span class="fl">1.0000</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>为了将我们模型的激活转换为这样的预测，我们使用了一个叫做<em>softmax</em>的激活函数。</p>
+</section>
+<section id="softmax" class="level2">
+<h2 class="anchored" data-anchor-id="softmax">Softmax</h2>
+<p>在我们的分类模型中，我们在最后一层使用 softmax 激活函数，以确保激活值都在 0 到 1 之间，并且它们总和为 1。</p>
+<p>Softmax 类似于我们之前看到的 sigmoid 函数。作为提醒，sigmoid 看起来像这样：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plot_function(torch.sigmoid, <span class="bu">min</span><span class="op">=-</span><span class="dv">4</span>,<span class="bu">max</span><span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_05in02.png" class="img-fluid"></p>
+<p>我们可以将这个函数应用于神经网络的一个激活列，并得到一个介于 0 和 1 之间的数字列，因此对于我们的最后一层来说，这是一个非常有用的激活函数。</p>
+<p>现在想象一下，如果我们希望目标中有更多类别（比如我们的 37 种宠物品种）。这意味着我们需要比单个列更多的激活：我们需要一个激活<em>每个类别</em>。例如，我们可以创建一个预测 3 和 7 的神经网络，返回两个激活，每个类别一个——这将是创建更一般方法的一个很好的第一步。让我们只是使用一些标准差为 2 的随机数（因此我们将<code>randn</code>乘以 2）作为示例，假设我们有六个图像和两个可能的类别（其中第一列代表 3，第二列代表 7）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>acts <span class="op">=</span> torch.randn((<span class="dv">6</span>,<span class="dv">2</span>))<span class="op">*</span><span class="dv">2</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>acts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tensor([[ <span class="fl">0.6734</span>,  <span class="fl">0.2576</span>],</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.4689</span>,  <span class="fl">0.4607</span>],</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>        [<span class="op">-</span><span class="fl">2.2457</span>, <span class="op">-</span><span class="fl">0.3727</span>],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">4.4164</span>, <span class="op">-</span><span class="fl">1.2760</span>],</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">0.9233</span>,  <span class="fl">0.5347</span>],</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>        [ <span class="fl">1.0698</span>,  <span class="fl">1.6187</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们不能直接对这个进行 sigmoid 运算，因为我们得不到行相加为 1 的结果（我们希望 3 的概率加上 7 的概率等于 1）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>acts.sigmoid()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">0.6623</span>, <span class="fl">0.5641</span>],</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.6151</span>, <span class="fl">0.6132</span>],</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.0957</span>, <span class="fl">0.4079</span>],</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.9881</span>, <span class="fl">0.2182</span>],</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.7157</span>, <span class="fl">0.6306</span>],</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.7446</span>, <span class="fl">0.8346</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在第四章中，我们的神经网络为每个图像创建了一个单一激活，然后通过<code>sigmoid</code>函数传递。这个单一激活代表了模型对输入是 3 的置信度。二进制问题是分类问题的一种特殊情况，因为目标可以被视为单个布尔值，就像我们在<code>mnist_loss</code>中所做的那样。但是二进制问题也可以在任意数量的类别的分类器的更一般上下文中考虑：在这种情况下，我们碰巧有两个类别。正如我们在熊分类器中看到的，我们的神经网络将为每个类别返回一个激活。</p>
+<p>那么在二进制情况下，这些激活实际上表示什么？一对激活仅仅表示输入是 3 还是 7 的<em>相对</em>置信度。总体值，无论它们是高还是低，都不重要，重要的是哪个更高，以及高多少。</p>
+<p>我们期望，由于这只是表示相同问题的另一种方式，我们应该能够直接在我们的神经网络的两个激活版本上使用<code>sigmoid</code>。事实上我们可以！我们只需取神经网络激活之间的<em>差异</em>，因为这反映了我们对输入是 3 还是 7 更有把握的程度，然后取其 sigmoid：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(acts[:,<span class="dv">0</span>]<span class="op">-</span>acts[:,<span class="dv">1</span>]).sigmoid()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="fl">0.6025</span>, <span class="fl">0.5021</span>, <span class="fl">0.1332</span>, <span class="fl">0.9966</span>, <span class="fl">0.5959</span>, <span class="fl">0.3661</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>第二列（它是 7 的概率）将是该值从 1 中减去的值。现在，我们需要一种适用于多于两列的方法。事实证明，这个名为<code>softmax</code>的函数正是这样的：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> softmax(x): <span class="cf">return</span> exp(x) <span class="op">/</span> exp(x).<span class="bu">sum</span>(dim<span class="op">=</span><span class="dv">1</span>, keepdim<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="术语指数函数exp" class="level1">
+<h1>术语：指数函数（exp）</h1>
+<p>定义为<code>e**x</code>，其中<code>e</code>是一个特殊的数字，约等于 2.718。它是自然对数函数的倒数。请注意，<code>exp</code>始终为正，并且增长<em>非常</em>迅速！</p>
+<p>让我们检查<code>softmax</code>是否为第一列返回与<code>sigmoid</code>相同的值，以及这些值从 1 中减去的值为第二列：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>sm_acts <span class="op">=</span> torch.softmax(acts, dim<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>sm_acts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">0.6025</span>, <span class="fl">0.3975</span>],</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.5021</span>, <span class="fl">0.4979</span>],</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.1332</span>, <span class="fl">0.8668</span>],</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.9966</span>, <span class="fl">0.0034</span>],</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.5959</span>, <span class="fl">0.4041</span>],</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.3661</span>, <span class="fl">0.6339</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>softmax</code>是<code>sigmoid</code>的多类别等价物——每当我们有超过两个类别且类别的概率必须加起来为 1 时，我们必须使用它，即使只有两个类别，我们通常也会使用它，只是为了使事情更加一致。我们可以创建其他具有所有激活在 0 和 1 之间且总和为 1 的属性的函数；然而，没有其他函数与我们已经看到是平滑且对称的 sigmoid 函数具有相同的关系。此外，我们很快将看到 softmax 函数与我们将在下一节中看到的损失函数密切配合。</p>
+<p>如果我们有三个输出激活，就像在我们的熊分类器中一样，为单个熊图像计算 softmax 看起来会像图 5-3 那样。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_0503.png" class="img-fluid figure-img"></p>
+<figcaption>熊 softmax 示例</figcaption>
+</figure>
+</div>
+<section id="图-5-3.-熊分类器上-softmax-的示例" class="level6">
+<h6 class="anchored" data-anchor-id="图-5-3.-熊分类器上-softmax-的示例">图 5-3. 熊分类器上 softmax 的示例</h6>
+<p>实际上，这个函数是做什么的呢？取指数确保我们所有的数字都是正数，然后除以总和确保我们将得到一堆加起来等于 1 的数字。指数还有一个很好的特性：如果我们激活中的某个数字略大于其他数字，指数将放大这个差异（因为它呈指数增长），这意味着在 softmax 中，该数字将更接近 1。</p>
+<p>直观地，softmax 函数<em>真的</em>想要在其他类别中选择一个类别，因此在我们知道每张图片都有一个明确标签时，训练分类器时是理想的选择。（请注意，在推断过程中可能不太理想，因为有时您可能希望模型告诉您它在训练过程中看到的类别中没有识别出任何一个，并且不选择一个类别，因为它的激活分数略高。在这种情况下，最好使用多个二进制输出列来训练模型，每个列使用 sigmoid 激活。）</p>
+<p>Softmax 是交叉熵损失的第一部分，第二部分是对数似然。</p>
+</section>
+<section id="对数似然" class="level2">
+<h2 class="anchored" data-anchor-id="对数似然">对数似然</h2>
+<p>在上一章中为我们的 MNIST 示例计算损失时，我们使用了这个：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mnist_loss(inputs, targets):</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> inputs.sigmoid()</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> torch.where(targets<span class="op">==</span><span class="dv">1</span>, <span class="dv">1</span><span class="op">-</span>inputs, inputs).mean()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>就像我们从 sigmoid 到 softmax 的转变一样，我们需要扩展损失函数，使其能够处理不仅仅是二元分类，还需要能够对任意数量的类别进行分类（在本例中，我们有 37 个类别）。我们的激活，在 softmax 之后，介于 0 和 1 之间，并且对于预测批次中的每一行，总和为 1。我们的目标是介于 0 和 36 之间的整数。</p>
+<p>在二元情况下，我们使用<code>torch.where</code>在<code>inputs</code>和<code>1-inputs</code>之间进行选择。当我们将二元分类作为具有两个类别的一般分类问题处理时，它变得更容易，因为（正如我们在前一节中看到的）现在有两列包含等同于<code>inputs</code>和<code>1-inputs</code>的内容。因此，我们只需要从适当的列中进行选择。让我们尝试在 PyTorch 中实现这一点。对于我们合成的 3 和 7 的示例，假设这些是我们的标签：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>targ <span class="op">=</span> tensor([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>这些是 softmax 激活：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sm_acts</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>tensor([[<span class="fl">0.6025</span>, <span class="fl">0.3975</span>],</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.5021</span>, <span class="fl">0.4979</span>],</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.1332</span>, <span class="fl">0.8668</span>],</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.9966</span>, <span class="fl">0.0034</span>],</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.5959</span>, <span class="fl">0.4041</span>],</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>        [<span class="fl">0.3661</span>, <span class="fl">0.6339</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>然后对于每个<code>targ</code>项，我们可以使用它来使用张量索引选择<code>sm_acts</code>的适当列，如下所示：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>idx <span class="op">=</span> <span class="bu">range</span>(<span class="dv">6</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sm_acts[idx, targ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="fl">0.6025</span>, <span class="fl">0.4979</span>, <span class="fl">0.1332</span>, <span class="fl">0.0034</span>, <span class="fl">0.4041</span>, <span class="fl">0.3661</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>为了准确了解这里发生了什么，让我们将所有列放在一起放在一个表中。这里，前两列是我们的激活，然后是目标，行索引，最后是前面代码中显示的结果：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>3</th>
+<th>7</th>
+<th>targ</th>
+<th>idx</th>
+<th>loss</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.602469</td>
+<td>0.397531</td>
+<td>0</td>
+<td>0</td>
+<td>0.602469</td>
+</tr>
+<tr class="even">
+<td>0.502065</td>
+<td>0.497935</td>
+<td>1</td>
+<td>1</td>
+<td>0.497935</td>
+</tr>
+<tr class="odd">
+<td>0.133188</td>
+<td>0.866811</td>
+<td>0</td>
+<td>2</td>
+<td>0.133188</td>
+</tr>
+<tr class="even">
+<td>0.99664</td>
+<td>0.00336017</td>
+<td>1</td>
+<td>3</td>
+<td>0.00336017</td>
+</tr>
+<tr class="odd">
+<td>0.595949</td>
+<td>0.404051</td>
+<td>1</td>
+<td>4</td>
+<td>0.404051</td>
+</tr>
+<tr class="even">
+<td>0.366118</td>
+<td>0.633882</td>
+<td>0</td>
+<td>5</td>
+<td>0.366118</td>
+</tr>
+</tbody>
+</table>
+<p>从这个表中可以看出，最后一列可以通过将<code>targ</code>和<code>idx</code>列作为索引，指向包含<code>3</code>和<code>7</code>列的两列矩阵来计算。这就是<code>sm_acts[idx, targ]</code>的作用。</p>
+<p>这里真正有趣的是，这种方法同样适用于超过两列的情况。想象一下，如果我们为每个数字（0 到 9）添加一个激活列，然后<code>targ</code>包含从 0 到 9 的数字。只要激活列总和为 1（如果我们使用 softmax，它们将是这样），我们将有一个损失函数，显示我们预测每个数字的准确程度。</p>
+<p>我们只从包含正确标签的列中选择损失。我们不需要考虑其他列，因为根据 softmax 的定义，它们加起来等于 1 减去与正确标签对应的激活。因此，使正确标签的激活尽可能高必须意味着我们也在降低其余列的激活。</p>
+<p>PyTorch 提供了一个与<code>sm_acts[range(n), targ]</code>完全相同的函数（除了它取负数，因为之后应用对数时，我们将得到负数），称为<code>nll_loss</code>（<em>NLL</em>代表<em>负对数似然</em>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>sm_acts[idx, targ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="op">-</span><span class="fl">0.6025</span>, <span class="op">-</span><span class="fl">0.4979</span>, <span class="op">-</span><span class="fl">0.1332</span>, <span class="op">-</span><span class="fl">0.0034</span>, <span class="op">-</span><span class="fl">0.4041</span>, <span class="op">-</span><span class="fl">0.3661</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>F.nll_loss(sm_acts, targ, reduction<span class="op">=</span><span class="st">'none'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="op">-</span><span class="fl">0.6025</span>, <span class="op">-</span><span class="fl">0.4979</span>, <span class="op">-</span><span class="fl">0.1332</span>, <span class="op">-</span><span class="fl">0.0034</span>, <span class="op">-</span><span class="fl">0.4041</span>, <span class="op">-</span><span class="fl">0.3661</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>尽管它的名字是这样的，但这个 PyTorch 函数并不取对数。我们将在下一节看到原因，但首先，让我们看看为什么取对数会有用。</p>
+</section>
+<section id="取对数" class="level2">
+<h2 class="anchored" data-anchor-id="取对数">取对数</h2>
+<p>在前一节中我们看到的函数作为损失函数效果很好，但我们可以让它更好一些。问题在于我们使用的是概率，概率不能小于 0 或大于 1。这意味着我们的模型不会在乎它是预测 0.99 还是 0.999。确实，这些数字非常接近，但从另一个角度来看，0.999 比 0.99 自信程度高 10 倍。因此，我们希望将我们的数字从 0 到 1 转换为从负无穷到无穷。有一个数学函数可以做到这一点：<em>对数</em>（可用<code>torch.log</code>）。它对小于 0 的数字没有定义，并且如下所示：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb42"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plot_function(torch.log, <span class="bu">min</span><span class="op">=</span><span class="dv">0</span>,<span class="bu">max</span><span class="op">=</span><span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_05in03.png" class="img-fluid"></p>
+<p>“对数”这个词让你想起了什么吗？对数函数有这个恒等式：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb43"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> b<span class="op">**</span>a</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> log(y,b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>在这种情况下，我们假设<code>log(y,b)</code>返回<em>log y 以 b 为底</em>。然而，PyTorch 并没有这样定义<code>log</code>：Python 中的<code>log</code>使用特殊数字<code>e</code>（2.718…）作为底。</p>
+<p>也许对数是您在过去 20 年中没有考虑过的东西。但对于深度学习中的许多事情来说，对数是一个非常关键的数学概念，所以现在是一个很好的时机来刷新您的记忆。关于对数的关键事情是这样的关系：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>log(a<span class="op">*</span>b) <span class="op">=</span> log(a)<span class="op">+</span>log(b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>当我们以这种格式看到它时，它看起来有点无聊；但想想这实际上意味着什么。这意味着当基础信号呈指数或乘法增长时，对数会线性增加。例如，在地震严重程度的里氏震级和噪音级别的分贝尺中使用。它也经常用于金融图表中，我们希望更清楚地显示复合增长率。计算机科学家喜欢使用对数，因为这意味着可以用加法代替修改，这样可以避免产生计算机难以处理的难以处理的规模。</p>
+</section>
+</section>
+<section id="sylvain-说" class="level1">
+<h1>Sylvain 说</h1>
+<p>不仅是计算机科学家喜欢对数！在计算机出现之前，工程师和科学家使用一种称为<em>滑尺</em>的特殊尺子，通过添加对数来进行乘法运算。对数在物理学中被广泛用于乘法非常大或非常小的数字，以及许多其他领域。</p>
+<p>对我们的概率取正对数或负对数的平均值（取决于是否是正确或不正确的类）给出了<em>负对数似然</em>损失。在 PyTorch 中，<code>nll_loss</code>假设您已经对 softmax 取了对数，因此不会为您执行对数运算。</p>
+</section>
+<section id="令人困惑的名称注意" class="level1">
+<h1>令人困惑的名称，注意</h1>
+<p><code>nll_loss</code>中的“nll”代表“负对数似然”，但实际上它根本不进行对数运算！它假设您已经<em>已经</em>进行了对数运算。PyTorch 有一个名为<code>log_softmax</code>的函数，以快速准确的方式结合了<code>log</code>和<code>softmax</code>。<code>nll_loss</code>设计用于在<code>log_softmax</code>之后使用。</p>
+<p>当我们首先进行 softmax，然后对其进行对数似然，这种组合被称为<em>交叉熵损失</em>。在 PyTorch 中，这可以通过<code>nn.CrossEntropyLoss</code>来实现（实际上执行<code>log_softmax</code>然后<code>nll_loss</code>）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>loss_func <span class="op">=</span> nn.CrossEntropyLoss()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>正如您所看到的，这是一个类。实例化它会给您一个像函数一样行为的对象：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>loss_func(acts, targ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb47"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>tensor(<span class="fl">1.8045</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>所有 PyTorch 损失函数都以两种形式提供，刚刚显示的类形式以及在<code>F</code>命名空间中提供的普通函数形式：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb48"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>F.cross_entropy(acts, targ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb49"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>tensor(<span class="fl">1.8045</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>两者都可以正常工作，并且可以在任何情况下使用。我们注意到大多数人倾向于使用类版本，并且在 PyTorch 的官方文档和示例中更常见，因此我们也会倾向于使用它。</p>
+<p>默认情况下，PyTorch 损失函数取所有项目的损失的平均值。您可以使用<code>reduction='none'</code>来禁用这一点：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb50"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>nn.CrossEntropyLoss(reduction<span class="op">=</span><span class="st">'none'</span>)(acts, targ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb51"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>tensor([<span class="fl">0.5067</span>, <span class="fl">0.6973</span>, <span class="fl">2.0160</span>, <span class="fl">5.6958</span>, <span class="fl">0.9062</span>, <span class="fl">1.0048</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="sylvain-说-1" class="level1">
+<h1>Sylvain 说</h1>
+<p>当我们考虑交叉熵损失的梯度时，一个有趣的特性就出现了。<code>cross_entropy(a,b)</code>的梯度是<code>softmax(a)-b</code>。由于<code>softmax(a)</code>是模型的最终激活，这意味着梯度与预测和目标之间的差异成比例。这与回归中的均方误差相同（假设没有像<code>y_range</code>添加的最终激活函数），因为<code>(a-b)**2</code>的梯度是<code>2*(a-b)</code>。由于梯度是线性的，我们不会看到梯度的突然跳跃或指数增加，这应该导致模型的平滑训练。</p>
+<p>我们现在已经看到了隐藏在我们损失函数背后的所有部分。但是，虽然这可以对我们的模型表现如何（好或坏）进行评估，但它对于帮助我们知道它是否好并没有任何帮助。现在让我们看看一些解释我们模型预测的方法。</p>
+</section>
+<section id="模型解释" class="level1">
+<h1>模型解释</h1>
+<p>直接解释损失函数非常困难，因为它们被设计为计算机可以区分和优化的东西，而不是人类可以理解的东西。这就是为什么我们有指标。这些指标不用于优化过程，而只是帮助我们这些可怜的人类理解发生了什么。在这种情况下，我们的准确率已经看起来相当不错！那么我们在哪里犯了错误呢？</p>
+<p>我们在第一章中看到，我们可以使用混淆矩阵来查看模型表现好和表现不佳的地方：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb52"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>interp <span class="op">=</span> ClassificationInterpretation.from_learner(learn)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>interp.plot_confusion_matrix(figsize<span class="op">=</span>(<span class="dv">12</span>,<span class="dv">12</span>), dpi<span class="op">=</span><span class="dv">60</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_05in04.png" class="img-fluid"></p>
+<p>哦，亲爱的——在这种情况下，混淆矩阵很难阅读。我们有 37 种宠物品种，这意味着在这个巨大矩阵中有 37×37 个条目！相反，我们可以使用<code>most_confused</code>方法，它只显示混淆矩阵中预测错误最多的单元格（这里至少有 5 个或更多）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb53"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>interp.most_confused(min_val<span class="op">=</span><span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb54"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>[(<span class="st">'american_pit_bull_terrier'</span>, <span class="st">'staffordshire_bull_terrier'</span>, <span class="dv">10</span>),</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a> (<span class="st">'Ragdoll'</span>, <span class="st">'Birman'</span>, <span class="dv">6</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>由于我们不是宠物品种专家，很难知道这些类别错误是否反映了识别品种时的实际困难。因此，我们再次求助于谷歌。一点点搜索告诉我们，这里显示的最常见的类别错误是即使是专家育种者有时也会对其存在分歧的品种差异。因此，这让我们有些安慰，我们正在走在正确的道路上。</p>
+<p>我们似乎有一个良好的基线。现在我们可以做些什么来使它变得更好呢？</p>
+</section>
+<section id="改进我们的模型" class="level1">
+<h1>改进我们的模型</h1>
+<p>我们现在将探讨一系列技术，以改进我们模型的训练并使其更好。在此过程中，我们将更详细地解释迁移学习以及如何尽可能最好地微调我们的预训练模型，而不破坏预训练权重。</p>
+<p>在训练模型时，我们需要设置的第一件事是学习率。我们在上一章中看到，它需要恰到好处才能尽可能高效地训练，那么我们如何选择一个好的学习率呢？fastai 提供了一个工具来帮助。</p>
+<section id="学习率查找器" class="level2">
+<h2 class="anchored" data-anchor-id="学习率查找器">学习率查找器</h2>
+<p>在训练模型时，我们可以做的最重要的事情之一是确保我们有正确的学习率。如果我们的学习率太低，训练模型可能需要很多个 epoch。这不仅浪费时间，还意味着我们可能会出现过拟合的问题，因为每次完整地遍历数据时，我们都给了模型记住数据的机会。</p>
+<p>那么我们就把学习率调得很高，对吗？当然，让我们试试看会发生什么：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb55"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet34, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">1</span>, base_lr<span class="op">=</span><span class="fl">0.1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>error_rate</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>8.946717</td>
+<td>47.954632</td>
+<td>0.893775</td>
+<td>00:20</td>
+</tr>
+<tr class="even">
+<td>epoch</td>
+<td>train_loss</td>
+<td>valid_loss</td>
+<td>error_rate</td>
+<td>time</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>7.231843</td>
+<td>4.119265</td>
+<td>0.954668</td>
+<td>00:24</td>
+</tr>
+</tbody>
+</table>
+<p>这看起来不太好。发生了什么呢。优化器朝着正确的方向迈出了一步，但它迈得太远，完全超过了最小损失。多次重复这样的过程会使其越来越远，而不是越来越接近！</p>
+<p>我们该如何找到完美的学习率——既不太高也不太低？在 2015 年，研究员 Leslie Smith 提出了一个绝妙的想法，称为<em>学习率查找器</em>。他的想法是从一个非常非常小的学习率开始，一个我们永远不会认为它太大而无法处理的学习率。我们用这个学习率进行一个 mini-batch，找到之后的损失，然后按一定百分比增加学习率（例如每次加倍）。然后我们再做另一个 mini-batch，跟踪损失，并再次加倍学习率。我们一直这样做，直到损失变得更糟，而不是更好。这是我们知道我们走得太远的时候。然后我们选择一个比这个点稍低的学习率。我们建议选择以下任一：</p>
+<ul>
+<li><p>比最小损失达到的地方少一个数量级（即最小值除以 10）</p></li>
+<li><p>最后一次损失明显减少的点</p></li>
+</ul>
+<p>学习率查找器计算曲线上的这些点来帮助您。这两个规则通常给出大致相同的值。在第一章中，我们没有指定学习率，而是使用了 fastai 库的默认值（即 1e-3）：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb56"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet34, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>lr_min,lr_steep <span class="op">=</span> learn.lr_find()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_05in05.png" class="img-fluid"></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb57"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Minimum/10: </span><span class="sc">{</span>lr_min<span class="sc">:.2e}</span><span class="ss">, steepest point: </span><span class="sc">{</span>lr_steep<span class="sc">:.2e}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb58"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>Minimum<span class="op">/</span><span class="dv">10</span>: <span class="fl">8.32e-03</span>, steepest point: <span class="fl">6.31e-03</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>我们可以看到在 1e-6 到 1e-3 的范围内，没有什么特别的事情发生，模型不会训练。然后损失开始减少，直到达到最小值，然后再次增加。我们不希望学习率大于 1e-1，因为这会导致训练发散（您可以自行尝试），但 1e-1 已经太高了：在这个阶段，我们已经离开了损失稳定下降的阶段。</p>
+<p>在这个学习率图中，看起来学习率约为 3e-3 可能是合适的，所以让我们选择这个：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb59"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet34, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">2</span>, base_lr<span class="op">=</span><span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>error_rate</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.071820</td>
+<td>0.427476</td>
+<td>0.133965</td>
+<td>00:19</td>
+</tr>
+<tr class="even">
+<td>epoch</td>
+<td>train_loss</td>
+<td>valid_loss</td>
+<td>error_rate</td>
+<td>time</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0.738273</td>
+<td>0.541828</td>
+<td>0.150880</td>
+<td>00:24</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0.401544</td>
+<td>0.266623</td>
+<td>0.081867</td>
+<td>00:24</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="对数刻度" class="level1">
+<h1>对数刻度</h1>
+<p>学习率查找器图表采用对数刻度，这就是为什么在 1e-3 和 1e-2 之间的中间点在 3e-3 和 4e-3 之间。这是因为我们主要关心学习率的数量级。</p>
+<p>有趣的是，学习率查找器是在 2015 年才被发现的，而神经网络自上世纪 50 年代以来一直在发展。在那段时间里，找到一个好的学习率可能是从业者面临的最重要和最具挑战性的问题。解决方案不需要任何高级数学、巨大的计算资源、庞大的数据集或其他任何使其对任何好奇的研究人员不可及的东西。此外，Smith 并不是某个独家的硅谷实验室的一部分，而是作为一名海军研究员工作。所有这些都是为了说：在深度学习中的突破性工作绝对不需要访问大量资源、精英团队或先进的数学思想。还有很多工作需要做，只需要一点常识、创造力和坚韧不拔。</p>
+<p>现在我们有了一个好的学习率来训练我们的模型，让我们看看如何微调预训练模型的权重。</p>
+<section id="解冻和迁移学习" class="level2">
+<h2 class="anchored" data-anchor-id="解冻和迁移学习">解冻和迁移学习</h2>
+<p>我们在第一章中简要讨论了迁移学习的工作原理。我们看到基本思想是，一个预训练模型，可能在数百万数据点（如 ImageNet）上训练，被为另一个任务进行微调。但这到底意味着什么？</p>
+<p>我们现在知道，卷积神经网络由许多线性层组成，每对之间有一个非线性激活函数，然后是一个或多个最终的线性层，最后是一个诸如 softmax 之类的激活函数。最终的线性层使用一个具有足够列数的矩阵，使得输出大小与我们模型中的类数相同（假设我们正在进行分类）。</p>
+<p>当我们在迁移学习设置中进行微调时，这个最终的线性层对我们来说可能没有任何用处，因为它专门设计用于对原始预训练数据集中的类别进行分类。因此，在进行迁移学习时，我们会将其移除、丢弃，并用一个新的线性层替换，该线性层具有我们所需任务的正确输出数量（在这种情况下，将有 37 个激活）。</p>
+<p>这个新添加的线性层将完全随机的权重。因此，在微调之前，我们的模型具有完全随机的输出。但这并不意味着它是一个完全随机的模型！最后一个层之前的所有层都经过精心训练，以便在一般的图像分类任务中表现良好。正如我们在<a href="https://oreil.ly/aTRwE">Zeiler 和 Fergus 论文</a>中看到的那样，在第一章中（参见图 1-10 到 1-13），前几层编码了一般概念，比如找到梯度和边缘，后面的层编码了对我们仍然有用的概念，比如找到眼球和毛发。</p>
+<p>我们希望以这样的方式训练模型，使其能够记住预训练模型中的所有这些通常有用的想法，用它们来解决我们的特定任务（分类宠物品种），并仅根据我们特定任务的具体要求进行调整。</p>
+<p>在微调时，我们的挑战是用能够正确实现我们所需任务（分类宠物品种）的权重替换我们添加的线性层中的随机权重，而不破坏精心预训练的权重和其他层。一个简单的技巧可以实现这一点：告诉优化器仅更新那些随机添加的最终层中的权重。根本不要改变神经网络的其他部分的权重。这被称为<em>冻结</em>那些预训练的层。</p>
+<p>当我们从预训练网络创建模型时，fastai 会自动为我们冻结所有预训练层。当我们调用<code>fine_tune</code>方法时，fastai 会做两件事：</p>
+<ul>
+<li><p>训练随机添加的层一个周期，同时冻结所有其他层</p></li>
+<li><p>解冻所有层，并根据请求的周期数进行训练</p></li>
+</ul>
+<p>尽管这是一个合理的默认方法，但对于您的特定数据集，您可能通过稍微不同的方式做事情来获得更好的结果。<code>fine_tune</code>方法有一些参数可以用来改变其行为，但如果您想获得自定义行为，直接调用底层方法可能更容易。请记住，您可以使用以下语法查看该方法的源代码：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb60"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>learn.fine_tune??</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>所以让我们尝试手动操作。首先，我们将使用<code>fit_one_cycle</code>训练随机添加的层三个周期。正如在第一章中提到的，<code>fit_one_cycle</code>是在不使用<code>fine_tune</code>的情况下训练模型的建议方法。我们将在本书后面看到原因；简而言之，<code>fit_one_cycle</code>的作用是以低学习率开始训练，逐渐增加学习率进行第一部分的训练，然后在最后一部分的训练中逐渐降低学习率：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb61"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet34, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">3</span>, <span class="fl">3e-3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>error_rate</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.188042</td>
+<td>0.355024</td>
+<td>0.102842</td>
+<td>00:20</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.534234</td>
+<td>0.302453</td>
+<td>0.094723</td>
+<td>00:20</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.325031</td>
+<td>0.222268</td>
+<td>0.074425</td>
+<td>00:20</td>
+</tr>
+</tbody>
+</table>
+<p>然后我们将解冻模型：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb62"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>learn.unfreeze()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>并再次运行<code>lr_find</code>，因为有更多层要训练，而且已经训练了三个周期的权重，意味着我们之前找到的学习率不再合适：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb63"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>learn.lr_find()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb64"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">1.0964782268274575e-05</span>, <span class="fl">1.5848931980144698e-06</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_05in06.png" class="img-fluid"></p>
+<p>请注意，图表与随机权重时有所不同：我们没有那种表明模型正在训练的陡峭下降。这是因为我们的模型已经训练过了。在这里，我们有一个相对平坦的区域，然后是一个急剧增加的区域，我们应该选择在那个急剧增加之前的一个点，例如 1e-5。具有最大梯度的点不是我们在这里寻找的，应该被忽略。</p>
+<p>让我们以适当的学习率进行训练：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb65"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">6</span>, lr_max<span class="op">=</span><span class="fl">1e-5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>error_rate</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0.263579</td>
+<td>0.217419</td>
+<td>0.069012</td>
+<td>00:24</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.253060</td>
+<td>0.210346</td>
+<td>0.062923</td>
+<td>00:24</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.224340</td>
+<td>0.207357</td>
+<td>0.060217</td>
+<td>00:24</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>0.200195</td>
+<td>0.207244</td>
+<td>0.061570</td>
+<td>00:24</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>0.194269</td>
+<td>0.200149</td>
+<td>0.059540</td>
+<td>00:25</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>0.173164</td>
+<td>0.202301</td>
+<td>0.059540</td>
+<td>00:25</td>
+</tr>
+</tbody>
+</table>
+<p>这稍微改进了我们的模型，但我们还可以做更多。预训练模型的最深层可能不需要像最后一层那样高的学习率，因此我们可能应该为这些层使用不同的学习率——这被称为使用<em>区分性</em>学习率。</p>
+</section>
+<section id="区分性学习率" class="level2">
+<h2 class="anchored" data-anchor-id="区分性学习率">区分性学习率</h2>
+<p>即使我们解冻后，我们仍然非常关心那些预训练权重的质量。我们不会期望那些预训练参数的最佳学习率与随机添加参数的学习率一样高，即使在我们为随机添加参数调整了几个轮数之后。请记住，预训练权重已经在数百个轮数中，在数百万张图像上进行了训练。</p>
+<p>此外，您还记得我们在第一章中看到的图像吗？显示每个层学习的内容？第一层学习非常简单的基础知识，如边缘和梯度检测器；这些对于几乎任何任务都可能非常有用。后面的层学习更复杂的概念，如“眼睛”和“日落”，这些对您的任务可能完全没有用（也许您正在对汽车型号进行分类）。因此，让后面的层比前面的层更快地微调是有道理的。</p>
+<p>因此，fastai 的默认方法是使用区分性学习率。这种技术最初是在我们将在第十章中介绍的 NLP 迁移学习的 ULMFiT 方法中开发的。就像深度学习中的许多好主意一样，这个方法非常简单：对神经网络的早期层使用较低的学习率，对后期层（尤其是随机添加的层）使用较高的学习率。这个想法基于<a href="https://oreil.ly/j3640">Jason Yosinski 等人</a>在 2014 年展示的见解，即在迁移学习中，神经网络的不同层应该以不同的速度训练，如图 5-4 所示。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dlcf_0504.png" class="img-fluid figure-img"></p>
+<figcaption>不同层和训练方法对迁移学习的影响（Yosinski）</figcaption>
+</figure>
+</div>
+<section id="图-5-4不同层和训练方法对迁移学习的影响由-jason-yosinski-等人提供" class="level6">
+<h6 class="anchored" data-anchor-id="图-5-4不同层和训练方法对迁移学习的影响由-jason-yosinski-等人提供">图 5-4。不同层和训练方法对迁移学习的影响（由 Jason Yosinski 等人提供）</h6>
+<p>fastai 允许您在任何需要学习率的地方传递 Python <code>slice</code>对象。传递的第一个值将是神经网络最早层的学习率，第二个值将是最后一层的学习率。中间的层将在该范围内等距地乘法地具有学习率。让我们使用这种方法复制先前的训练，但这次我们只将我们网络的<em>最低</em>层的学习率设置为 1e-6；其他层将增加到 1e-4。让我们训练一段时间，看看会发生什么：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb66"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet34, metrics<span class="op">=</span>error_rate)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">3</span>, <span class="fl">3e-3</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>learn.unfreeze()</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>learn.fit_one_cycle(<span class="dv">12</span>, lr_max<span class="op">=</span><span class="bu">slice</span>(<span class="fl">1e-6</span>,<span class="fl">1e-4</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>轮数</th>
+<th>训练损失</th>
+<th>验证损失</th>
+<th>错误率</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.145300</td>
+<td>0.345568</td>
+<td>0.119756</td>
+<td>00:20</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.533986</td>
+<td>0.251944</td>
+<td>0.077131</td>
+<td>00:20</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.317696</td>
+<td>0.208371</td>
+<td>0.069012</td>
+<td>00:20</td>
+</tr>
+<tr class="even">
+<td>轮数</td>
+<td>训练损失</td>
+<td>验证损失</td>
+<td>错误率</td>
+<td>时间</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0.257977</td>
+<td>0.205400</td>
+<td>0.067659</td>
+<td>00:25</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0.246763</td>
+<td>0.205107</td>
+<td>0.066306</td>
+<td>00:25</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0.240595</td>
+<td>0.193848</td>
+<td>0.062246</td>
+<td>00:25</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0.209988</td>
+<td>0.198061</td>
+<td>0.062923</td>
+<td>00:25</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0.194756</td>
+<td>0.193130</td>
+<td>0.064276</td>
+<td>00:25</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0.169985</td>
+<td>0.187885</td>
+<td>0.056157</td>
+<td>00:25</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>0.153205</td>
+<td>0.186145</td>
+<td>0.058863</td>
+<td>00:25</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>0.141480</td>
+<td>0.185316</td>
+<td>0.053451</td>
+<td>00:25</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>0.128564</td>
+<td>0.180999</td>
+<td>0.051421</td>
+<td>00:25</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>0.126941</td>
+<td>0.186288</td>
+<td>0.054127</td>
+<td>00:25</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>0.130064</td>
+<td>0.181764</td>
+<td>0.054127</td>
+<td>00:25</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>0.124281</td>
+<td>0.181855</td>
+<td>0.054127</td>
+<td>00:25</td>
+</tr>
+</tbody>
+</table>
+<p>现在微调效果很好！</p>
+<p>fastai 可以展示训练和验证损失的图表：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb67"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>learn.recorder.plot_loss()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><img src="img/dlcf_05in07.png" class="img-fluid"></p>
+<p>正如你所看到的，训练损失一直在变得越来越好。但请注意，最终验证损失的改善会减缓，有时甚至会变得更糟！这是模型开始过拟合的时候。特别是，模型开始对其预测变得过于自信。但这并不意味着它一定变得不准确。看一下每个 epoch 的训练结果表，你会经常看到准确率持续提高，即使验证损失变得更糟。最终，重要的是你的准确率，或者更一般地说是你选择的指标，而不是损失。损失只是我们给计算机的函数，帮助我们优化。</p>
+<p>在训练模型时，你还需要做出的另一个决定是训练多长时间。我们将在下面考虑这个问题。</p>
+</section>
+</section>
+<section id="选择-epochs-的数量" class="level2">
+<h2 class="anchored" data-anchor-id="选择-epochs-的数量">选择 epochs 的数量</h2>
+<p>通常情况下，你会发现在选择训练多少个 epochs 时，你受到的限制更多是时间，而不是泛化和准确性。因此，你训练的第一步应该是简单地选择一个你愿意等待的时间内可以完成的 epochs 数量。然后查看训练和验证损失图，特别是你的指标。如果你看到它们甚至在最后几个 epochs 中仍在变得更好，那么你就知道你没有训练得太久。</p>
+<p>另一方面，你可能会发现你选择的指标在训练结束时确实变得更糟。记住，我们不仅仅是在寻找验证损失变得更糟，而是实际的指标。你的验证损失在训练过程中会先变得更糟，因为模型变得过于自信，只有后来才会因为错误地记忆数据而变得更糟。在实践中，我们只关心后一种情况。记住，我们的损失函数是我们用来让优化器有东西可以区分和优化的，实际上我们关心的不是这个。</p>
+<p>在 1cycle 训练出现之前，通常会在每个 epoch 结束时保存模型，然后从所有保存的模型中选择准确率最高的模型。这被称为<em>早停</em>。然而，这不太可能给出最好的答案，因为那些中间的 epochs 出现在学习率还没有机会达到小值的情况下，这时它才能真正找到最佳结果。因此，如果你发现你过拟合了，你应该重新从头开始训练模型，并根据之前找到最佳结果的地方选择一个总的 epochs 数量。</p>
+<p>如果你有时间训练更多的 epochs，你可能会选择用这段时间来训练更多的参数，也就是使用更深的架构。</p>
+</section>
+<section id="更深的架构" class="level2">
+<h2 class="anchored" data-anchor-id="更深的架构">更深的架构</h2>
+<p>一般来说，具有更多参数的模型可以更准确地对数据进行建模。（对于这个泛化有很多很多的例外情况，这取决于你使用的架构的具体情况，但现在这是一个合理的经验法则。）对于我们将在本书中看到的大多数架构，你可以通过简单地添加更多层来创建更大的版本。然而，由于我们想使用预训练模型，我们需要确保选择已经为我们预训练的层数。</p>
+<p>这就是为什么在实践中，架构往往只有少数几种变体。例如，在本章中使用的 ResNet 架构有 18、34、50、101 和 152 层的变体，都是在 ImageNet 上预训练的。一个更大的（更多层和参数；有时被描述为模型的<em>容量</em>）ResNet 版本总是能够给我们更好的训练损失，但它可能更容易过拟合，因为它有更多参数可以过拟合。</p>
+<p>总的来说，一个更大的模型能够更好地捕捉数据的真实基本关系，以及捕捉和记忆你个别图像的具体细节。</p>
+<p>然而，使用更深的模型将需要更多的 GPU 内存，因此你可能需要降低批量大小以避免<em>内存不足错误</em>。当你尝试将太多内容装入 GPU 时，就会发生这种情况，看起来像这样：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb68"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>Cuda runtime error: out of memory</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>当发生这种情况时，你可能需要重新启动你的笔记本。解决方法是使用较小的批量大小，这意味着在任何给定时间通过你的模型传递较小的图像组。你可以通过使用<code>bs=</code>创建你想要的批量大小来调用。</p>
+<p>更深层次架构的另一个缺点是训练时间要长得多。一个可以大大加快速度的技术是<em>混合精度训练</em>。这指的是在训练过程中尽可能使用不那么精确的数字（半精度浮点数，也称为 fp16）。截至 2020 年初，几乎所有当前的 NVIDIA GPU 都支持一种特殊功能，称为<em>张量核心</em>，可以将神经网络训练速度提高 2-3 倍。它们还需要更少的 GPU 内存。要在 fastai 中启用此功能，只需在创建<code>Learner</code>后添加<code>to_fp16()</code>（你还需要导入模块）。</p>
+<p>你实际上无法提前知道适合你特定问题的最佳架构——你需要尝试一些训练。所以现在让我们尝试使用混合精度的 ResNet-50：</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb69"><pre class="sourceCode py code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai2.callback.fp16 <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>learn <span class="op">=</span> cnn_learner(dls, resnet50, metrics<span class="op">=</span>error_rate).to_fp16()</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>learn.fine_tune(<span class="dv">6</span>, freeze_epochs<span class="op">=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>epoch</th>
+<th>train_loss</th>
+<th>valid_loss</th>
+<th>error_rate</th>
+<th>time</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1.427505</td>
+<td>0.310554</td>
+<td>0.098782</td>
+<td>00:21</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0.606785</td>
+<td>0.302325</td>
+<td>0.094723</td>
+<td>00:22</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0.409267</td>
+<td>0.294803</td>
+<td>0.091340</td>
+<td>00:21</td>
+</tr>
+<tr class="even">
+<td>epoch</td>
+<td>train_loss</td>
+<td>valid_loss</td>
+<td>error_rate</td>
+<td>time</td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>0.261121</td>
+<td>0.274507</td>
+<td>0.083897</td>
+<td>00:26</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td>0.296653</td>
+<td>0.318649</td>
+<td>0.084574</td>
+<td>00:26</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>0.242356</td>
+<td>0.253677</td>
+<td>0.069012</td>
+<td>00:26</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>0.150684</td>
+<td>0.251438</td>
+<td>0.065629</td>
+<td>00:26</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>0.094997</td>
+<td>0.239772</td>
+<td>0.064276</td>
+<td>00:26</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>0.061144</td>
+<td>0.228082</td>
+<td>0.054804</td>
+<td>00:26</td>
+</tr>
+</tbody>
+</table>
+<p>你会看到我们又回到使用<code>fine_tune</code>，因为它非常方便！我们可以传递<code>freeze_epochs</code>告诉 fastai 在冻结时训练多少个周期。它将自动为大多数数据集更改学习率。</p>
+<p>在这种情况下，我们没有从更深的模型中看到明显的优势。这是值得记住的——对于你的特定情况，更大的模型不一定是更好的模型！确保在扩大规模之前尝试小模型。</p>
+</section>
+</section>
+<section id="结论" class="level1">
+<h1>结论</h1>
+<p>在本章中，你学到了一些重要的实用技巧，既可以为建模准备图像数据（预调整大小，数据块摘要），也可以为拟合模型（学习率查找器，解冻，区分性学习率，设置周期数，使用更深的架构）。使用这些工具将帮助你更快地构建更准确的图像模型。</p>
+<p>我们还讨论了交叉熵损失。这本书的这部分值得花费大量时间。在实践中，你可能不太可能需要自己从头开始实现交叉熵损失，但你需要理解该函数的输入和输出，因为它（或它的变体，正如我们将在下一章中看到的）几乎在每个分类模型中使用。因此，当你想要调试一个模型，或将一个模型投入生产，或提高一个模型的准确性时，你需要能够查看其激活和损失，并理解发生了什么以及为什么。如果你不理解你的损失函数，你就无法正确地做到这一点。</p>
+<p>如果交叉熵损失函数还没有“点亮”你的灯泡，不要担心——你会理解的！首先，回到前一章，确保你真正理解了<code>mnist_loss</code>。然后逐渐地通过本章的笔记本单元格，逐步了解交叉熵损失的每个部分。确保你理解每个计算在做什么以及为什么。尝试自己创建一些小张量，并将它们传递给函数，看看它们返回什么。</p>
+<p>记住：在实现交叉熵损失时所做的选择并不是唯一可能的选择。就像我们在回归中可以在均方误差和平均绝对差（L1）之间进行选择一样，这里也可以改变细节。如果您对可能有效的其他函数有其他想法，请随时在本章的笔记本中尝试！（但要注意：您可能会发现模型训练速度较慢，准确性较低。这是因为交叉熵损失的梯度与激活和目标之间的差异成比例，因此 SGD 始终会为权重提供一个很好的缩放步长。）</p>
+</section>
+<section id="问卷调查" class="level1">
+<h1>问卷调查</h1>
+<ol type="1">
+<li><p>为什么我们首先在 CPU 上调整大小到较大尺寸，然后在 GPU 上调整到较小尺寸？</p></li>
+<li><p>如果您不熟悉正则表达式，请查找正则表达式教程和一些问题集，并完成它们。查看书籍网站以获取建议。</p></li>
+<li><p>对于大多数深度学习数据集，数据通常以哪两种方式提供？</p></li>
+<li><p>查阅<code>L</code>的文档，并尝试使用它添加的一些新方法。</p></li>
+<li><p>查阅 Python <code>pathlib</code>模块的文档，并尝试使用<code>Path</code>类的几种方法。</p></li>
+<li><p>给出两个图像转换可能降低数据质量的示例。</p></li>
+<li><p>fastai 提供了哪种方法来查看<code>DataLoaders</code>中的数据？</p></li>
+<li><p>fastai 提供了哪种方法来帮助您调试<code>DataBlock</code>？</p></li>
+<li><p>在彻底清理数据之前，是否应该暂停训练模型？</p></li>
+<li><p>在 PyTorch 中，交叉熵损失是由哪两个部分组合而成的？</p></li>
+<li><p>softmax 确保的激活函数的两个属性是什么？为什么这很重要？</p></li>
+<li><p>何时可能希望激活函数不具有这两个属性？</p></li>
+<li><p>自己计算图 5-3 中的<code>exp</code>和<code>softmax</code>列（即在电子表格、计算器或笔记本中）。</p></li>
+<li><p>为什么我们不能使用<code>torch.where</code>为标签可能有多于两个类别的数据集创建损失函数？</p></li>
+<li><p>log（-2）的值是多少？为什么？</p></li>
+<li><p>选择学习率时有哪两个好的经验法则来自学习率查找器？</p></li>
+<li><p><code>fine_tune</code>方法执行了哪两个步骤？</p></li>
+<li><p>在 Jupyter Notebook 中，如何获取方法或函数的源代码？</p></li>
+<li><p>什么是区分性学习率？</p></li>
+<li><p>当将 Python <code>slice</code>对象作为学习率传递给 fastai 时，它是如何解释的？</p></li>
+<li><p>为什么在使用 1cycle 训练时，提前停止是一个不好的选择？</p></li>
+<li><p><code>resnet50</code>和<code>resnet101</code>之间有什么区别？</p></li>
+<li><p><code>to_fp16</code>是做什么的？</p></li>
+</ol>
+<section id="进一步研究" class="level2">
+<h2 class="anchored" data-anchor-id="进一步研究">进一步研究</h2>
+<ol type="1">
+<li><p>找到 Leslie Smith 撰写的介绍学习率查找器的论文，并阅读。</p></li>
+<li><p>看看是否可以提高本章分类器的准确性。您能达到的最佳准确性是多少？查看论坛和书籍网站，看看其他学生在这个数据集上取得了什么成就以及他们是如何做到的。</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

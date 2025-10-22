@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Munging with fastai’s Mid-Level API – Сергей Мирошниченко</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Сергей Мирошниченко</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../posts.html"> 
+<span class="menu-text">Блог</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Munging with fastai’s Mid-Level API</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="cell-1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hide</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span> [ <span class="op">-</span>e <span class="op">/</span>content ] <span class="op">&amp;&amp;</span> pip install <span class="op">-</span>Uqq fastbook</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> fastbook</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>fastbook.setup_book()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-2" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hide</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastbook <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display,HTML</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>[[chapter_midlevel_data]]</p>
+<p>We have seen what <code>Tokenizer</code> and <code>Numericalize</code> do to a collection of texts, and how they’re used inside the data block API, which handles those transforms for us directly using the <code>TextBlock</code>. But what if we want to only apply one of those transforms, either to see intermediate results or because we have already tokenized texts? More generally, what can we do when the data block API is not flexible enough to accommodate our particular use case? For this, we need to use fastai’s <em>mid-level API</em> for processing data. The data block API is built on top of that layer, so it will allow you to do everything the data block API does, and much much more.</p>
+<section id="going-deeper-into-fastais-layered-api" class="level2">
+<h2 class="anchored" data-anchor-id="going-deeper-into-fastais-layered-api">Going Deeper into fastai’s Layered API</h2>
+<p>The fastai library is built on a <em>layered API</em>. In the very top layer there are <em>applications</em> that allow us to train a model in five lines of codes, as we saw in &lt;<chapter_intro>&gt;. In the case of creating <code>DataLoaders</code> for a text classifier, for instance, we used the line:</chapter_intro></p>
+<div id="cell-8" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.text.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> TextDataLoaders.from_folder(untar_data(URLs.IMDB), valid<span class="op">=</span><span class="st">'test'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The factory method <code>TextDataLoaders.from_folder</code> is very convenient when your data is arranged the exact same way as the IMDb dataset, but in practice, that often won’t be the case. The data block API offers more flexibility. As we saw in the last chapter, we can get the same result with:</p>
+<div id="cell-10" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> DataBlock(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(TextBlock.from_folder(path),CategoryBlock),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    get_y <span class="op">=</span> parent_label,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>partial(get_text_files, folders<span class="op">=</span>[<span class="st">'train'</span>, <span class="st">'test'</span>]),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>).dataloaders(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>But it’s sometimes not flexible enough. For debugging purposes, for instance, we might need to apply just parts of the transforms that come with this data block. Or we might want to create a <code>DataLoaders</code> for some application that isn’t directly supported by fastai. In this section, we’ll dig into the pieces that are used inside fastai to implement the data block API. Understanding these will enable you to leverage the power and flexibility of this mid-tier API.</p>
+<blockquote class="blockquote">
+<p>note: Mid-Level API: The mid-level API does not only contain functionality for creating <code>DataLoaders</code>. It also has the <em>callback</em> system, which allows us to customize the training loop any way we like, and the <em>general optimizer</em>. Both will be covered in &lt;<chapter_accel_sgd>&gt;.</chapter_accel_sgd></p>
+</blockquote>
+<section id="transforms" class="level3">
+<h3 class="anchored" data-anchor-id="transforms">Transforms</h3>
+<p>When we studied tokenization and numericalization in the last chapter, we started by grabbing a bunch of texts:</p>
+<div id="cell-15" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_text_files(path, folders <span class="op">=</span> [<span class="st">'train'</span>, <span class="st">'test'</span>])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>txts <span class="op">=</span> L(o.<span class="bu">open</span>().read() <span class="cf">for</span> o <span class="kw">in</span> files[:<span class="dv">2000</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We then showed how to tokenize them with a <code>Tokenizer</code>:</p>
+<div id="cell-17" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tok <span class="op">=</span> Tokenizer.from_folder(path)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tok.setup(txts)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>toks <span class="op">=</span> txts.<span class="bu">map</span>(tok)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>toks[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(#374) ['xxbos','xxmaj','well',',','"','cube','"','(','1997',')'...]</code></pre>
+</div>
+</div>
+<p>and how to numericalize, including automatically creating the vocab for our corpus:</p>
+<div id="cell-19" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>num <span class="op">=</span> Numericalize()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>num.setup(toks)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>nums <span class="op">=</span> toks.<span class="bu">map</span>(num)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>nums[<span class="dv">0</span>][:<span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>tensor([   2,    8,   76,   10,   23, 3112,   23,   34, 3113,   33])</code></pre>
+</div>
+</div>
+<p>The classes also have a <code>decode</code> method. For instance, <code>Numericalize.decode</code> gives us back the string tokens:</p>
+<div id="cell-21" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>nums_dec <span class="op">=</span> num.decode(nums[<span class="dv">0</span>][:<span class="dv">10</span>])<span class="op">;</span> nums_dec</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(#10) ['xxbos','xxmaj','well',',','"','cube','"','(','1997',')']</code></pre>
+</div>
+</div>
+<p>and <code>Tokenizer.decode</code> turns this back into a single string (it may not, however, be exactly the same as the original string; this depends on whether the tokenizer is <em>reversible</em>, which the default word tokenizer is not at the time we’re writing this book):</p>
+<div id="cell-23" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tok.decode(nums_dec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>'xxbos xxmaj well , " cube " ( 1997 )'</code></pre>
+</div>
+</div>
+<p><code>decode</code> is used by fastai’s <code>show_batch</code> and <code>show_results</code>, as well as some other inference methods, to convert predictions and mini-batches into a human-understandable representation.</p>
+<p>For each of <code>tok</code> or <code>num</code> in the preceding example, we created an object, called the <code>setup</code> method (which trains the tokenizer if needed for <code>tok</code> and creates the vocab for <code>num</code>), applied it to our raw texts (by calling the object as a function), and then finally decoded the result back to an understandable representation. These steps are needed for most data preprocessing tasks, so fastai provides a class that encapsulates them. This is the <code>Transform</code> class. Both <code>Tokenize</code> and <code>Numericalize</code> are <code>Transform</code>s.</p>
+<p>In general, a <code>Transform</code> is an object that behaves like a function and has an optional <code>setup</code> method that will initialize some inner state (like the vocab inside <code>num</code>) and an optional <code>decode</code> that will reverse the function (this reversal may not be perfect, as we saw with <code>tok</code>).</p>
+<p>A good example of <code>decode</code> is found in the <code>Normalize</code> transform that we saw in &lt;<chapter_sizing_and_tta>&gt;: to be able to plot the images its <code>decode</code> method undoes the normalization (i.e., it multiplies by the standard deviation and adds back the mean). On the other hand, data augmentation transforms do not have a <code>decode</code> method, since we want to show the effects on images to make sure the data augmentation is working as we want.</chapter_sizing_and_tta></p>
+<p>A special behavior of <code>Transform</code>s is that they always get applied over tuples. In general, our data is always a tuple <code>(input,target)</code> (sometimes with more than one input or more than one target). When applying a transform on an item like this, such as <code>Resize</code>, we don’t want to resize the tuple as a whole; instead, we want to resize the input (if applicable) and the target (if applicable) separately. It’s the same for batch transforms that do data augmentation: when the input is an image and the target is a segmentation mask, the transform needs to be applied (the same way) to the input and the target.</p>
+<p>We can see this behavior if we pass a tuple of texts to <code>tok</code>:</p>
+<div id="cell-25" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>tok((txts[<span class="dv">0</span>], txts[<span class="dv">1</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>((#374) ['xxbos','xxmaj','well',',','"','cube','"','(','1997',')'...],
+ (#207) ['xxbos','xxmaj','conrad','xxmaj','hall','went','out','with','a','bang'...])</code></pre>
+</div>
+</div>
+</section>
+<section id="writing-your-own-transform" class="level3">
+<h3 class="anchored" data-anchor-id="writing-your-own-transform">Writing Your Own Transform</h3>
+<p>If you want to write a custom transform to apply to your data, the easiest way is to write a function. As you can see in this example, a <code>Transform</code> will only be applied to a matching type, if a type is provided (otherwise it will always be applied). In the following code, the <code>:int</code> in the function signature means that <code>f</code> only gets applied to <code>int</code>s. That’s why <code>tfm(2.0)</code> returns <code>2.0</code>, but <code>tfm(2)</code> returns <code>3</code> here:</p>
+<div id="cell-28" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x:<span class="bu">int</span>): <span class="cf">return</span> x<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>tfm <span class="op">=</span> Transform(f)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>tfm(<span class="dv">2</span>),tfm(<span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(3, 2.0)</code></pre>
+</div>
+</div>
+<p>Here, <code>f</code> is converted to a <code>Transform</code> with no <code>setup</code> and no <code>decode</code> method.</p>
+<p>Python has a special syntax for passing a function (like <code>f</code>) to another function (or something that behaves like a function, known as a <em>callable</em> in Python), called a <em>decorator</em>. A decorator is used by prepending a callable with <code>@</code> and placing it before a function definition (there are lots of good online tutorials about Python decorators, so take a look at one if this is a new concept for you). The following is identical to the previous code:</p>
+<div id="cell-30" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="at">@Transform</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x:<span class="bu">int</span>): <span class="cf">return</span> x<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">2</span>),f(<span class="fl">2.0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(3, 2.0)</code></pre>
+</div>
+</div>
+<p>If you need either <code>setup</code> or <code>decode</code>, you will need to subclass <code>Transform</code> to implement the actual encoding behavior in <code>encodes</code>, then (optionally), the setup behavior in <code>setups</code> and the decoding behavior in <code>decodes</code>:</p>
+<div id="cell-32" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> NormalizeMean(Transform):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> setups(<span class="va">self</span>, items): <span class="va">self</span>.mean <span class="op">=</span> <span class="bu">sum</span>(items)<span class="op">/</span><span class="bu">len</span>(items)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> encodes(<span class="va">self</span>, x): <span class="cf">return</span> x<span class="op">-</span><span class="va">self</span>.mean</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> decodes(<span class="va">self</span>, x): <span class="cf">return</span> x<span class="op">+</span><span class="va">self</span>.mean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Here, <code>NormalizeMean</code> will initialize some state during the setup (the mean of all elements passed), then the transformation is to subtract that mean. For decoding purposes, we implement the reverse of that transformation by adding the mean. Here is an example of <code>NormalizeMean</code> in action:</p>
+<div id="cell-34" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>tfm <span class="op">=</span> NormalizeMean()</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tfm.setup([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>start <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> tfm(start)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> tfm.decode(y)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>tfm.mean,y,z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(3.0, -1.0, 2.0)</code></pre>
+</div>
+</div>
+<p>Note that the method called and the method implemented are different, for each of these methods:</p>
+<pre class="asciidoc"><code>[options="header"]
+|======
+| Class | To call | To implement
+| `nn.Module` (PyTorch) | `()` (i.e., call as function) | `forward`
+| `Transform` | `()` | `encodes`
+| `Transform` | `decode()` | `decodes`
+| `Transform` | `setup()` | `setups`
+|======</code></pre>
+<p>So, for instance, you would never call <code>setups</code> directly, but instead would call <code>setup</code>. The reason for this is that <code>setup</code> does some work before and after calling <code>setups</code> for you. To learn more about <code>Transform</code>s and how you can use them to implement different behavior depending on the type of the input, be sure to check the tutorials in the fastai docs.</p>
+</section>
+<section id="pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="pipeline">Pipeline</h3>
+<p>To compose several transforms together, fastai provides the <code>Pipeline</code> class. We define a <code>Pipeline</code> by passing it a list of <code>Transform</code>s; it will then compose the transforms inside it. When you call <code>Pipeline</code> on an object, it will automatically call the transforms inside, in order:</p>
+<div id="cell-38" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>tfms <span class="op">=</span> Pipeline([tok, num])</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> tfms(txts[<span class="dv">0</span>])<span class="op">;</span> t[:<span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>tensor([   2,    8,   76,   10,   23, 3112,   23,   34, 3113,   33,   10,    8, 4477,   22,   88,   32,   10,   27,   42,   14])</code></pre>
+</div>
+</div>
+<p>And you can call <code>decode</code> on the result of your encoding, to get back something you can display and analyze:</p>
+<div id="cell-40" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>tfms.decode(t)[:<span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>'xxbos xxmaj well , " cube " ( 1997 ) , xxmaj vincenzo \'s first movie , was one of the most interesti'</code></pre>
+</div>
+</div>
+<p>The only part that doesn’t work the same way as in <code>Transform</code> is the setup. To properly set up a <code>Pipeline</code> of <code>Transform</code>s on some data, you need to use a <code>TfmdLists</code>.</p>
+</section>
+</section>
+<section id="tfmdlists-and-datasets-transformed-collections" class="level2">
+<h2 class="anchored" data-anchor-id="tfmdlists-and-datasets-transformed-collections">TfmdLists and Datasets: Transformed Collections</h2>
+<p>Your data is usually a set of raw items (like filenames, or rows in a DataFrame) to which you want to apply a succession of transformations. We just saw that a succession of transformations is represented by a <code>Pipeline</code> in fastai. The class that groups together this <code>Pipeline</code> with your raw items is called <code>TfmdLists</code>.</p>
+<section id="tfmdlists" class="level3">
+<h3 class="anchored" data-anchor-id="tfmdlists">TfmdLists</h3>
+<p>Here is the short way of doing the transformation we saw in the previous section:</p>
+<div id="cell-46" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tls <span class="op">=</span> TfmdLists(files, [Tokenizer.from_folder(path), Numericalize])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>At initialization, the <code>TfmdLists</code> will automatically call the <code>setup</code> method of each <code>Transform</code> in order, providing them not with the raw items but the items transformed by all the previous <code>Transform</code>s in order. We can get the result of our <code>Pipeline</code> on any raw element just by indexing into the <code>TfmdLists</code>:</p>
+<div id="cell-48" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> tls[<span class="dv">0</span>]<span class="op">;</span> t[:<span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>tensor([    2,     8,    91,    11,    22,  5793,    22,    37,  4910,    34,    11,     8, 13042,    23,   107,    30,    11,    25,    44,    14])</code></pre>
+</div>
+</div>
+<p>And the <code>TfmdLists</code> knows how to decode for show purposes:</p>
+<div id="cell-50" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tls.decode(t)[:<span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>'xxbos xxmaj well , " cube " ( 1997 ) , xxmaj vincenzo \'s first movie , was one of the most interesti'</code></pre>
+</div>
+</div>
+<p>In fact, it even has a <code>show</code> method:</p>
+<div id="cell-52" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tls.show(t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xxbos xxmaj well , " cube " ( 1997 ) , xxmaj vincenzo 's first movie , was one of the most interesting and tricky ideas that xxmaj i 've ever seen when talking about movies . xxmaj they had just one scenery , a bunch of actors and a plot . xxmaj so , what made it so special were all the effective direction , great dialogs and a bizarre condition that characters had to deal like rats in a labyrinth . xxmaj his second movie , " cypher " ( 2002 ) , was all about its story , but it was n't so good as " cube " but here are the characters being tested like rats again . 
+
+ " nothing " is something very interesting and gets xxmaj vincenzo coming back to his ' cube days ' , locking the characters once again in a very different space with no time once more playing with the characters like playing with rats in an experience room . xxmaj but instead of a thriller sci - fi ( even some of the promotional teasers and trailers erroneous seemed like that ) , " nothing " is a loose and light comedy that for sure can be called a modern satire about our society and also about the intolerant world we 're living . xxmaj once again xxmaj xxunk amaze us with a great idea into a so small kind of thing . 2 actors and a blinding white scenario , that 's all you got most part of time and you do n't need more than that . xxmaj while " cube " is a claustrophobic experience and " cypher " confusing , " nothing " is completely the opposite but at the same time also desperate . 
+
+ xxmaj this movie proves once again that a smart idea means much more than just a millionaire budget . xxmaj of course that the movie fails sometimes , but its prime idea means a lot and offsets any flaws . xxmaj there 's nothing more to be said about this movie because everything is a brilliant surprise and a totally different experience that i had in movies since " cube " .</code></pre>
+</div>
+</div>
+<p>The <code>TfmdLists</code> is named with an “s” because it can handle a training and a validation set with a <code>splits</code> argument. You just need to pass the indices of which elements are in the training set, and which are in the validation set:</p>
+<div id="cell-54" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>cut <span class="op">=</span> <span class="bu">int</span>(<span class="bu">len</span>(files)<span class="op">*</span><span class="fl">0.8</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>splits <span class="op">=</span> [<span class="bu">list</span>(<span class="bu">range</span>(cut)), <span class="bu">list</span>(<span class="bu">range</span>(cut,<span class="bu">len</span>(files)))]</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>tls <span class="op">=</span> TfmdLists(files, [Tokenizer.from_folder(path), Numericalize], </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>                splits<span class="op">=</span>splits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can then access them through the <code>train</code> and <code>valid</code> attributes:</p>
+<div id="cell-56" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>tls.valid[<span class="dv">0</span>][:<span class="dv">20</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>tensor([    2,     8,    20,    30,    87,   510,  1570,    12,   408,   379,  4196,    10,     8,    20,    30,    16,    13, 12216,   202,   509])</code></pre>
+</div>
+</div>
+<p>If you have manually written a <code>Transform</code> that performs all of your preprocessing at once, turning raw items into a tuple with inputs and targets, then <code>TfmdLists</code> is the class you need. You can directly convert it to a <code>DataLoaders</code> object with the <code>dataloaders</code> method. This is what we will do in our Siamese example later in this chapter.</p>
+<p>In general, though, you will have two (or more) parallel pipelines of transforms: one for processing your raw items into inputs and one to process your raw items into targets. For instance, here, the pipeline we defined only processes the raw text into inputs. If we want to do text classification, we also have to process the labels into targets.</p>
+<p>For this we need to do two things. First we take the label name from the parent folder. There is a function, <code>parent_label</code>, for this:</p>
+<div id="cell-58" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lbls <span class="op">=</span> files.<span class="bu">map</span>(parent_label)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>lbls</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(#50000) ['pos','pos','pos','pos','pos','pos','pos','pos','pos','pos'...]</code></pre>
+</div>
+</div>
+<p>Then we need a <code>Transform</code> that will grab the unique items and build a vocab with them during setup, then transform the string labels into integers when called. fastai provides this for us; it’s called <code>Categorize</code>:</p>
+<div id="cell-60" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>cat <span class="op">=</span> Categorize()</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>cat.setup(lbls)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>cat.vocab, cat(lbls[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>((#2) ['neg','pos'], TensorCategory(1))</code></pre>
+</div>
+</div>
+<p>To do the whole setup automatically on our list of files, we can create a <code>TfmdLists</code> as before:</p>
+<div id="cell-62" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>tls_y <span class="op">=</span> TfmdLists(files, [parent_label, Categorize()])</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>tls_y[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>TensorCategory(1)</code></pre>
+</div>
+</div>
+<p>But then we end up with two separate objects for our inputs and targets, which is not what we want. This is where <code>Datasets</code> comes to the rescue.</p>
+</section>
+<section id="datasets" class="level3">
+<h3 class="anchored" data-anchor-id="datasets">Datasets</h3>
+<p><code>Datasets</code> will apply two (or more) pipelines in parallel to the same raw object and build a tuple with the result. Like <code>TfmdLists</code>, it will automatically do the setup for us, and when we index into a <code>Datasets</code>, it will return us a tuple with the results of each pipeline:</p>
+<div id="cell-66" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x_tfms <span class="op">=</span> [Tokenizer.from_folder(path), Numericalize]</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>y_tfms <span class="op">=</span> [parent_label, Categorize()]</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> Datasets(files, [x_tfms, y_tfms])</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> dsets[<span class="dv">0</span>]</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">20</span>],y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Like a <code>TfmdLists</code>, we can pass along <code>splits</code> to a <code>Datasets</code> to split our data between training and validation sets:</p>
+<div id="cell-68" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>x_tfms <span class="op">=</span> [Tokenizer.from_folder(path), Numericalize]</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>y_tfms <span class="op">=</span> [parent_label, Categorize()]</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> Datasets(files, [x_tfms, y_tfms], splits<span class="op">=</span>splits)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>x,y <span class="op">=</span> dsets.valid[<span class="dv">0</span>]</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>x[:<span class="dv">20</span>],y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>(tensor([    2,     8,    20,    30,    87,   510,  1570,    12,   408,   379,  4196,    10,     8,    20,    30,    16,    13, 12216,   202,   509]),
+ TensorCategory(0))</code></pre>
+</div>
+</div>
+<p>It can also decode any processed tuple or show it directly:</p>
+<div id="cell-70" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> dsets.valid[<span class="dv">0</span>]</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>dsets.decode(t)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<pre><code>('xxbos xxmaj this movie had horrible lighting and terrible camera movements . xxmaj this movie is a jumpy horror flick with no meaning at all . xxmaj the slashes are totally fake looking . xxmaj it looks like some 17 year - old idiot wrote this movie and a 10 year old kid shot it . xxmaj with the worst acting you can ever find . xxmaj people are tired of knives . xxmaj at least move on to guns or fire . xxmaj it has almost exact lines from " when a xxmaj stranger xxmaj calls " . xxmaj with gruesome killings , only crazy people would enjoy this movie . xxmaj it is obvious the writer does n\'t have kids or even care for them . i mean at show some mercy . xxmaj just to sum it up , this movie is a " b " movie and it sucked . xxmaj just for your own sake , do n\'t even think about wasting your time watching this crappy movie .',
+ 'neg')</code></pre>
+</div>
+</div>
+<p>The last step is to convert our <code>Datasets</code> object to a <code>DataLoaders</code>, which can be done with the <code>dataloaders</code> method. Here we need to pass along a special argument to take care of the padding problem (as we saw in the last chapter). This needs to happen just before we batch the elements, so we pass it to <code>before_batch</code>:</p>
+<div id="cell-72" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dsets.dataloaders(bs<span class="op">=</span><span class="dv">64</span>, before_batch<span class="op">=</span>pad_input)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>dataloaders</code> directly calls <code>DataLoader</code> on each subset of our <code>Datasets</code>. fastai’s <code>DataLoader</code> expands the PyTorch class of the same name and is responsible for collating the items from our datasets into batches. It has a lot of points of customization, but the most important ones that you should know are:</p>
+<ul>
+<li><code>after_item</code>:: Applied on each item after grabbing it inside the dataset. This is the equivalent of <code>item_tfms</code> in <code>DataBlock</code>.</li>
+<li><code>before_batch</code>:: Applied on the list of items before they are collated. This is the ideal place to pad items to the same size.</li>
+<li><code>after_batch</code>:: Applied on the batch as a whole after its construction. This is the equivalent of <code>batch_tfms</code> in <code>DataBlock</code>.</li>
+</ul>
+<p>As a conclusion, here is the full code necessary to prepare the data for text classification:</p>
+<div id="cell-75" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>tfms <span class="op">=</span> [[Tokenizer.from_folder(path), Numericalize], [parent_label, Categorize]]</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_text_files(path, folders <span class="op">=</span> [<span class="st">'train'</span>, <span class="st">'test'</span>])</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>splits <span class="op">=</span> GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'test'</span>)(files)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>dsets <span class="op">=</span> Datasets(files, tfms, splits<span class="op">=</span>splits)</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> dsets.dataloaders(dl_type<span class="op">=</span>SortedDL, before_batch<span class="op">=</span>pad_input)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The two differences from the previous code are the use of <code>GrandparentSplitter</code> to split our training and validation data, and the <code>dl_type</code> argument. This is to tell <code>dataloaders</code> to use the <code>SortedDL</code> class of <code>DataLoader</code>, and not the usual one. <code>SortedDL</code> constructs batches by putting samples of roughly the same lengths into batches.</p>
+<p>This does the exact same thing as our previous <code>DataBlock</code>:</p>
+<div id="cell-77" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.IMDB)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> DataBlock(</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    blocks<span class="op">=</span>(TextBlock.from_folder(path),CategoryBlock),</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>    get_y <span class="op">=</span> parent_label,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    get_items<span class="op">=</span>partial(get_text_files, folders<span class="op">=</span>[<span class="st">'train'</span>, <span class="st">'test'</span>]),</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>    splitter<span class="op">=</span>GrandparentSplitter(valid_name<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>).dataloaders(path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>But now, you know how to customize every single piece of it!</p>
+<p>Let’s practice what we just learned about this mid-level API for data preprocessing, using a computer vision example now.</p>
+</section>
+</section>
+<section id="applying-the-mid-level-data-api-siamesepair" class="level2">
+<h2 class="anchored" data-anchor-id="applying-the-mid-level-data-api-siamesepair">Applying the Mid-Level Data API: SiamesePair</h2>
+<p>A <em>Siamese model</em> takes two images and has to determine if they are of the same class or not. For this example, we will use the Pet dataset again and prepare the data for a model that will have to predict if two images of pets are of the same breed or not. We will explain here how to prepare the data for such a model, then we will train that model in &lt;<chapter_arch_details>&gt;.</chapter_arch_details></p>
+<p>First things first, let’s get the images in our dataset:</p>
+<div id="cell-81" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> fastai.vision.<span class="bu">all</span> <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> untar_data(URLs.PETS)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> get_image_files(path<span class="op">/</span><span class="st">"images"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If we didn’t care about showing our objects at all, we could directly create one transform to completely preprocess that list of files. We will want to look at those images though, so we need to create a custom type. When you call the <code>show</code> method on a <code>TfmdLists</code> or a <code>Datasets</code> object, it will decode items until it reaches a type that contains a <code>show</code> method and use it to show the object. That <code>show</code> method gets passed a <code>ctx</code>, which could be a <code>matplotlib</code> axis for images, or a row of a DataFrame for texts.</p>
+<p>Here we create a <code>SiameseImage</code> object that subclasses <code>fastuple</code> and is intended to contain three things: two images, and a Boolean that’s <code>True</code> if the images are of the same breed. We also implement the special <code>show</code> method, such that it concatenates the two images with a black line in the middle. Don’t worry too much about the part that is in the <code>if</code> test (which is to show the <code>SiameseImage</code> when the images are Python images, not tensors); the important part is in the last three lines:</p>
+<div id="cell-83" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SiameseImage(fastuple):</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> show(<span class="va">self</span>, ctx<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs): </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>        img1,img2,same_breed <span class="op">=</span> <span class="va">self</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(img1, Tensor):</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> img2.size <span class="op">!=</span> img1.size: img2 <span class="op">=</span> img2.resize(img1.size)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>            t1,t2 <span class="op">=</span> tensor(img1),tensor(img2)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>            t1,t2 <span class="op">=</span> t1.permute(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>),t2.permute(<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>: t1,t2 <span class="op">=</span> img1,img2</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>        line <span class="op">=</span> t1.new_zeros(t1.shape[<span class="dv">0</span>], t1.shape[<span class="dv">1</span>], <span class="dv">10</span>)</span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> show_image(torch.cat([t1,line,t2], dim<span class="op">=</span><span class="dv">2</span>), </span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>                          title<span class="op">=</span>same_breed, ctx<span class="op">=</span>ctx)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s create a first <code>SiameseImage</code> and check our <code>show</code> method works:</p>
+<div id="cell-85" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> PILImage.create(files[<span class="dv">0</span>])</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> SiameseImage(img, img, <span class="va">True</span>)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>s.show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_midlevel_data_files/figure-html/cell-35-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also try with a second image that’s not from the same class:</p>
+<div id="cell-87" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>img1 <span class="op">=</span> PILImage.create(files[<span class="dv">1</span>])</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> SiameseImage(img, img1, <span class="va">False</span>)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>s1.show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_midlevel_data_files/figure-html/cell-36-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The important thing with transforms that we saw before is that they dispatch over tuples or their subclasses. That’s precisely why we chose to subclass <code>fastuple</code> in this instance—this way we can apply any transform that works on images to our <code>SiameseImage</code> and it will be applied on each image in the tuple:</p>
+<div id="cell-89" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> Resize(<span class="dv">224</span>)(s1)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>s2.show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_midlevel_data_files/figure-html/cell-37-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Here the <code>Resize</code> transform is applied to each of the two images, but not the Boolean flag. Even if we have a custom type, we can thus benefit from all the data augmentation transforms inside the library.</p>
+<p>We are now ready to build the <code>Transform</code> that we will use to get our data ready for a Siamese model. First, we will need a function to determine the classes of all our images:</p>
+<div id="cell-91" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> label_func(fname):</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> re.match(<span class="vs">r'</span><span class="dv">^</span><span class="kw">(</span><span class="dv">.</span><span class="op">*</span><span class="kw">)</span><span class="vs">_</span><span class="dv">\d</span><span class="op">+</span><span class="dv">.</span><span class="vs">jpg</span><span class="dv">$</span><span class="vs">'</span>, fname.name).groups()[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>For each image our tranform will, with a probability of 0.5, draw an image from the same class and return a <code>SiameseImage</code> with a true label, or draw an image from another class and return a <code>SiameseImage</code> with a false label. This is all done in the private <code>_draw</code> function. There is one difference between the training and validation sets, which is why the transform needs to be initialized with the splits: on the training set we will make that random pick each time we read an image, whereas on the validation set we make this random pick once and for all at initialization. This way, we get more varied samples during training, but always the same validation set:</p>
+<div id="cell-93" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> SiameseTransform(Transform):</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, files, label_func, splits):</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.labels <span class="op">=</span> files.<span class="bu">map</span>(label_func).unique()</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.lbl2files <span class="op">=</span> {l: L(f <span class="cf">for</span> f <span class="kw">in</span> files <span class="cf">if</span> label_func(f) <span class="op">==</span> l) </span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>                          <span class="cf">for</span> l <span class="kw">in</span> <span class="va">self</span>.labels}</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.label_func <span class="op">=</span> label_func</span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.valid <span class="op">=</span> {f: <span class="va">self</span>._draw(f) <span class="cf">for</span> f <span class="kw">in</span> files[splits[<span class="dv">1</span>]]}</span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> encodes(<span class="va">self</span>, f):</span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>        f2,t <span class="op">=</span> <span class="va">self</span>.valid.get(f, <span class="va">self</span>._draw(f))</span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>        img1,img2 <span class="op">=</span> PILImage.create(f),PILImage.create(f2)</span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> SiameseImage(img1, img2, t)</span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _draw(<span class="va">self</span>, f):</span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>        same <span class="op">=</span> random.random() <span class="op">&lt;</span> <span class="fl">0.5</span></span>
+<span id="cb58-16"><a href="#cb58-16" aria-hidden="true" tabindex="-1"></a>        cls <span class="op">=</span> <span class="va">self</span>.label_func(f)</span>
+<span id="cb58-17"><a href="#cb58-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> same: </span>
+<span id="cb58-18"><a href="#cb58-18" aria-hidden="true" tabindex="-1"></a>            cls <span class="op">=</span> random.choice(L(l <span class="cf">for</span> l <span class="kw">in</span> <span class="va">self</span>.labels <span class="cf">if</span> l <span class="op">!=</span> cls)) </span>
+<span id="cb58-19"><a href="#cb58-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> random.choice(<span class="va">self</span>.lbl2files[cls]),same</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can then create our main transform:</p>
+<div id="cell-95" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>splits <span class="op">=</span> RandomSplitter()(files)</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>tfm <span class="op">=</span> SiameseTransform(files, label_func, splits)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>tfm(files[<span class="dv">0</span>]).show()<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_midlevel_data_files/figure-html/cell-40-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>In the mid-level API for data collection we have two objects that can help us apply transforms on a set of items, <code>TfmdLists</code> and <code>Datasets</code>. If you remember what we have just seen, one applies a <code>Pipeline</code> of transforms and the other applies several <code>Pipeline</code>s of transforms in parallel, to build tuples. Here, our main transform already builds the tuples, so we use <code>TfmdLists</code>:</p>
+<div id="cell-97" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>tls <span class="op">=</span> TfmdLists(files, tfm, splits<span class="op">=</span>splits)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>show_at(tls.valid, <span class="dv">0</span>)<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_midlevel_data_files/figure-html/cell-41-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>And we can finally get our data in <code>DataLoaders</code> by calling the <code>dataloaders</code> method. One thing to be careful of here is that this method does not take <code>item_tfms</code> and <code>batch_tfms</code> like a <code>DataBlock</code>. The fastai <code>DataLoader</code> has several hooks that are named after events; here what we apply on the items after they are grabbed is called <code>after_item</code>, and what we apply on the batch once it’s built is called <code>after_batch</code>:</p>
+<div id="cell-99" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>dls <span class="op">=</span> tls.dataloaders(after_item<span class="op">=</span>[Resize(<span class="dv">224</span>), ToTensor], </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>    after_batch<span class="op">=</span>[IntToFloatTensor, Normalize.from_stats(<span class="op">*</span>imagenet_stats)])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Note that we need to pass more transforms than usual—that’s because the data block API usually adds them automatically:</p>
+<ul>
+<li><code>ToTensor</code> is the one that converts images to tensors (again, it’s applied on every part of the tuple).</li>
+<li><code>IntToFloatTensor</code> converts the tensor of images containing integers from 0 to 255 to a tensor of floats, and divides by 255 to make the values between 0 and 1.</li>
+</ul>
+<p>We can now train a model using this <code>DataLoaders</code>. It will need a bit more customization than the usual model provided by <code>vision_learner</code> since it has to take two images instead of one, but we will see how to create such a model and train it in &lt;<chapter_arch_dtails>&gt;.</chapter_arch_dtails></p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>fastai provides a layered API. It takes one line of code to grab the data when it’s in one of the usual settings, making it easy for beginners to focus on training a model without spending too much time assembling the data. Then, the high-level data block API gives you more flexibility by allowing you to mix and match some building blocks. Underneath it, the mid-level API gives you greater flexibility to apply any transformations on your items. In your real-world problems, this is probably what you will need to use, and we hope it makes the step of data-munging as easy as possible.</p>
+</section>
+<section id="questionnaire" class="level2">
+<h2 class="anchored" data-anchor-id="questionnaire">Questionnaire</h2>
+<ol type="1">
+<li>Why do we say that fastai has a “layered” API? What does it mean?</li>
+<li>Why does a <code>Transform</code> have a <code>decode</code> method? What does it do?</li>
+<li>Why does a <code>Transform</code> have a <code>setup</code> method? What does it do?</li>
+<li>How does a <code>Transform</code> work when called on a tuple?</li>
+<li>Which methods do you need to implement when writing your own <code>Transform</code>?</li>
+<li>Write a <code>Normalize</code> transform that fully normalizes items (subtract the mean and divide by the standard deviation of the dataset), and that can decode that behavior. Try not to peek!</li>
+<li>Write a <code>Transform</code> that does the numericalization of tokenized texts (it should set its vocab automatically from the dataset seen and have a <code>decode</code> method). Look at the source code of fastai if you need help.</li>
+<li>What is a <code>Pipeline</code>?</li>
+<li>What is a <code>TfmdLists</code>?</li>
+<li>What is a <code>Datasets</code>? How is it different from a <code>TfmdLists</code>?</li>
+<li>Why are <code>TfmdLists</code> and <code>Datasets</code> named with an “s”?</li>
+<li>How can you build a <code>DataLoaders</code> from a <code>TfmdLists</code> or a <code>Datasets</code>?</li>
+<li>How do you pass <code>item_tfms</code> and <code>batch_tfms</code> when building a <code>DataLoaders</code> from a <code>TfmdLists</code> or a <code>Datasets</code>?</li>
+<li>What do you need to do when you want to have your custom items work with methods like <code>show_batch</code> or <code>show_results</code>?</li>
+<li>Why can we easily apply fastai data augmentation transforms to the <code>SiamesePair</code> we built?</li>
+</ol>
+<section id="further-research" class="level3">
+<h3 class="anchored" data-anchor-id="further-research">Further Research</h3>
+<ol type="1">
+<li>Use the mid-level API to prepare the data in <code>DataLoaders</code> on your own datasets. Try this with the Pet dataset and the Adult dataset from Chapter 1.</li>
+<li>Look at the Siamese tutorial in the fastai documentation to learn how to customize the behavior of <code>show_batch</code> and <code>show_results</code> for new type of items. Implement it in your own project.</li>
+</ol>
+</section>
+</section>
+<section id="understanding-fastais-applications-wrap-up" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-fastais-applications-wrap-up">Understanding fastai’s Applications: Wrap Up</h2>
+<p>Congratulations—you’ve completed all of the chapters in this book that cover the key practical parts of training models and using deep learning! You know how to use all of fastai’s built-in applications, and how to customize them using the data block API and loss functions. You even know how to create a neural network from scratch, and train it! (And hopefully you now know some of the questions to ask to make sure your creations help improve society too.)</p>
+<p>The knowledge you already have is enough to create full working prototypes of many types of neural network applications. More importantly, it will help you understand the capabilities and limitations of deep learning models, and how to design a system that’s well adapted to them.</p>
+<p>In the rest of this book we will be pulling apart those applications, piece by piece, to understand the foundations they are built on. This is important knowledge for a deep learning practitioner, because it is what allows you to inspect and debug models that you build and create new applications that are customized for your particular projects.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ssmiro\.ru");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
