@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-12-24">
 
-<title>Добро пожаловать в мой блог! – Сергей Мирошниченко</title>
+<title>Question Answering – Сергей Мирошниченко</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,26 +24,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c00b42e811b0fd9a18ac62455ba22490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,67 +69,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -140,7 +81,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Сергей Мирошниченко</span>
     </a>
   </div>
@@ -151,7 +92,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./posts.html"> 
+    <a class="nav-link" href="../posts.html"> 
 <span class="menu-text">Блог</span></a>
   </li>  
 </ul>
@@ -171,7 +112,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Добро пожаловать в мой блог!</h1>
+<h1 class="title">Question Answering</h1>
 </div>
 
 
@@ -179,6 +120,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 24, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -188,192 +135,24 @@ window.Quarto = {
 </header>
 
 
-<p><img src="img/me2f.jpg" alt="Сергей Мирошниченко" style="max-width:100%; height:auto; display:block; margin:0 auto;"></p>
+<p>Я прошел раздел Fine-tuning a pretrained model в рамках <a href="huggingface.co/course">Hugging Face Course</a>. В конце раздела предлагается углубить знания с помощью: - 🤗 Transformers task guides for specific NLP tasks - <a href="https://huggingface.co/docs/transformers/main/en/notebooks">🤗 Transformers examples</a> for comprehensive notebooks</p>
+<p>Меня интересует <a href="https://huggingface.co/docs/transformers/main/en/tasks/question_answering">Question Answering (QA)</a></p>
+<section id="question-answering" class="level4">
+<h4 class="anchored" data-anchor-id="question-answering">Question Answering</h4>
+<p>QA tasts return an answer given a question. There are two common types of question answering tasks. The difference between them в том как <em>именно</em> формируется ответ.</p>
+</section>
+<section id="extractive-qa-извлекающие" class="level4">
+<h4 class="anchored" data-anchor-id="extractive-qa-извлекающие">Extractive QA (извлекающие)</h4>
+<p>Модели <strong>не придумывают формулировку</strong>, а <strong>находят и “вырезают”</strong> фрагмент текста <strong>прямо из представленного контекста</strong></p>
+</section>
+<section id="abstractive-qa-абстрактивное" class="level4">
+<h4 class="anchored" data-anchor-id="abstractive-qa-абстрактивное">Abstractive QA (абстрактивное)</h4>
+<p>Модель <strong>генерирует ответ своими словами</strong>, опираясь на контекст.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-date-sort="1766534400000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="92">
-<div class="thumbnail"><a href="./posts/2025-12-24-1.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-12-24-1.html" class="no-external">Question Answering</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-12-24-1.html" class="no-external">
-Я прошел раздел Fine-tuning a pretrained model в рамках Hugging Face Course. В конце раздела предлагается углубить знания с помощью: - 🤗 Transformers task guides for…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-12-24-1.html" class="no-external">
-<div class="listing-date">
-Dec 24, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-date-sort="1766534400000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="92">
-<div class="thumbnail"><a href="./posts/2025-12-24-2.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-12-24-2.html" class="no-external">Finetune DistilBERT on the SQuAD dataset for extractive question answering</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-12-24-2.html" class="no-external">
-Я прошел раздел Fine-tuning a pretrained model в рамках Hugging Face Course. В конце раздела предлагается углубить знания с помощью: - 🤗 Transformers task guides for…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-12-24-2.html" class="no-external">
-<div class="listing-date">
-Dec 24, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-date-sort="1764806400000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39">
-<div class="thumbnail"><a href="./posts/2025-12-4.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-12-4.html" class="no-external">Hugging Face Course</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-12-4.html" class="no-external">
-В процессе объяснения генетики я намного лучше понял материал. Теперь буду объяснять мои воображаемым читателям генеративный ИИ. Сегодня я начал Hugging Face Course. 9 глав…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-12-4.html" class="no-external">
-<div class="listing-date">
-Dec 4, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-date-sort="1761782400000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="145">
-<div class="thumbnail"><a href="./posts/2025-10-30.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-10-30.html" class="no-external">Конфигурация молекулы ДНК у прокариотов</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-10-30.html" class="no-external">
-Курс Introduction to Biology - The Secret of Life был перенесен в архив, но у меня остался доступ и к лекциям, и к заданиям. Так что я могу спойоно его закончить. На этой…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-10-30.html" class="no-external">
-<div class="listing-date">
-Oct 30, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-date-sort="1761782400000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="261">
-<div class="thumbnail"><a href="./posts/2025-10-30-1.html" class="no-external">
-
-<p class="card-img-top"><img src="img/1.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-10-30-1.html" class="no-external">Что такое теломера и почему она укорачивается?</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-10-30-1.html" class="no-external">
-Фермент, который <strong>строит новую цепь ДНК</strong>, называется <strong>ДНК-полимераза</strong>. И у нее есть <strong>очень важное ограничение</strong>:
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-10-30-1.html" class="no-external">
-<div class="listing-date">
-Oct 30, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-listing-date-sort="1761091200000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="158">
-<div class="thumbnail"><a href="./posts/2025-10-22-1.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-10-22-1.html" class="no-external">Collaborative filtering</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-10-22-1.html" class="no-external">
-Я учусь по книге Jeremy Howard. Она сделана в виде jupyter notebooks. Начну с ноутбука про collaborative filtering. Оно работает следующим образом. Мы смотрим какие продукты…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-10-22-1.html" class="no-external">
-<div class="listing-date">
-Oct 22, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-date-sort="1761004800000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="35">
-<div class="thumbnail"><a href="./posts/2025-10-21-1.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-10-21-1.html" class="no-external">Возвращение к курсу ML от fast.ai</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-10-21-1.html" class="no-external">
-Я нашел курс по генеративному ии от IBM довольно плохо сделанным.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-10-21-1.html" class="no-external">
-<div class="listing-date">
-Oct 21, 2025
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1766537400977" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="189">
-<div class="thumbnail"><a href="./posts/2025-09-25-1.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/2025-09-25-1.html" class="no-external">Почему я завел этот блог</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/2025-09-25-1.html" class="no-external">
-Я нашел классный курс по генеративному ии. Его можно проходить бесплатно.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/2025-09-25-1.html" class="no-external">
-<div class="listing-date">
-Sep 25, 2025
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

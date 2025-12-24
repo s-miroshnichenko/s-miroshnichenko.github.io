@@ -2,338 +2,346 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ssmiro.ru/posts.html</loc>
-    <lastmod>2025-12-05T02:59:48.565Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_ar.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/14_resnet.html</loc>
-    <lastmod>2025-12-05T02:59:48.505Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.910Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/06_multicat.html</loc>
-    <lastmod>2025-12-05T02:59:48.503Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.908Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/03_ethics.html</loc>
-    <lastmod>2025-12-05T02:59:48.502Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.906Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/16_accel_sgd.html</loc>
-    <lastmod>2025-12-05T02:59:48.505Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.911Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/02_production.html</loc>
-    <lastmod>2025-12-05T02:59:48.502Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.906Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/09_tabular.html</loc>
-    <lastmod>2025-12-05T02:59:48.503Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.909Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/18_CAM.html</loc>
-    <lastmod>2025-12-05T02:59:48.505Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.911Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/17_foundations.html</loc>
-    <lastmod>2025-12-05T02:59:48.505Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.911Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/07_sizing_and_tta.html</loc>
-    <lastmod>2025-12-05T02:59:48.503Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.908Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/19_learner.html</loc>
-    <lastmod>2025-12-05T02:59:48.505Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.911Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/03_ethics.html</loc>
-    <lastmod>2025-12-05T02:59:48.337Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.741Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/18_CAM.html</loc>
-    <lastmod>2025-12-05T02:59:48.361Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.766Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_zh.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/20_conclusion.html</loc>
-    <lastmod>2025-12-05T02:59:48.362Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.766Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/13_convolutions.html</loc>
-    <lastmod>2025-12-05T02:59:48.357Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.762Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/02_production.html</loc>
-    <lastmod>2025-12-05T02:59:48.336Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.740Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_bn.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/19_learner.html</loc>
-    <lastmod>2025-12-05T02:59:48.362Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.766Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/06_multicat.html</loc>
-    <lastmod>2025-12-05T02:59:48.344Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.748Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/app_jupyter.html</loc>
-    <lastmod>2025-12-05T02:59:48.364Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.768Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/04_mnist_basics.html</loc>
-    <lastmod>2025-12-05T02:59:48.338Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.742Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_ja.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_ko.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/07_sizing_and_tta.html</loc>
-    <lastmod>2025-12-05T02:59:48.346Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.750Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/app_blog.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/03_ethics.html</loc>
-    <lastmod>2025-12-05T02:59:48.365Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.770Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/18_CAM.html</loc>
-    <lastmod>2025-12-05T02:59:48.371Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.775Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/20_conclusion.html</loc>
-    <lastmod>2025-12-05T02:59:48.372Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.776Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/11_midlevel_data.html</loc>
-    <lastmod>2025-12-05T02:59:48.368Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.773Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/12_nlp_dive.html</loc>
-    <lastmod>2025-12-05T02:59:48.369Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.773Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/19_learner.html</loc>
-    <lastmod>2025-12-05T02:59:48.372Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.776Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/app_jupyter.html</loc>
-    <lastmod>2025-12-05T02:59:48.372Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.776Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/16_accel_sgd.html</loc>
-    <lastmod>2025-12-05T02:59:48.371Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.775Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/14_resnet.html</loc>
-    <lastmod>2025-12-05T02:59:48.370Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.774Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/15_arch_details.html</loc>
-    <lastmod>2025-12-05T02:59:48.370Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.774Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/17_foundations.html</loc>
-    <lastmod>2025-12-05T02:59:48.371Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.775Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_es.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/posts/2025-09-25-1.html</loc>
-    <lastmod>2025-12-05T02:59:48.566Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ssmiro.ru/posts/2025-10-30-1.html</loc>
-    <lastmod>2025-12-05T02:59:48.566Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ssmiro.ru/posts/2025-10-30.html</loc>
-    <lastmod>2025-12-05T02:59:48.566Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ssmiro.ru/index.html</loc>
-    <lastmod>2025-12-05T02:59:48.565Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ssmiro.ru/posts/2025-10-22-1.html</loc>
-    <lastmod>2025-12-05T02:59:48.566Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/posts/2025-12-4.html</loc>
-    <lastmod>2025-12-05T02:59:48.566Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ssmiro.ru/posts/2025-10-22-1.html</loc>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ssmiro.ru/posts/2025-10-30.html</loc>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ssmiro.ru/index.html</loc>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ssmiro.ru/posts/2025-12-24-1.html</loc>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ssmiro.ru/posts/2025-10-30-1.html</loc>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ssmiro.ru/posts/2025-12-24-2.html</loc>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/posts/2025-10-21-1.html</loc>
-    <lastmod>2025-12-05T02:59:48.566Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.977Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/17_foundations.html</loc>
-    <lastmod>2025-12-05T02:59:48.360Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.764Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/app_blog.html</loc>
-    <lastmod>2025-12-05T02:59:48.372Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.776Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/07_sizing_and_tta.html</loc>
-    <lastmod>2025-12-05T02:59:48.367Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.771Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/01_intro.html</loc>
-    <lastmod>2025-12-05T02:59:48.365Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.769Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/04_mnist_basics.html</loc>
-    <lastmod>2025-12-05T02:59:48.366Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.771Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/06_multicat.html</loc>
-    <lastmod>2025-12-05T02:59:48.367Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.771Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/09_tabular.html</loc>
-    <lastmod>2025-12-05T02:59:48.368Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.772Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/02_production.html</loc>
-    <lastmod>2025-12-05T02:59:48.365Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.769Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/13_convolutions.html</loc>
-    <lastmod>2025-12-05T02:59:48.369Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.773Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/08_collab.html</loc>
-    <lastmod>2025-12-05T02:59:48.368Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.772Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/05_pet_breeds.html</loc>
-    <lastmod>2025-12-05T02:59:48.367Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.771Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/clean/10_nlp.html</loc>
-    <lastmod>2025-12-05T02:59:48.368Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.773Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/15_arch_details.html</loc>
-    <lastmod>2025-12-05T02:59:48.359Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.763Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/14_resnet.html</loc>
-    <lastmod>2025-12-05T02:59:48.359Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.763Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/01_intro.html</loc>
-    <lastmod>2025-12-05T02:59:48.329Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.733Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/16_accel_sgd.html</loc>
-    <lastmod>2025-12-05T02:59:48.360Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.764Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_id.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_tr.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_vn.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/09_tabular.html</loc>
-    <lastmod>2025-12-05T02:59:48.351Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.755Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/12_nlp_dive.html</loc>
-    <lastmod>2025-12-05T02:59:48.354Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.758Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/11_midlevel_data.html</loc>
-    <lastmod>2025-12-05T02:59:48.353Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.758Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_it.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/08_collab.html</loc>
-    <lastmod>2025-12-05T02:59:48.347Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.751Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/CODE_OF_CONDUCT.html</loc>
-    <lastmod>2025-12-05T02:59:48.362Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/05_pet_breeds.html</loc>
-    <lastmod>2025-12-05T02:59:48.341Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.745Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/08_collab.html</loc>
-    <lastmod>2025-12-05T02:59:48.503Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.908Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/05_pet_breeds.html</loc>
-    <lastmod>2025-12-05T02:59:48.503Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.907Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/11_midlevel_data.html</loc>
-    <lastmod>2025-12-05T02:59:48.504Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.909Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/10_nlp.html</loc>
-    <lastmod>2025-12-05T02:59:48.504Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.909Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/15_arch_details.html</loc>
-    <lastmod>2025-12-05T02:59:48.505Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.910Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/13_convolutions.html</loc>
-    <lastmod>2025-12-05T02:59:48.504Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.910Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/04_mnist_basics.html</loc>
-    <lastmod>2025-12-05T02:59:48.502Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.907Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/20_conclusion.html</loc>
-    <lastmod>2025-12-05T02:59:48.505Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.911Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/01_intro.html</loc>
-    <lastmod>2025-12-05T02:59:48.501Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.906Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/translations/cn/12_nlp_dive.html</loc>
-    <lastmod>2025-12-05T02:59:48.504Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.910Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/10_nlp.html</loc>
-    <lastmod>2025-12-05T02:59:48.351Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.755Z</lastmod>
   </url>
   <url>
     <loc>https://ssmiro.ru/Fastbook/README_pt.html</loc>
-    <lastmod>2025-12-05T02:59:48.363Z</lastmod>
+    <lastmod>2025-12-24T00:50:00.767Z</lastmod>
   </url>
 </urlset>
